@@ -19,9 +19,9 @@ import languageDict from "./languageDict";
 import "./index.css";
 
 const LanguageSelect = styled(Select)(
-  // color: ${theme.palette.background.default} !important;
-  ({ theme }) => `
-    color: balck !important;
+  ({ theme }) =>
+    `
+    color: white !important;
     borderColor: rgba(255, 255, 255, 0.43);
   `
 );
@@ -31,7 +31,7 @@ const TitleTypography = styled(Typography)(({ theme }) => `flexGrow: 1;`);
 const Mainbar = () => {
   const dispatch = useDispatch();
   const locale = useSelector((state) => state.i18n.locale);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -53,16 +53,15 @@ const Mainbar = () => {
     let keys = ["refresh", "token", "tokenExpiresIn"];
     keys.forEach((key) => localStorage.removeItem(key));
 
-    // navigate("/");
+    navigate("/");
   };
 
   return (
     <AppBar>
       <Toolbar id="header-toolbar">
         <TitleTypography variant="h6">
-          <Link style={{ textDecoration: "none", color: "white" }} to="/">
-            Staffence
-          </Link>
+          {/* <Link style={{ textDecoration: "none", color: "white" }} to="/"> */}
+          <Link to="/">Staffence</Link>
         </TitleTypography>
         <LanguageSelect
           labelId="select-language-select-label"

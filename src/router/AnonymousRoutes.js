@@ -3,27 +3,23 @@
  */
 
 import { React } from "react";
-// import * as ReactDOM from "react-dom/client";
-import {
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
-
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Template } from "component";
 import { AnonymousLandingPage } from "page";
 
 const AnonymousRouter = createBrowserRouter([
-  { path: "/", element: <AnonymousLandingPage/> },
+  {
+    path: "/",
+    element: (
+      <Template>
+        <AnonymousLandingPage />
+      </Template>
+    ),
+  },
 ]);
 
 function AnonymousRouterProvider() {
-  return (
-    <>
-      <Template>
-        <RouterProvider router={AnonymousRouter} />
-      </Template>
-    </>
-  );
+  return <RouterProvider router={AnonymousRouter} />;
 }
 
 export default AnonymousRouterProvider;

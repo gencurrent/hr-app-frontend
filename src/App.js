@@ -1,35 +1,28 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 import { Provider } from "react-redux";
-import { RouterProvider } from "react-router-dom";
+import { ApolloProvider } from "@apollo/client";
 
 import { authApolloClient, pureApolloClient } from "utils/apollo";
 import { store } from "utils/redux";
 import { AnonymousRouterProvider } from "router";
 
 function App() {
-  return (
-    // <Provider store={store}>
-      <AnonymousRouterProvider/>
+  const isUserAuthenticated =
+    localStorage.getItem("refresh", false) &&
+    localStorage.getItem("token", false);
 
-    // </Provider>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
+
+  const apolloClient = isUserAuthenticated ? authApolloClient : pureApolloClient;
+  // TODO: Use AuthenticatedRouterProvider in when it's done
+  const RouterProvider = isUserAuthenticated ? AnonymousRouterProvider : AnonymousRouterProvider;
+  
+  return (
+    <Provider store={store}>
+      <ApolloProvider client={apolloClient}>
+          <RouterProvider />
+      </ApolloProvider>
+    </Provider>
   );
 }
 
