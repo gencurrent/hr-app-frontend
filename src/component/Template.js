@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container, Box, CssBaseline } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import { Mainbar } from "component";
 
 class Template extends React.Component {
@@ -8,8 +8,8 @@ class Template extends React.Component {
     return (
       <>
         <CssBaseline />
-        <Mainbar />
-        <Box my={4} sx={{ py: 2 }}>
+        {/* <Mainbar /> */}
+        <Box my={2} sx={{ py: 2 }}>
           {this.props.children}
         </Box>
       </>

@@ -1,7 +1,7 @@
 import Template from "component/Template";
 
-import DownBar from "./DownBar";
+import DownBar from "./BottomBar";
 import RequestDemoForm from "./RequestDemoForm";
-import Mainbar from "./Mainbar";
+import BottomBar from "./BottomBar";
 
-export { Template, DownBar, RequestDemoForm, Mainbar };
+export { Template, DownBar, RequestDemoForm, BottomBar };

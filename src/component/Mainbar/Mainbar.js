@@ -6,6 +6,7 @@ import { Translate, setLocale } from "react-redux-i18n";
 import { styled } from "@mui/system";
 import {
   AppBar,
+  Grid,
   Toolbar,
   Menu,
   Typography,
@@ -59,57 +60,66 @@ const Mainbar = () => {
   return (
     <AppBar>
       <Toolbar id="header-toolbar">
-        <TitleTypography variant="h6">
-          {/* <Link style={{ textDecoration: "none", color: "white" }} to="/"> */}
-          <Link to="/">Staffence</Link>
-        </TitleTypography>
-        <LanguageSelect
-          labelId="select-language-select-label"
-          id="select-language-select"
-          value={locale}
-          onChange={onLanguageSelected}
-          variant="outlined"
-        >
-          {Object.keys(languageDict).map((key) => (
-            <MenuItem value={languageDict[key].short} key={key}>
-              {languageDict[key].full}
-            </MenuItem>
-          ))}
-        </LanguageSelect>
-        <div>
-          {/* TODO: Insert Typographed username here */}
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
-          <Menu
-            id="menu-bar"
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={open}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>
-              <Translate value="mainBar.profile" />
-            </MenuItem>
-            <MenuItem onClick={onLogOutClick}>
-              <Translate value="mainBar.logOut" />
-            </MenuItem>
-          </Menu>
-        </div>
+        <Grid container direction="row" justifyContent="flex-end" spacing={2}>
+          <Grid item>
+            <TitleTypography variant="h6">
+              <Link style={{ textDecoration: "none", color: "white" }} to="/">
+                Staffence
+              </Link>
+            </TitleTypography>
+          </Grid>
+          <Grid item>
+            <LanguageSelect
+              labelId="select-language-select-label"
+              id="select-language-select"
+              value={locale}
+              onChange={onLanguageSelected}
+              variant="outlined"
+            >
+              {Object.keys(languageDict).map((key) => (
+                <MenuItem value={languageDict[key].short} key={key}>
+                  {languageDict[key].full}
+                </MenuItem>
+              ))}
+            </LanguageSelect>
+          </Grid>
+          <Grid item>
+            <div>
+              {/* TODO: Insert Typographed username here */}
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-bar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>
+                  <Translate value="mainBar.profile" />
+                </MenuItem>
+                <MenuItem onClick={onLogOutClick}>
+                  <Translate value="mainBar.logOut" />
+                </MenuItem>
+              </Menu>
+            </div>
+          </Grid>
+        </Grid>
       </Toolbar>
     </AppBar>
   );

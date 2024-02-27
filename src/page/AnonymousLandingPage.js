@@ -1,7 +1,7 @@
 /**
  * The Landing Page for unauthenticated users
  */
-// import { ReactComponent as LPIcon } from "public/LP-icon.svg";
+import { ReactComponent as LPIcon } from "public/LP-icon.svg";
 import { React, useState } from "react";
 import { styled } from "@mui/system";
 import {
@@ -37,7 +37,7 @@ const StyledCheckBoxFormGroup = styled(Box)(
   `
 );
 
-function AnonymousLandingPage() {
+function AnonymousLandingPage(props) {
   const speedometervalues = [
     "❤️‍🩹  We are sorry to have nothing selected above",
     "👩‍🔬  At least we could try it",
@@ -115,7 +115,7 @@ function AnonymousLandingPage() {
                 Make recruiting a<br />
                 simple game
               </Typography>
-              {/* <LPIcon className="lp-image" /> */}
+              <LPIcon className="lp-image" />
             </Grid>
             <Grid item sm={12} md={6}>
               {/* <RequestDemoForm /> */}
