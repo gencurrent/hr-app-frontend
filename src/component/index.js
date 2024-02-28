@@ -4,4 +4,6 @@ import DownBar from "./BottomBar";
 import RequestDemoForm from "./RequestDemoForm";
 import BottomBar from "./BottomBar";
 
-export { Template, DownBar, RequestDemoForm, BottomBar };
+export {
+  Template, DownBar, RequestDemoForm, BottomBar,
+};

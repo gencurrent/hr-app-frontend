@@ -1,44 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Alert,
-  Container,
   Grid,
-  Typography,
   TextField,
   Button,
-  Paper,
-  Tabs,
-  Tab,
   Snackbar,
 } from "@mui/material";
 import { styled } from "@mui/system";
-
-import { pureApolloClient } from "utils/apollo";
-
 import { gql } from "@apollo/client";
 
-const MainPaper = styled("div")(
-  ({ theme }) => `
-    marginTop: ${theme.spacing(8)},
-    display: flex,
-    flexDirection: column,
-    alignItems: center,
-  `
-);
-
-const AuthenticationForm = styled("form")(
-  ({ theme }) => `
-    width: 100%;
-    marginTop: ${theme.spacing(3)},
-  `
-);
+import { pureApolloClient } from "utils/apollo";
 
 const SubmitButton = styled(Button)(
   ({ theme }) => `margin: ${theme.spacing(3, 0, 2)};`
 );
 
-export default function AuthenticationSignInPage() {
+export default function AuthenticationSignInPage(props) {
   useEffect(() => {
     console.log("AuthenticationSignInPage");
   }, []);
@@ -110,18 +88,14 @@ export default function AuthenticationSignInPage() {
       severity="error"
     >
       <Alert severity="error" onClose={closeSnackBar}>
-        Authentication failed
+        Please enter valid credentials
       </Alert>
     </Snackbar>
   );
 
   return (
-    <MainPaper>
-      {SnackBarAuthenticationResult}
-      <Typography component="h1" variant="h5">
-        Sign In
-      </Typography>
-      <AuthenticationForm noValidate>
+    <>
+        {SnackBarAuthenticationResult}
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
@@ -162,7 +136,6 @@ export default function AuthenticationSignInPage() {
             </SubmitButton>
           </Grid>
         </Grid>
-      </AuthenticationForm>
-    </MainPaper>
+      </>
   );
 }

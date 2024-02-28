@@ -20,7 +20,7 @@ const translationObject = {
     allVacancies: "All vacancies",
     lastWeekSubmissions: "Last week submissions",
   },
-  VacancySubmissionPage: {
+  AnonymousVacancySubmissionPage: {
     fullName: "Full name",
     email: "Email",
     phone: "Phone in format +[full number]",
