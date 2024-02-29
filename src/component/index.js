@@ -9,6 +9,8 @@ import LanguageSelect from "./LanguageSelect";
 import LocalStorageThemeProvider from "./AppThemeProvider";
 import GeneralContainer from "./GenaralContainer";
 
+import DashboardSubmissionStatisticsChart from "./DashboardSubmissionStatisticsChart";
+
 export {
   Template,
   DownBar,
@@ -19,4 +21,6 @@ export {
   LanguageSelect,
   LocalStorageThemeProvider,
   GeneralContainer,
+
+  DashboardSubmissionStatisticsChart,
 };
