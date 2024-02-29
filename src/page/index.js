@@ -6,6 +6,7 @@ import AuthenticationSignUpPage from "./AuthenticationSignUpPage";
 // Vacancy pages
 import AnonymousVacancyApplicationPage from "./AnonymousVacancyApplicationPage";
 import AnonymousVacancyPreviewPage from "./AnonymousVacancyPreviewPage";
+import AnonymousVacancyAppliedPage from "./AnonymousVacancyAppliedPage";
 
 export {
   AnonymousLandingPage,
@@ -15,4 +16,5 @@ export {
   // Vacancy pages
   AnonymousVacancyApplicationPage,
   AnonymousVacancyPreviewPage,
+  AnonymousVacancyAppliedPage,
 };

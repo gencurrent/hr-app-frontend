@@ -7,6 +7,7 @@ import GlassBar from "./GlassBar";
 import GlassContainer from "./GlassContainer";
 import LanguageSelect from "./LanguageSelect";
 import LocalStorageThemeProvider from "./AppThemeProvider";
+import GeneralContainer from "./GenaralContainer";
 
 export {
   Template,
@@ -17,4 +18,5 @@ export {
   GlassContainer,
   LanguageSelect,
   LocalStorageThemeProvider,
+  GeneralContainer,
 };
