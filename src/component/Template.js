@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Box, CssBaseline } from "@mui/material";
+import Mainbar from "./Mainbar";
 
 class Template extends React.Component {
   render() {

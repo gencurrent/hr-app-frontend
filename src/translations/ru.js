@@ -3,6 +3,7 @@
  */
 
 const translationObject = {
+  authenticate: "Авторизация",
   mainBar: {
     profile: "Профиль",
     logOut: "Выйти",

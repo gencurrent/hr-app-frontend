@@ -112,11 +112,6 @@ a:visited, .link-undecorated {
   }
 }
 
-.anonymous-lp-mainbar {
-  display: block;
-  background: var(--lp-bg-color);
-}
-
 .footer {
   display: flex;
   width: 100%;

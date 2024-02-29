@@ -11,19 +11,17 @@ import {
   Menu,
   Typography,
   IconButton,
-  Select,
   MenuItem,
 } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 
-import languageDict from "./languageDict";
+import { LanguageSelect } from "component";
+import { LanguageDict } from "utils/constants";
 import "./index.css";
 
-const LanguageSelect = styled(Select)(
-  ({ theme }) =>
-    `
-    color: white !important;
-    borderColor: rgba(255, 255, 255, 0.43);
+const GlassAppBar = styled(AppBar)(
+  ({ theme }) => `
+
   `
 );
 
@@ -58,7 +56,7 @@ const Mainbar = () => {
   };
 
   return (
-    <AppBar>
+    <GlassAppBar id="lp-app-bar">
       <Toolbar id="header-toolbar">
         <Grid container direction="row" justifyContent="flex-end" spacing={2}>
           <Grid item>
@@ -76,9 +74,9 @@ const Mainbar = () => {
               onChange={onLanguageSelected}
               variant="outlined"
             >
-              {Object.keys(languageDict).map((key) => (
-                <MenuItem value={languageDict[key].short} key={key}>
-                  {languageDict[key].full}
+              {Object.keys(LanguageDict).map((key) => (
+                <MenuItem value={LanguageDict[key].short} key={key}>
+                  {LanguageDict[key].full}
                 </MenuItem>
               ))}
             </LanguageSelect>
@@ -121,7 +119,7 @@ const Mainbar = () => {
           </Grid>
         </Grid>
       </Toolbar>
-    </AppBar>
+    </GlassAppBar>
   );
 };
 
