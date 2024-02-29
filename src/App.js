@@ -5,23 +5,29 @@ import { ApolloProvider } from "@apollo/client";
 
 import { authApolloClient, pureApolloClient } from "utils/apollo";
 import { store } from "utils/redux";
-import { AnonymousRouterProvider } from "router";
+import { AnonymousRouterProvider, AuthenticatedRouterProvider } from "router";
+import { LocalStorageThemeProvider } from "component";
 
 function App() {
   const isUserAuthenticated =
     localStorage.getItem("refresh", false) &&
     localStorage.getItem("token", false);
 
-
-  const apolloClient = isUserAuthenticated ? authApolloClient : pureApolloClient;
+  const apolloClient = isUserAuthenticated
+    ? authApolloClient
+    : pureApolloClient;
   // TODO: Use AuthenticatedRouterProvider in when it's done
-  const RouterProvider = isUserAuthenticated ? AnonymousRouterProvider : AnonymousRouterProvider;
-  
+  const RouterProvider = isUserAuthenticated
+    ? AuthenticatedRouterProvider
+    : AnonymousRouterProvider;
+
   return (
     <Provider store={store}>
-      <ApolloProvider client={apolloClient}>
+      <LocalStorageThemeProvider>
+        <ApolloProvider client={apolloClient}>
           <RouterProvider />
-      </ApolloProvider>
+        </ApolloProvider>
+      </LocalStorageThemeProvider>
     </Provider>
   );
 }

@@ -2,7 +2,7 @@
  * The list of languages accessible
  */
 
-const languageDict = {
+const LanguageDict = {
   en: {
     short: "en",
     full: "English 🇬🇧",
@@ -13,4 +13,4 @@ const languageDict = {
   },
 };
 
-export default languageDict;
+export default LanguageDict;

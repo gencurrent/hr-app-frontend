@@ -3,6 +3,7 @@
  */
 
 const translationObject = {
+  authenticate: "Авторизация",
   mainBar: {
     profile: "Профиль",
     logOut: "Выйти",
@@ -20,7 +21,7 @@ const translationObject = {
     allVacancies: "Все вакансии",
     lastWeekSubmissions: "Откликов за неделю",
   },
-  VacancySubmissionPage: {
+  AnonymousVacancySubmissionPage: {
     fullName: "Полное имя",
     email: "Электронная почта",
     phone: "Номер телефона в формате +7[полный номер]",

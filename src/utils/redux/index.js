@@ -1,4 +1,4 @@
-import { combineReducers, applyMiddleware } from "redux";
+import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { thunk } from "redux-thunk";
 import { createBrowserHistory } from "history";
@@ -9,6 +9,8 @@ import {
   i18nReducer,
 } from "react-redux-i18n";
 
+import counterReducer from "./ColorModereducer";
+
 import translactionObject from "translations";
 import * as additionalReducers from "./reducers";
 
@@ -17,6 +19,7 @@ const store = configureStore({
     routing: routerReducer,
     i18n: i18nReducer,
     additional: additionalReducers.additionalI18nReducer,
+    counter: counterReducer,
   }),
   middleware: () => [thunk],
 });

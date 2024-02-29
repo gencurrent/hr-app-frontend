@@ -1,2 +1,3 @@
 import AnonymousRouterProvider from "./AnonymousRoutes";
-export { AnonymousRouterProvider };
+import AuthenticatedRouterProvider from "./AuthenticatedRoutes";
+export { AnonymousRouterProvider, AuthenticatedRouterProvider};

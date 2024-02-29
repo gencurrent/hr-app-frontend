@@ -1,5 +1,7 @@
+import { Palette } from "@mui/icons-material";
 import { createTheme } from "@mui/material";
 import { deepOrange, grey } from "@mui/material/colors";
+import createTypography from "@mui/material/styles/createTypography";
 
 const primary = "#7C9DC4";
 const secondary = "#DCE6F1";
@@ -9,8 +11,9 @@ const lightTheme = createTheme({
   palette: {
     mode: "light",
     text: {
-      primary: grey[800],
-      secondary: grey[600],
+      // primary: grey.A700,
+      primary: "#202020",
+      secondary: grey.A400,
       mainbar: grey[50],
     },
     primary: {
@@ -44,7 +47,7 @@ const darkTheme = createTheme({
       main: grey[50],
     },
     background: {
-      default: grey[50],
+      default: grey.A700,
     },
   },
 });

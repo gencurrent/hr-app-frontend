@@ -3,6 +3,9 @@
  */
 
 const translationObject = {
+  authenticate: "Authenticate",
+
+  
   mainBar: {
     profile: "Profile",
     logOut: "Log Out",
@@ -20,7 +23,7 @@ const translationObject = {
     allVacancies: "All vacancies",
     lastWeekSubmissions: "Last week submissions",
   },
-  VacancySubmissionPage: {
+  AnonymousVacancySubmissionPage: {
     fullName: "Full name",
     email: "Email",
     phone: "Phone in format +[full number]",
