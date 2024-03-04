@@ -14,6 +14,8 @@ import FieldTypeLabel from "./FieldTypeLabel";
 import VacancyFieldList from "./VacancyFieldList";
 import VacancyListItem from "./VacancyListItem";
 import DeleteConfirmationDialog from "./DeleteConfirmationDialog";
+import SubmissionListItemAnswer from "./SubmissionListItemAnswer";
+import ExpandMore from "./ExpandMore";
 
 export {
   Template,
@@ -31,4 +33,6 @@ export {
   FieldTypeLabel,
   FieldRequiredLabel,
   DeleteConfirmationDialog,
+  SubmissionListItemAnswer,
+  ExpandMore,
 };

@@ -73,7 +73,6 @@ export default function VacancyCreatePage(props) {
       },
     }).then(({ data }) => {
       // Success only
-      console.log("data = ", data);
       navigate(`/vacancy/${data.createVacancy.id}`);
     });
   };

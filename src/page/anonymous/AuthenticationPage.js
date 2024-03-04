@@ -14,7 +14,6 @@ const AuthenticationForm = styled("form")(
 );
 
 const AuthenticationPage = (props) => {
-  console.log("Authentication page");
   let navigate = useNavigate();
   let urlMap = ["signin", "signup"];
   let methodMap = ["Sign In", "Sign Up"];
