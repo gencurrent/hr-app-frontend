@@ -3,10 +3,18 @@
  * It is an entrypoint page to apply for an anonymous visiter
  */
 
-import { Box, Grid, Typography, Paper, Button } from "@mui/material";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
+import {
+  Box,
+  Breadcrumbs,
+  Button,
+  Card,
+  Grid,
+  Typography,
+} from "@mui/material";
+import { Link } from "react-router-dom";
+import { Translate, I18n } from "react-redux-i18n";
 
 import { QUERIES } from "utils/apollo";
 import GeneralContainer from "component/GenaralContainer";
@@ -26,6 +34,12 @@ export default function AnonymousVacancyPreviewPage() {
   });
   return (
     <GeneralContainer>
+      <Typography variant="h4" component="h1" gutterBottom>
+        <Translate value="AnonymousVacancySubmissionPage.vacancyDescription" />
+      </Typography>
+      <Breadcrumbs>
+        <Translate value="AnonymousVacancySubmissionPage.vacancyDescription" />
+      </Breadcrumbs>
       {error && (
         <Typography component="h1" variant="h4">
           Error on loading the vacancy data...
@@ -37,7 +51,7 @@ export default function AnonymousVacancyPreviewPage() {
         </Typography>
       )}
       {vacancyData && (
-        <Paper variant="elevation">
+        <Card variant="outlined">
           <Grid container sx={{ p: 4 }}>
             <Grid item xs={12}>
               <Typography component="h1" variant="h4" textAlign="center">
@@ -68,7 +82,7 @@ export default function AnonymousVacancyPreviewPage() {
               </Box>
             </Grid>
           </Grid>
-        </Paper>
+        </Card>
       )}
     </GeneralContainer>
   );

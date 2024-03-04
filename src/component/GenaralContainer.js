@@ -19,5 +19,8 @@ export default function GeneralContainer(props) {
 
 GeneralContainer.propTypes = {
   maxWidth: PropTypes.string,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+  ]).isRequired,
 };

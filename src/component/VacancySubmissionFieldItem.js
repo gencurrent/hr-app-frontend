@@ -23,6 +23,7 @@ const VacancySubmissionFieldItem = (props) => {
   };
 
   /**
+   * TODO: Use context or redux
    * Drill the value onto the upper level (Parent Component's callback)
    * @param {Object} value The value to pass on
    */
@@ -33,13 +34,13 @@ const VacancySubmissionFieldItem = (props) => {
       setFieldError(undefined);
     }
     const key = field.q;
-    console.log(
-      `field r, key, value,  error = `,
-      field.r,
-      key,
-      value,
-      fieldError
-    );
+    // console.log(
+    //   `field r, key, value,  error = `,
+    //   field.r,
+    //   key,
+    //   value,
+    //   fieldError
+    // );
     props.valueUpdateCallback(key, value);
   };
 

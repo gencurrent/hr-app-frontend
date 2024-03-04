@@ -39,8 +39,6 @@ function SubmissionListItemAnswer(props) {
     ...JSON.parse(vacancy.fields).find((el) => el.q === answer.q),
     ...answer,
   };
-  console.log("Full vacancy ", vacancy);
-  console.log("Full submission item annwer", answerFull);
   return (
     <>
       <AnswerBlockCard elevation={0}>
@@ -48,11 +46,7 @@ function SubmissionListItemAnswer(props) {
           # {idx} {answerFull.r ? <FieldRequiredLabel /> : <></>} {answer.q}
         </Typography>
         {/* <Box className={classes.answerContainer}> */}
-        <AnswerContainerBox
-          sx={() => {
-            console.log("Answer container has been called");
-          }}
-        >
+        <AnswerContainerBox>
           {answer.a === null || answer.a === "" ? (
             <Typography component="p">--- No answer ---</Typography>
           ) : (

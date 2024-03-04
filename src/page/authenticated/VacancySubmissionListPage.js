@@ -7,7 +7,6 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { styled } from "@mui/system";
 import {
-  Box,
   Button,
   Breadcrumbs,
   Card,
@@ -35,7 +34,6 @@ const SubmissionListItem = styled(Card)(
 );
 
 function SubmissionItem(props) {
-  console.log(`Submission item`, props);
   const { submission, singleVacancySusbmissions, vacancyId } = props;
   let { vacancyData } = props;
   let ts = new Date(submission.ts);
@@ -93,6 +91,7 @@ function SubmissionItem(props) {
               </MUILink>
             ) : (
               <Typography
+                key={field.field}
                 variant="body1"
                 component="p"
                 sx={
@@ -176,55 +175,53 @@ function VacancySubmissionListPage(props) {
 
   return (
     <GeneralContainer>
-      <Box>
-        {loading && <div>Loading...</div>}
+      {loading && <div>Loading...</div>}
 
-        {error && <div>Error loading submissions</div>}
-        {data && (
-          <>
-            {/* Title */}
-            {singleVacancySusbmissions ? (
-              <Typography component="h3" variant="h4">
-                <Link className="link-undecorated" to={`/vacancy/${vacancyId}`}>
-                  {data.vacancy.position}
-                </Link>
-                {" submissions"}
-              </Typography>
-            ) : (
-              <Typography component="h3" variant="h4">
-                <Translate value="submissionListPage.allSubmissions" />
-              </Typography>
-            )}
-
-            <Breadcrumbs>
-              <Link to="/">
-                <Translate value="breadcrumbs.dashboard" />
+      {error && <div>Error loading submissions</div>}
+      {data && (
+        <>
+          {/* Title */}
+          {singleVacancySusbmissions ? (
+            <Typography component="h3" variant="h4">
+              <Link className="link-undecorated" to={`/vacancy/${vacancyId}`}>
+                {data.vacancy.position}
               </Link>
-              <Typography>
-                <Translate value="breadcrumbs.submissions" />
-              </Typography>
-            </Breadcrumbs>
+              {" submissions"}
+            </Typography>
+          ) : (
+            <Typography component="h3" variant="h4">
+              <Translate value="submissionListPage.allSubmissions" />
+            </Typography>
+          )}
 
-            {submissionList.map((submission) => {
-              vacancyId = singleVacancySusbmissions
-                ? vacancyId
-                : submission.vacancy.id;
-              let vacancyData = singleVacancySusbmissions
-                ? data.vacancy
-                : submission.vacancy;
-              return (
-                <SubmissionItem
-                  key={submission.uuid}
-                  submission={submission}
-                  vacancyId={vacancyId}
-                  vacancyData={vacancyData}
-                  singleVacancySusbmissions={singleVacancySusbmissions}
-                />
-              );
-            })}
-          </>
-        )}
-      </Box>
+          <Breadcrumbs>
+            <Link to="/">
+              <Translate value="breadcrumbs.dashboard" />
+            </Link>
+            <Typography>
+              <Translate value="breadcrumbs.submissions" />
+            </Typography>
+          </Breadcrumbs>
+
+          {submissionList.map((submission) => {
+            vacancyId = singleVacancySusbmissions
+              ? vacancyId
+              : submission.vacancy.id;
+            let vacancyData = singleVacancySusbmissions
+              ? data.vacancy
+              : submission.vacancy;
+            return (
+              <SubmissionItem
+                key={submission.id}
+                submission={submission}
+                vacancyId={vacancyId}
+                vacancyData={vacancyData}
+                singleVacancySusbmissions={singleVacancySusbmissions}
+              />
+            );
+          })}
+        </>
+      )}
     </GeneralContainer>
   );
 }

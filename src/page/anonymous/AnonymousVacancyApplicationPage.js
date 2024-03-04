@@ -3,18 +3,19 @@
  */
 
 import { React, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { Translate, I18n } from "react-redux-i18n";
 import { useQuery } from "@apollo/client";
 import { styled } from "@mui/system";
 import {
-  FormControl,
   Box,
+  Breadcrumbs,
+  Button,
+  FormControl,
   Grid,
   Paper,
-  Typography,
   TextField,
-  Button,
+  Typography,
 } from "@mui/material";
 
 import { pureApolloClient, MUTATIONS, QUERIES } from "utils/apollo";
@@ -118,7 +119,17 @@ export default function AnonymousVacancyApplicationPage() {
       {error && <div>Error</div>}
       {vacancyData && (
         <GeneralContainer sx={{ py: 4 }}>
-          <MainCardPaper variant="elevation">
+          <Typography variant="h4" component="h1" gutterBottom>
+            <Translate value="AnonymousVacancySubmissionPage.applyToVacancy" />
+          </Typography>
+          <Breadcrumbs>
+            <Link to={`/vacancy/${vacancyId}/preview`}>
+              <Translate value="AnonymousVacancySubmissionPage.vacancyDescription" />
+            </Link>
+            <Typography>Apply</Typography>
+          </Breadcrumbs>
+
+          <MainCardPaper variant="outlined">
             <Typography variant="h4" align="center" gutterBottom>
               {vacancyData.vacancy.position}
             </Typography>
