@@ -18,7 +18,7 @@ import {
   AnonymousVacancyApplicationPage,
   AnonymousVacancyPreviewPage,
   AnonymousVacancyAppliedPage,
-} from "page";
+} from "page/anonymous";
 
 const AnonymousRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -37,10 +37,7 @@ const AnonymousRouter = createBrowserRouter(
       <Route path="vacancy">
         <Route path=":id/preview" element={<AnonymousVacancyPreviewPage />} />
         <Route path=":id/apply" element={<AnonymousVacancyApplicationPage />} />
-        <Route
-          path=":id/applied"
-          element={<AnonymousVacancyAppliedPage />}
-        />
+        <Route path=":id/applied" element={<AnonymousVacancyAppliedPage />} />
       </Route>
     </>
   )

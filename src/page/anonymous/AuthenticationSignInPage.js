@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Alert,
-  Grid,
-  TextField,
-  Button,
-  Snackbar,
-} from "@mui/material";
+import { Alert, Grid, TextField, Button, Snackbar } from "@mui/material";
 import { styled } from "@mui/system";
 import { gql } from "@apollo/client";
 
@@ -17,9 +11,7 @@ const SubmitButton = styled(Button)(
 );
 
 export default function AuthenticationSignInPage(props) {
-  useEffect(() => {
-    console.log("AuthenticationSignInPage");
-  }, []);
+  useEffect(() => {}, []);
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -95,47 +87,47 @@ export default function AuthenticationSignInPage(props) {
 
   return (
     <>
-        {SnackBarAuthenticationResult}
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-              autoComplete="email"
-              name="email"
-              variant="outlined"
-              required
-              fullWidth
-              id="email"
-              label="Email"
-              value={email}
-              onChange={onEditEmail}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              name="password"
-              variant="outlined"
-              required
-              fullWidth
-              id="password"
-              label="Password"
-              type="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={onEditPassword}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <SubmitButton
-              type="submit"
-              onClick={hanldeSubmit}
-              fullWidth
-              variant="contained"
-              color="primary"
-            >
-              Sign In
-            </SubmitButton>
-          </Grid>
+      {SnackBarAuthenticationResult}
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <TextField
+            autoComplete="email"
+            name="email"
+            variant="outlined"
+            required
+            fullWidth
+            id="email"
+            label="Email"
+            value={email}
+            onChange={onEditEmail}
+          />
         </Grid>
-      </>
+        <Grid item xs={12}>
+          <TextField
+            name="password"
+            variant="outlined"
+            required
+            fullWidth
+            id="password"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={onEditPassword}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <SubmitButton
+            type="submit"
+            onClick={hanldeSubmit}
+            fullWidth
+            variant="contained"
+            color="primary"
+          >
+            Sign In
+          </SubmitButton>
+        </Grid>
+      </Grid>
+    </>
   );
 }

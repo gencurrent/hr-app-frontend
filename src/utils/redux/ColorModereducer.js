@@ -14,8 +14,6 @@ const counterSlice = createSlice({
       let value = parseInt(localStorage.getItem("Counter"));
       value++;
       state.value = value;
-      console.log(state);
-      console.log(state.value);
       localStorage.setItem("Counter", value);
     },
     decrement(state) {

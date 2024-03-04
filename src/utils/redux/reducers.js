@@ -16,14 +16,11 @@ function i18nInitialize() {
 
 const initialState = {};
 function additionalI18nReducer(state = initialState, action) {
-  console.log("additionalI18nReducer state = ", state);
-  console.log("additionalI18nReducer action = ", action);
   if (action === undefined) {
     return state;
   }
   if (action.type === "@@i18n/SET_LOCALE") {
     const locale = action.locale;
-    console.log(locale);
     localStorage.setItem("locale", locale);
     return {
       ...state,
