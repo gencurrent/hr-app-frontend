@@ -10,6 +10,9 @@ import LocalStorageThemeProvider from "./AppThemeProvider";
 import GeneralContainer from "./GenaralContainer";
 
 import DashboardSubmissionStatisticsChart from "./DashboardSubmissionStatisticsChart";
+import VacancyFieldList from "./VacancyFieldList";
+import FieldTypeLabel from "./FieldTypeLabel";
+import FieldRequiredLabel from "./FieldRequiredLabel";
 
 export {
   Template,
@@ -21,6 +24,9 @@ export {
   LanguageSelect,
   LocalStorageThemeProvider,
   GeneralContainer,
-
+  // Authenticated pages compoenents
   DashboardSubmissionStatisticsChart,
+  VacancyFieldList,
+  FieldTypeLabel,
+  FieldRequiredLabel,
 };

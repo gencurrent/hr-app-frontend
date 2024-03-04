@@ -8,6 +8,9 @@ import AnonymousVacancyApplicationPage from "./AnonymousVacancyApplicationPage";
 import AnonymousVacancyPreviewPage from "./AnonymousVacancyPreviewPage";
 import AnonymousVacancyAppliedPage from "./AnonymousVacancyAppliedPage";
 
+// Authenticated pages
+
+
 export {
   AnonymousLandingPage,
   AuthenticationPage,

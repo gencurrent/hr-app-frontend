@@ -18,7 +18,7 @@ import { Translate } from "react-redux-i18n";
 import { DashboardSubmissionStatisticsChart, GeneralContainer } from "component";
 import { QUERIES } from "utils/apollo";
 
-const DashboardPage = () => {
+export default function DashboardPage(){
   const { data, loading, error } = useQuery(QUERIES.USER_MAIN_STATS, {
     fetchPolicy: "no-cache",
   });
@@ -130,5 +130,3 @@ const DashboardPage = () => {
     </GeneralContainer>
   );
 };
-
-export default DashboardPage;
