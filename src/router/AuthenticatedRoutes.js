@@ -10,13 +10,14 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
-import { DashboardPage, VacancyCreatePage } from "page/authenticated";
+import { DashboardPage, VacancyCreatePage, VacancyListPage } from "page/authenticated";
 
 const AuthenticatedRouter = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<DashboardPage />} />
       <Route path="vacancy/create" element={<VacancyCreatePage />} />
+      <Route path="vacancy" element={<VacancyListPage />} />
     </>
   )
 );

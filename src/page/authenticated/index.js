@@ -1,4 +1,5 @@
 import DashboardPage from "./DashBoardPage";
 import VacancyCreatePage from "./VacancyCreatePage";
+import VacancyListPage from "./VacancyListPage";
 
-export { DashboardPage, VacancyCreatePage };
+export { DashboardPage, VacancyCreatePage, VacancyListPage };

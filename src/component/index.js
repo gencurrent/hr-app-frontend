@@ -1,6 +1,5 @@
 import Template from "component/Template";
 
-import DownBar from "./BottomBar";
 import RequestDemoForm from "./RequestDemoForm";
 import BottomBar from "./BottomBar";
 import GlassBar from "./GlassBar";
@@ -10,13 +9,14 @@ import LocalStorageThemeProvider from "./AppThemeProvider";
 import GeneralContainer from "./GenaralContainer";
 
 import DashboardSubmissionStatisticsChart from "./DashboardSubmissionStatisticsChart";
-import VacancyFieldList from "./VacancyFieldList";
-import FieldTypeLabel from "./FieldTypeLabel";
 import FieldRequiredLabel from "./FieldRequiredLabel";
+import FieldTypeLabel from "./FieldTypeLabel";
+import VacancyFieldList from "./VacancyFieldList";
+import VacancyListItem from "./VacancyListItem";
+import DeleteConfirmationDialog from "./DeleteConfirmationDialog";
 
 export {
   Template,
-  DownBar,
   RequestDemoForm,
   BottomBar,
   GlassBar,
@@ -27,6 +27,8 @@ export {
   // Authenticated pages compoenents
   DashboardSubmissionStatisticsChart,
   VacancyFieldList,
+  VacancyListItem,
   FieldTypeLabel,
   FieldRequiredLabel,
+  DeleteConfirmationDialog,
 };
