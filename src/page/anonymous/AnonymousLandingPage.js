@@ -11,7 +11,6 @@ import {
   Button,
   Checkbox,
   FormControlLabel,
-  ThemeProvider,
   Card,
 } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -22,11 +21,6 @@ import { darkTheme, lightTheme } from "utils/material/theme";
 import { Box } from "@mui/system";
 import { Translate } from "react-redux-i18n";
 
-const StyledContainer = styled(Container)(
-  ({ theme }) => `
-    padding: ${theme.spacing(2)};
-`
-);
 
 const StyledCheckBoxFormGroup = styled(Box)(
   ({ theme }) => `
