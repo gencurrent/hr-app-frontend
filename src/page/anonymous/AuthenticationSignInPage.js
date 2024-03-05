@@ -18,10 +18,6 @@ export default function AuthenticationSignInPage(props) {
   const [password, setPassword] = useState("");
   const [snackBarOpen, setSnackBarOpen] = useState(false);
 
-  const snackBarSettings = {
-    vertical: "bottom",
-    horizontal: "left",
-  };
   function openSnackBar() {
     setSnackBarOpen(true);
   }
@@ -53,6 +49,7 @@ export default function AuthenticationSignInPage(props) {
         localStorage.setItem("token", token);
         localStorage.setItem("refresh", refreshToken);
         navigate("/");
+        window.location.reload();
       })
       .catch((error) => {
         if (error.message === "Please enter valid credentials") {
@@ -72,7 +69,10 @@ export default function AuthenticationSignInPage(props) {
 
   const SnackBarAuthenticationResult = (
     <Snackbar
-      anchorOrigin={snackBarSettings}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "left",
+      }}
       open={snackBarOpen}
       onClose={closeSnackBar}
       message="Failed to sign in"

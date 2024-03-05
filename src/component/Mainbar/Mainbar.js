@@ -54,6 +54,7 @@ export default function MainBar(props) {
     keys.forEach((key) => localStorage.removeItem(key));
 
     navigate("/");
+    window.location.reload();
   };
 
   return (
