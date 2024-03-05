@@ -42,11 +42,30 @@ const AnonymousRouter = createBrowserRouter(
           </AuthenticationPage>
         }
       />
-      <Route path="vacancy" element={<AnonymousGlassBar />}>
-        <Route path=":id/preview" element={<AnonymousVacancyPreviewPage />} />
-        <Route path=":id/apply" element={<AnonymousVacancyApplicationPage />} />
-        <Route path=":id/applied" element={<AnonymousVacancyAppliedPage />} />
-      </Route>
+      <Route
+        path="vacancy/:id/preview"
+        element={
+          <AnonymousGlassBar>
+            <AnonymousVacancyPreviewPage />
+          </AnonymousGlassBar>
+        }
+      />
+      <Route
+        path="vacancy/:id/apply"
+        element={
+          <AnonymousGlassBar>
+            <AnonymousVacancyApplicationPage />
+          </AnonymousGlassBar>
+        }
+      />
+      <Route
+        path="vacancy/:id/applied"
+        element={
+          <AnonymousGlassBar>
+            <AnonymousVacancyAppliedPage />
+          </AnonymousGlassBar>
+        }
+      />
     </>
   )
 );
