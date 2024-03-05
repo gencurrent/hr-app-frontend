@@ -6,11 +6,12 @@ import PropTypes from "prop-types";
 import { Container } from "@mui/material";
 
 export default function GeneralContainer(props) {
+  const {title, breadcrumbs, children} = props;
   return (
     <Container
       component="main"
       maxWidth={props?.maxWidth || "md"}
-      sx={{ my: 8 }}
+      sx={{ my: 12 }}
     >
       {props.children}
     </Container>

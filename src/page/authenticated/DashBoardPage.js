@@ -19,6 +19,7 @@ import {
   DashboardSubmissionStatisticsChart,
   GeneralContainer,
 } from "component";
+import { MainBar } from "component";
 import { QUERIES } from "utils/apollo";
 
 export default function DashboardPage() {
@@ -45,6 +46,7 @@ export default function DashboardPage() {
   return (
     <GeneralContainer>
       <>
+        <MainBar></MainBar>
         <Typography component="h4" variant="h4">
           <Translate value="mainStatistics.title" />
         </Typography>

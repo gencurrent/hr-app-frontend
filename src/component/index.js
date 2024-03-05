@@ -16,6 +16,7 @@ import VacancyListItem from "./VacancyListItem";
 import DeleteConfirmationDialog from "./DeleteConfirmationDialog";
 import SubmissionListItemAnswer from "./SubmissionListItemAnswer";
 import ExpandMore from "./ExpandMore";
+import MainBar from "./MainBar";
 
 export {
   Template,
@@ -35,4 +36,5 @@ export {
   DeleteConfirmationDialog,
   SubmissionListItemAnswer,
   ExpandMore,
+  MainBar,
 };
