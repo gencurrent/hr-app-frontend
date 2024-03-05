@@ -21,10 +21,15 @@ const translationObject = {
     allVacancies: "Все вакансии",
     lastWeekSubmissions: "Откликов за неделю",
   },
+
+  AnonymousVacancyPreviewPage: {
+    apply: "Откликнуться",
+  },
   AnonymousVacancyAppliedPage: {
     appliedSuccessfully: "Вы успешно откликнулись на вакансию",
   },
   AnonymousVacancySubmissionPage: {
+    apply: "Откликнуться",
     applyToVacancy: "Откликнуться на вакансию",
     vacancyDescription: "Описание вакансии",
     fullName: "Полное имя",

@@ -46,7 +46,6 @@ export default function DashboardPage() {
   return (
     <GeneralContainer>
       <>
-        <MainBar></MainBar>
         <Typography component="h4" variant="h4">
           <Translate value="mainStatistics.title" />
         </Typography>

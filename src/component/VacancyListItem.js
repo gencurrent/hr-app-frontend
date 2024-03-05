@@ -39,84 +39,82 @@ const VacancyListItem = (props) => {
   }
 
   return (
-    <GeneralContainer>
-      <Card variant="outlined">
-        <CardContent>
-          <Typography component="h4" variant="h5">
-            <Link
-              className="link-undecorated"
-              to={{
-                pathname: `/vacancy/${vacancy.id}`,
-                vacancy: vacancy,
-              }}
-            >
-              {vacancy.position}
-            </Link>
+    <Card variant="outlined" sx={{ my: 1 }}>
+      <CardContent>
+        <Typography component="h4" variant="h5">
+          <Link
+            className="link-undecorated"
+            to={{
+              pathname: `/vacancy/${vacancy.id}`,
+              vacancy: vacancy,
+            }}
+          >
+            {vacancy.position}
+          </Link>
+        </Typography>
+        <Box>
+          <Typography component="span" variant="body">
+            Company:{" "}
           </Typography>
-          <Box>
-            <Typography component="span" variant="body">
-              Company:{" "}
-            </Typography>
-            <Typography component="span" variant="body">
-              {vacancy.company}
-            </Typography>
-          </Box>
-          <Box>
-            <Typography component="h5" variant="h5"></Typography>
-            <Link
-              to={{
-                pathname: `/vacancy/${vacancy.id}/submission`,
-                vacancy: vacancy,
-              }}
-            >
-              <div>Submissions: {vacancy.submissionCountTotal}</div>
-            </Link>
-          </Box>
-        </CardContent>
+          <Typography component="span" variant="body">
+            {vacancy.company}
+          </Typography>
+        </Box>
+        <Box>
+          <Typography component="h5" variant="h5"></Typography>
+          <Link
+            to={{
+              pathname: `/vacancy/${vacancy.id}/submission`,
+              vacancy: vacancy,
+            }}
+          >
+            <div>Submissions: {vacancy.submissionCountTotal}</div>
+          </Link>
+        </Box>
+      </CardContent>
 
-        <CardActions>
-          <Grid container spacing={1}>
-            <Grid item>
-              <Button
-                variant="outlined"
-                size="small"
-                onClick={onCopyLink}
-                color="info"
-              >
-                <LinkIcon />
-                URL
-              </Button>
-            </Grid>
-            <Grid item>
-              <Link to={`/vacancy/${vacancy.id}/preview`}>
-                <Button variant="outlined" size="small" color="success">
-                  <CheckCircleOutlineIcon />
-                  Apply
-                </Button>
-              </Link>
-            </Grid>
-            <Grid item>
-              <Button
-                variant="outlined"
-                color="error"
-                onClick={onDelete}
-                size="small"
-              >
-                <Delete />
-                Delete
-              </Button>
-            </Grid>
+      <CardActions>
+        <Grid container spacing={1}>
+          <Grid item>
+            <Button
+              variant="outlined"
+              size="small"
+              onClick={onCopyLink}
+              color="info"
+            >
+              <LinkIcon />
+              URL
+            </Button>
           </Grid>
-          {/* <Link to={`/vacancy/create`}>
+          <Grid item>
+            <Link to={`/vacancy/${vacancy.id}/preview`}>
+              <Button variant="outlined" size="small" color="success">
+                <CheckCircleOutlineIcon />
+                Apply
+              </Button>
+            </Link>
+          </Grid>
+          <Grid item>
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={onDelete}
+              size="small"
+            >
+              <Delete />
+              Delete
+            </Button>
+          </Grid>
+        </Grid>
+        {/* <Link to={`/vacancy/create`}>
           <Button
             variant='outlined'
             size='small'
           >Duplicate</Button>
         </Link> */}
-        </CardActions>
-        <Snackbar />
-      </Card>
-    </GeneralContainer>
+      </CardActions>
+      <Snackbar />
+    </Card>
   );
 };
 

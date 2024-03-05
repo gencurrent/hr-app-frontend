@@ -1,5 +1,6 @@
 import Template from "component/Template";
 
+import AnonymousGlassBar from "./AnonymousGlassBar";
 import RequestDemoForm from "./RequestDemoForm";
 import BottomBar from "./BottomBar";
 import GlassBar from "./GlassBar";
@@ -19,6 +20,8 @@ import ExpandMore from "./ExpandMore";
 import MainBar from "./MainBar";
 
 export {
+
+  AnonymousGlassBar,
   Template,
   RequestDemoForm,
   BottomBar,
@@ -27,7 +30,7 @@ export {
   LanguageSelect,
   LocalStorageThemeProvider,
   GeneralContainer,
-  // Authenticated pages compoenents
+  // Authenticated pages components
   DashboardSubmissionStatisticsChart,
   VacancyFieldList,
   VacancyListItem,

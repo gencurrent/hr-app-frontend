@@ -1,6 +1,5 @@
 import { React, useState } from "react";
-// import { Link, useHistory } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Translate, setLocale } from "react-redux-i18n";
 import { styled } from "@mui/system";
@@ -28,12 +27,13 @@ const GlassAppBar = styled(AppBar)(
 
 const TitleTypography = styled(Typography)(({ theme }) => `flexGrow: 1;`);
 
-export default function MainBar() {
+export default function MainBar(props) {
   const dispatch = useDispatch();
-  const locale = useSelector((state) => state.i18n.locale);
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
+  const locale = useSelector((state) => state.i18n.locale);
   const open = Boolean(anchorEl);
+  const { maxWidth = "lg", sx = {} } = props;
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -57,67 +57,70 @@ export default function MainBar() {
   };
 
   return (
-    <GlassBar>
-      <Grid container direction="row" justifyContent="flex-end" spacing={2}>
-        <Grid item>
-          <TitleTypography variant="h6">
-            <Link style={{ textDecoration: "none", color: "white" }} to="/">
-              Staffence
-            </Link>
-          </TitleTypography>
-        </Grid>
-        <Grid item>
-          <LanguageSelect
-            labelId="select-language-select-label"
-            id="select-language-select"
-            value={locale}
-            onChange={onLanguageSelected}
-            variant="outlined"
-          >
-            {Object.keys(LanguageDict).map((key) => (
-              <MenuItem value={LanguageDict[key].short} key={key}>
-                {LanguageDict[key].full}
-              </MenuItem>
-            ))}
-          </LanguageSelect>
-        </Grid>
-        <Grid item>
-          <div>
-            {/* TODO: Insert Typographed username here */}
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
+    <>
+      <GlassBar maxWidth={maxWidth} sx={sx}>
+        <Grid container direction="row" justifyContent="flex-end" spacing={2}>
+          <Grid item>
+            <TitleTypography variant="h6">
+              <Link style={{ textDecoration: "none", color: "white" }} to="/">
+                Staffence
+              </Link>
+            </TitleTypography>
+          </Grid>
+          <Grid item>
+            <LanguageSelect
+              labelId="select-language-select-label"
+              id="select-language-select"
+              value={locale}
+              onChange={onLanguageSelected}
+              variant="outlined"
             >
-              <AccountCircle />
-            </IconButton>
-            <Menu
-              id="menu-bar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={open}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>
-                <Translate value="mainBar.profile" />
-              </MenuItem>
-              <MenuItem onClick={onLogOutClick}>
-                <Translate value="mainBar.logOut" />
-              </MenuItem>
-            </Menu>
-          </div>
+              {Object.keys(LanguageDict).map((key) => (
+                <MenuItem value={LanguageDict[key].short} key={key}>
+                  {LanguageDict[key].full}
+                </MenuItem>
+              ))}
+            </LanguageSelect>
+          </Grid>
+          <Grid item>
+            <div>
+              {/* TODO: Insert Typographed username here */}
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-bar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>
+                  <Translate value="mainBar.profile" />
+                </MenuItem>
+                <MenuItem onClick={onLogOutClick}>
+                  <Translate value="mainBar.logOut" />
+                </MenuItem>
+              </Menu>
+            </div>
+          </Grid>
         </Grid>
-      </Grid>
-    </GlassBar>
+      </GlassBar>
+      <Outlet />
+    </>
   );
 }

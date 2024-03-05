@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import ReactSpeedometer from "react-d3-speedometer";
 
 import { BottomBar, GlassBar, GlassContainer, LanguageSelect } from "component";
-import { darkTheme, lightTheme } from "utils/material/theme";
+// import { darkTheme, lightTheme } from "utils/material/theme";
 import { Box } from "@mui/system";
 import { Translate } from "react-redux-i18n";
 

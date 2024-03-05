@@ -1,13 +1,12 @@
 import { React, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { Button, Box, Breadcrumbs, Typography } from "@mui/material";
+import { Button, Breadcrumbs, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import {
   DeleteConfirmationDialog,
   GeneralContainer,
   VacancyListItem,
-  MainBar,
 } from "component";
 import { authApolloClient, MUTATIONS, QUERIES } from "utils/apollo";
 
@@ -41,37 +40,35 @@ export default function VacancyListPage() {
 
   return (
     <>
-      <MainBar></MainBar>
-      <GeneralContainer>
-        <Box>
-          <Typography component="h3" variant="h4">
-            Vacancies
-          </Typography>
+      <GeneralContainer
+        title="Vacancies"
+        breadcrumbs={
           <Breadcrumbs>
             <Link to="/">Dashboard</Link>
             <Typography>Vacancies</Typography>
           </Breadcrumbs>
-          <Link to="/vacancy/create">
-            <Button variant="contained" color="primary">
-              New vacancy
-            </Button>
-          </Link>
-          {data.vacancyList.map((vacancy, idx) => (
-            <div key={idx}>
-              <VacancyListItem onDelete={onVacancyDelete} vacancy={vacancy} />
-            </div>
-          ))}
-          <DeleteConfirmationDialog
-            title={`Delete vacancy "${currentVacancy.position}"`}
-            open={confirmDialogOpen}
-            vacancyId={currentVacancy.id}
-            onClose={() => setConfirmDialogOpen(false)}
-            onConfirm={onVacandyDeleteDialogConfirmed}
-          >
-            Do you want to delete the vacancy "{currentVacancy.position}" in "
-            {currentVacancy.company}"?
-          </DeleteConfirmationDialog>
-        </Box>
+        }
+      >
+        <Link to="/vacancy/create">
+          <Button variant="contained" color="primary">
+            New vacancy
+          </Button>
+        </Link>
+        {data.vacancyList.map((vacancy, idx) => (
+          <div key={idx}>
+            <VacancyListItem onDelete={onVacancyDelete} vacancy={vacancy} />
+          </div>
+        ))}
+        <DeleteConfirmationDialog
+          title={`Delete vacancy "${currentVacancy.position}"`}
+          open={confirmDialogOpen}
+          vacancyId={currentVacancy.id}
+          onClose={() => setConfirmDialogOpen(false)}
+          onConfirm={onVacandyDeleteDialogConfirmed}
+        >
+          Do you want to delete the vacancy "{currentVacancy.position}" in "
+          {currentVacancy.company}"?
+        </DeleteConfirmationDialog>
       </GeneralContainer>
     </>
   );

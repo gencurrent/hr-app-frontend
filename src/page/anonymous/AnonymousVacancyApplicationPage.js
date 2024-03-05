@@ -126,7 +126,7 @@ export default function AnonymousVacancyApplicationPage() {
             <Link to={`/vacancy/${vacancyId}/preview`}>
               <Translate value="AnonymousVacancySubmissionPage.vacancyDescription" />
             </Link>
-            <Typography>Apply</Typography>
+            <Typography><Translate value="AnonymousVacancySubmissionPage.apply" /></Typography>
           </Breadcrumbs>
 
           <MainCardPaper variant="outlined">

@@ -2,6 +2,7 @@ import { AppBar, Container, Toolbar } from "@mui/material";
 import { styled } from "@mui/system";
 
 export default function GlassBar(props) {
+  const { maxWidth="lg", sx={} } = props;
   return (
     <>
       <div>
@@ -14,7 +15,7 @@ export default function GlassBar(props) {
             mt: 2,
           }}
         >
-          <Container maxWidth="lg">
+          <Container maxWidth={maxWidth} sx={sx}>
             <Toolbar
               variant="regular"
               sx={(theme) => ({
