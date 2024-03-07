@@ -3,7 +3,7 @@
  */
 
 import PropTypes from "prop-types";
-import { Breadcrumbs, Container, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
 export default function GeneralContainer(props) {
@@ -14,7 +14,7 @@ export default function GeneralContainer(props) {
       <Container
         component="main"
         maxWidth={props?.maxWidth || "md"}
-        sx={{ my: 12 }}
+        sx={{ my: 14 }}
       >
         <>
           {title && (

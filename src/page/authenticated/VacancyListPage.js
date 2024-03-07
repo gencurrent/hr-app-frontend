@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { Button, Breadcrumbs, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Translate } from "react-redux-i18n";
 
 import {
   DeleteConfirmationDialog,
@@ -51,7 +52,7 @@ export default function VacancyListPage() {
       >
         <Link to="/vacancy/create">
           <Button variant="contained" color="primary">
-            New vacancy
+            <Translate value="vacancyListPage.newVacancy" />
           </Button>
         </Link>
         {data.vacancyList.map((vacancy, idx) => (

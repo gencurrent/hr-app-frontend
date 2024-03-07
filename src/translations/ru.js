@@ -50,7 +50,7 @@ const translationObject = {
   submissionListPage: {
     allSubmissions: "Все отклики",
   },
-  applicationName: "Стаффенс",
+  applicationName: "Staffence",
   congratulations: "Поздравляем!",
 };
 

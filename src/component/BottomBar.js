@@ -1,10 +1,11 @@
+import { Translate } from "react-redux-i18n";
 import { React } from "react";
 
 export default function BottomBar() {
   return (
     <div className="lp-footer footer">
       <div style={{ margin: "auto" }}>
-        Staffence © {new Date().getFullYear()}
+        <Translate value="applicationName" /> © {new Date().getFullYear()}
       </div>
     </div>
   );

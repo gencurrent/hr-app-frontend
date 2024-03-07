@@ -58,6 +58,11 @@ export default function DashboardPage() {
           <Grid item>
             <Card>
               <CardContent>
+                <Link to="/vacancy/create">
+                  <Button variant="contained" color="secondary">
+                    <Translate value="vacancyListPage.newVacancy" />
+                  </Button>
+                </Link>
                 <Typography component="h5" variant="h5">
                   <Translate value="mainStatistics.submissions" />
                 </Typography>

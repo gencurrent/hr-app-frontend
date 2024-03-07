@@ -51,7 +51,7 @@ const translationObject = {
   submissionListPage: {
     allSubmissions: "All submissions",
   },
-  applicationName: "Staffence",
+  applicationName: "hrstack.com",
   congratulations: "Congratulations!",
 };
 
