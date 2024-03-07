@@ -1,31 +1,14 @@
 import { React, useState } from "react";
-import { Link, useNavigate, Outlet } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Translate, setLocale } from "react-redux-i18n";
-import { styled } from "@mui/system";
-import {
-  AppBar,
-  Grid,
-  Toolbar,
-  Menu,
-  Typography,
-  IconButton,
-  MenuItem,
-} from "@mui/material";
+import { Grid, Menu, IconButton, MenuItem } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 
 import { LanguageSelect } from "component";
 import { LanguageDict } from "utils/constants";
 import "./index.css";
 import { GlassBar } from "component";
-
-const GlassAppBar = styled(AppBar)(
-  ({ theme }) => `
-
-  `
-);
-
-const TitleTypography = styled(Typography)(({ theme }) => `flexGrow: 1;`);
 
 export default function MainBar(props) {
   const dispatch = useDispatch();
@@ -72,7 +55,6 @@ export default function MainBar(props) {
             alignItems="center"
             justifyContent={"middle"}
           >
-            {/* <TitleTypography variant="h6"> */}
             <Link
               style={{
                 textDecoration: "none",
@@ -83,7 +65,6 @@ export default function MainBar(props) {
             >
               <img src={"/logo512.png"} height="48px" />
             </Link>
-            {/* </TitleTypography> */}
           </Grid>
 
           <Grid item>
@@ -153,7 +134,6 @@ export default function MainBar(props) {
           </Grid>
         </Grid>
       </GlassBar>
-      <Outlet />
     </>
   );
 }

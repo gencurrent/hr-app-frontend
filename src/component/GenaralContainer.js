@@ -7,7 +7,7 @@ import { Container, Typography } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
 export default function GeneralContainer(props) {
-  const { title, breadcrumbs, children } = props;
+  const { title, breadcrumbs } = props;
 
   return (
     <>

@@ -42,7 +42,7 @@ export default function VacancyListPage() {
   return (
     <>
       <GeneralContainer
-        title="Vacancies"
+        title={<Translate value="VacancyListPage.title"/>}
         breadcrumbs={
           <Breadcrumbs>
             <Link to="/">Dashboard</Link>
@@ -52,7 +52,7 @@ export default function VacancyListPage() {
       >
         <Link to="/vacancy/create">
           <Button variant="contained" color="primary">
-            <Translate value="vacancyListPage.newVacancy" />
+            <Translate value="VacancyListPage.newVacancy" />
           </Button>
         </Link>
         {data.vacancyList.map((vacancy, idx) => (

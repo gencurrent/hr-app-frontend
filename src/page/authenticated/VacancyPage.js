@@ -29,6 +29,7 @@ import {
   FieldRequiredLabel,
   FieldTypeLabel,
   GeneralContainer,
+  GlassContainer,
 } from "component";
 
 /**
@@ -68,124 +69,116 @@ function VacancyPage(props) {
 
   return (
     <>
-      {loading && (
-        <>
-          <Typography>Loading</Typography>
-        </>
-      )}
-      {error && (
-        <>
-          <Typography>Error</Typography>
-        </>
-      )}
+      {loading && <Typography>Loading</Typography>}
+      {error && <Typography>Error</Typography>}
       {data && (
-        <GeneralContainer>
-          <Typography variant="h4" component="h1" gutterBottom>
-            {data.vacancy.position}
-          </Typography>
-
-          <Breadcrumbs>
-            <Link to="/">Dashboard</Link>
-            <Link to="/vacancy">Vacancies</Link>
-            <Typography>{data.vacancy.position}</Typography>
-          </Breadcrumbs>
-          <Card variant="outlined">
-            <CardActions>
-              <Grid container spacing={1}>
-                <Grid item>
-                  <Button
-                    variant="outlined"
-                    size="small"
-                    onClick={onCopyLink}
-                    color="info"
-                  >
-                    <LinkIcon />
-                    URL
+        <GeneralContainer
+          title={
+            <Typography variant="h4" component="h1" gutterBottom>
+              {data.vacancy.position}
+            </Typography>
+          }
+          breadcrumbs={
+            <Breadcrumbs>
+              <Link to="/">Dashboard</Link>
+              <Link to="/vacancy">Vacancies</Link>
+              <Typography>{data.vacancy.position}</Typography>
+            </Breadcrumbs>
+          }
+        >
+          <GlassContainer>
+            <Grid container spacing={1}>
+              <Grid item>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  onClick={onCopyLink}
+                  color="info"
+                >
+                  <LinkIcon />
+                  URL
+                </Button>
+              </Grid>
+              <Grid item>
+                <Link to={`/vacancy/${data.vacancy.id}/preview`}>
+                  <Button variant="outlined" size="small" color="success">
+                    <CheckCircleOutlineIcon />
+                    Apply
                   </Button>
-                </Grid>
-                <Grid item>
-                  <Link to={`/vacancy/${data.vacancy.id}/preview`}>
-                    <Button variant="outlined" size="small" color="success">
-                      <CheckCircleOutlineIcon />
-                      Apply
-                    </Button>
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Button
-                    variant="outlined"
-                    color="error"
-                    onClick={() => setConfirmDialogOpen(true)}
-                    size="small"
-                  >
-                    <Delete />
-                    Delete
-                  </Button>
-                </Grid>
+                </Link>
               </Grid>
-            </CardActions>
-            <CardContent>
-              <Grid container>
-                <Grid item xs={12}>
-                  <Typography
-                    sx={{ fontWeight: "800 !important" }}
-                    component="span"
-                  >
-                    {data.vacancy.position}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography component="span">at </Typography>
-                  <Typography
-                    sx={{ fontWeight: "800 !important" }}
-                    component="span"
-                  >
-                    {data.vacancy.company}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography
-                    sx={{ fontWeight: "800 !important" }}
-                    component="span"
-                  >
-                    {datetimeToString(new Date(data.vacancy.ts))}
-                  </Typography>
-                </Grid>
+              <Grid item>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={() => setConfirmDialogOpen(true)}
+                  size="small"
+                >
+                  <Delete />
+                  Delete
+                </Button>
               </Grid>
+            </Grid>
+            <Grid container>
+              <Grid item xs={12}>
+                <Typography
+                  sx={{ fontWeight: "800 !important" }}
+                  component="span"
+                >
+                  {data.vacancy.position}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography component="span">at </Typography>
+                <Typography
+                  sx={{ fontWeight: "800 !important" }}
+                  component="span"
+                >
+                  {data.vacancy.company}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography
+                  sx={{ fontWeight: "800 !important" }}
+                  component="span"
+                >
+                  {datetimeToString(new Date(data.vacancy.ts))}
+                </Typography>
+              </Grid>
+            </Grid>
 
-              <Grid container>
-                {JSON.parse(data.vacancy.fields).map((field, idx) => {
-                  return (
-                    <Grid item xs={12}>
-                      <Card variant="outlined">
-                        <CardContent>
-                          <Typography
-                            sx={{ fontWeight: "800 !important" }}
-                            component="span"
-                          >
-                            {idx + 1}.{" "}
-                          </Typography>
-                          <Typography
-                            sx={{ fontWeight: "800 !important" }}
-                            component="span"
-                          >
-                            {<FieldTypeLabel type={field.t} />}
-                            {field.r ? <FieldRequiredLabel /> : ""}
-                          </Typography>
-                          <Typography
-                            sx={{ fontWeight: "800 !important" }}
-                            component="span"
-                          >
-                            {field.q}
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </Grid>
-                  );
-                })}
-              </Grid>
-            </CardContent>
-          </Card>
+            <Grid container>
+              {JSON.parse(data.vacancy.fields).map((field, idx) => {
+                return (
+                  <Grid item xs={12}>
+                    <Card variant="outlined">
+                      <CardContent>
+                        <Typography
+                          sx={{ fontWeight: "800 !important" }}
+                          component="span"
+                        >
+                          {idx + 1}.{" "}
+                        </Typography>
+                        <Typography
+                          sx={{ fontWeight: "800 !important" }}
+                          component="span"
+                        >
+                          {<FieldTypeLabel type={field.t} />}
+                          {field.r ? <FieldRequiredLabel /> : ""}
+                        </Typography>
+                        <Typography
+                          sx={{ fontWeight: "800 !important" }}
+                          component="span"
+                        >
+                          {field.q}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </GlassContainer>
 
           <DeleteConfirmationDialog
             title={`Delete vacancy "${data.vacancy.position}"`}

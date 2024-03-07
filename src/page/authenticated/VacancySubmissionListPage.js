@@ -19,13 +19,17 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PropTypes from "prop-types";
 import { Translate } from "react-redux-i18n";
 
-import { GeneralContainer, SubmissionListItemAnswer } from "component";
+import {
+  GeneralContainer,
+  GlassContainer,
+  SubmissionListItemAnswer,
+} from "component";
 import { datetimeToString } from "utils/date";
 import { QUERIES } from "utils/apollo";
 import { GoogleCloudStorageClient } from "utils/cloudStorage";
 import { ExpandMore } from "component";
 
-const SubmissionListItem = styled(Card)(
+const SubmissionListItemCard = styled(Card)(
   ({ theme }) => `
   margin: ${theme.spacing(3, 0, 2)};
   padding: ${theme.spacing(2)};
@@ -76,7 +80,7 @@ function SubmissionItem(props) {
     const { submission } = props;
     const cloudStorageClient = new GoogleCloudStorageClient();
     return (
-      <Grid container>
+      <Grid container spacing={0.5}>
         {fieldList.map((field) => (
           <Grid key={field.field} style={{ margin: "0px 0" }} item xs={12}>
             {field.field === "resume" ? (
@@ -112,7 +116,7 @@ function SubmissionItem(props) {
   vacancyData = submission.vacancy || vacancyData;
 
   return (
-    <SubmissionListItem key={submission.uuid} variant="outlined">
+    <SubmissionListItemCard key={submission.uuid} variant="outlined">
       {!singleVacancySusbmissions && (
         <Typography component="h5" variant="h5">
           <Link className="link-undecorated" to={`/vacancy/${vacancyId}`}>
@@ -128,14 +132,21 @@ function SubmissionItem(props) {
         <Grid item>{tsString}</Grid>
       </Grid>
 
-      <ExpandMore
-        expand={expanded}
-        onClick={handleExpandClick}
-        aria-expanded={expanded}
-        aria-label="show more"
-      >
-        <ExpandMoreIcon />
-      </ExpandMore>
+      <Grid container direction="row" justifyContent="left" spacing={2}>
+        <Grid item display="flex" alignItems="center">
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </Grid>
+        <Grid item display="flex" alignItems="center">
+          <Typography>Answers</Typography>
+        </Grid>
+      </Grid>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         {JSON.parse(submission.answers).map((answer, idx) => (
           <SubmissionListItemAnswer
@@ -146,7 +157,7 @@ function SubmissionItem(props) {
           />
         ))}
       </Collapse>
-    </SubmissionListItem>
+    </SubmissionListItemCard>
   );
 }
 
@@ -173,55 +184,63 @@ function VacancySubmissionListPage(props) {
     data &&
     ((data.vacancy && data.vacancy.submissionList) || data.submissionList);
 
+  if (loading) {
+    return <GeneralContainer><div>Loading...</div></GeneralContainer>;
+  }
+  if (error) {
+    return <GeneralContainer><div>Error loading submissions</div></GeneralContainer>;
+  }
+
   return (
-    <GeneralContainer>
-      {loading && <div>Loading...</div>}
-
-      {error && <div>Error loading submissions</div>}
-      {data && (
-        <>
-          {/* Title */}
-          {singleVacancySusbmissions ? (
-            <Typography component="h3" variant="h4">
-              <Link className="link-undecorated" to={`/vacancy/${vacancyId}`}>
-                {data.vacancy.position}
-              </Link>
-              {" submissions"}
-            </Typography>
-          ) : (
-            <Typography component="h3" variant="h4">
-              <Translate value="submissionListPage.allSubmissions" />
-            </Typography>
-          )}
-
-          <Breadcrumbs>
-            <Link to="/">
-              <Translate value="breadcrumbs.dashboard" />
+    <GeneralContainer
+      title={
+        singleVacancySusbmissions ? (
+          <Typography component="h3" variant="h4">
+            <Link className="link-undecorated" to={`/vacancy/${vacancyId}`}>
+              {data.vacancy.position}
             </Link>
-            <Typography>
-              <Translate value="breadcrumbs.submissions" />
-            </Typography>
-          </Breadcrumbs>
-
-          {submissionList.map((submission) => {
-            vacancyId = singleVacancySusbmissions
-              ? vacancyId
-              : submission.vacancy.id;
-            let vacancyData = singleVacancySusbmissions
-              ? data.vacancy
-              : submission.vacancy;
-            return (
-              <SubmissionItem
-                key={submission.id}
-                submission={submission}
-                vacancyId={vacancyId}
-                vacancyData={vacancyData}
-                singleVacancySusbmissions={singleVacancySusbmissions}
-              />
-            );
-          })}
-        </>
-      )}
+            {" submissions"}
+          </Typography>
+        ) : (
+          <Typography component="h3" variant="h4">
+            <Translate value="submissionListPage.allSubmissions" />
+          </Typography>
+        )
+      }
+      breadcrumbs={
+        <Breadcrumbs>
+          <Link to="/">
+            <Translate value="breadcrumbs.dashboard" />
+          </Link>
+          <Typography>
+            <Translate value="breadcrumbs.submissions" />
+          </Typography>
+        </Breadcrumbs>
+      }
+    >
+      <GlassContainer>
+        {data && (
+          <>
+            {submissionList.map((submission) => {
+              vacancyId = singleVacancySusbmissions
+                ? vacancyId
+                : submission.vacancy.id;
+              let vacancyData = singleVacancySusbmissions
+                ? data.vacancy
+                : submission.vacancy;
+              return (
+                <SubmissionItem
+                  key={submission.id}
+                  submission={submission}
+                  vacancyId={vacancyId}
+                  vacancyData={vacancyData}
+                  singleVacancySusbmissions={singleVacancySusbmissions}
+                />
+              );
+            })}
+          </>
+        )}
+      </GlassContainer>
     </GeneralContainer>
   );
 }

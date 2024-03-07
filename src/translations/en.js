@@ -41,7 +41,8 @@ const translationObject = {
     fieldIsRequired: "The field is required",
     submit: "Submit",
   },
-  vacancyListPage: {
+  VacancyListPage: {
+    title: "Vacancies",
     newVacancy: "New vacancy",
     submissions: "Submissions",
     URL: "URL",

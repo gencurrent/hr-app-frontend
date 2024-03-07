@@ -40,7 +40,8 @@ const translationObject = {
     fieldIsRequired: "Поле обязательно для заполнения",
     submit: "Отправить",
   },
-  vacancyListPage: {
+  VacancyListPage: {
+    title: "Вакансии",
     newVacancy: "Новая вакансия",
     submissions: "Отклики",
     URL: "URL",

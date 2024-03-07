@@ -118,7 +118,7 @@ a:visited, .link-undecorated {
   padding: 8px 0;
   background: white;
   color: black;
-  position: static;
+  position: fixed;
   bottom: 0;
 }
 
