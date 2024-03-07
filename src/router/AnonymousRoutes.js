@@ -20,25 +20,52 @@ import {
   AnonymousVacancyAppliedPage,
 } from "page/anonymous";
 
+import { AnonymousGlassBar } from "component";
+
 const AnonymousRouter = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<AnonymousLandingPage />} />
-      <Route path="/auth" element={<AuthenticationPage />}>
-        <Route
-          path="signin"
-          element={<AuthenticationSignInPage method={"Sign In"} />}
-        />
-        <Route
-          path="signup"
-          element={<AuthenticationSignUpPage method={"Sign up"} />}
-        />
-      </Route>
-      <Route path="vacancy">
-        <Route path=":id/preview" element={<AnonymousVacancyPreviewPage />} />
-        <Route path=":id/apply" element={<AnonymousVacancyApplicationPage />} />
-        <Route path=":id/applied" element={<AnonymousVacancyAppliedPage />} />
-      </Route>
+      <Route
+        path="auth/signin"
+        element={
+          <AuthenticationPage>
+            <AuthenticationSignInPage method={"Sign In"} />
+          </AuthenticationPage>
+        }
+      />
+      <Route
+        path="auth/signup"
+        element={
+          <AuthenticationPage>
+            <AuthenticationSignUpPage method={"Sign up"} />
+          </AuthenticationPage>
+        }
+      />
+      <Route
+        path="vacancy/:id/preview"
+        element={
+          <AnonymousGlassBar>
+            <AnonymousVacancyPreviewPage />
+          </AnonymousGlassBar>
+        }
+      />
+      <Route
+        path="vacancy/:id/apply"
+        element={
+          <AnonymousGlassBar>
+            <AnonymousVacancyApplicationPage />
+          </AnonymousGlassBar>
+        }
+      />
+      <Route
+        path="vacancy/:id/applied"
+        element={
+          <AnonymousGlassBar>
+            <AnonymousVacancyAppliedPage />
+          </AnonymousGlassBar>
+        }
+      />
     </>
   )
 );

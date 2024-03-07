@@ -1,6 +1,5 @@
 import { React, useState } from "react";
-// import { Link, useHistory } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Translate, setLocale } from "react-redux-i18n";
 import { styled } from "@mui/system";
@@ -18,6 +17,7 @@ import { AccountCircle } from "@mui/icons-material";
 import { LanguageSelect } from "component";
 import { LanguageDict } from "utils/constants";
 import "./index.css";
+import { GlassBar } from "component";
 
 const GlassAppBar = styled(AppBar)(
   ({ theme }) => `
@@ -27,12 +27,13 @@ const GlassAppBar = styled(AppBar)(
 
 const TitleTypography = styled(Typography)(({ theme }) => `flexGrow: 1;`);
 
-const Mainbar = () => {
+export default function MainBar(props) {
   const dispatch = useDispatch();
-  const locale = useSelector((state) => state.i18n.locale);
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
+  const locale = useSelector((state) => state.i18n.locale);
   const open = Boolean(anchorEl);
+  const { maxWidth = "lg", sx = {} } = props;
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -53,11 +54,12 @@ const Mainbar = () => {
     keys.forEach((key) => localStorage.removeItem(key));
 
     navigate("/");
+    window.location.reload();
   };
 
   return (
-    <GlassAppBar id="lp-app-bar">
-      <Toolbar id="header-toolbar">
+    <>
+      <GlassBar maxWidth={maxWidth} sx={sx}>
         <Grid container direction="row" justifyContent="flex-end" spacing={2}>
           <Grid item>
             <TitleTypography variant="h6">
@@ -118,9 +120,8 @@ const Mainbar = () => {
             </div>
           </Grid>
         </Grid>
-      </Toolbar>
-    </GlassAppBar>
+      </GlassBar>
+      <Outlet />
+    </>
   );
-};
-
-export default Mainbar;
+}

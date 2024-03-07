@@ -17,10 +17,9 @@ import { Link } from "react-router-dom";
 import ReactSpeedometer from "react-d3-speedometer";
 
 import { BottomBar, GlassBar, GlassContainer, LanguageSelect } from "component";
-import { darkTheme, lightTheme } from "utils/material/theme";
+// import { darkTheme, lightTheme } from "utils/material/theme";
 import { Box } from "@mui/system";
 import { Translate } from "react-redux-i18n";
-
 
 const StyledCheckBoxFormGroup = styled(Box)(
   ({ theme }) => `
@@ -63,11 +62,10 @@ function AnonymousLandingPage(props) {
   return (
     <>
       <GlassBar>
-        {/* <Box sx={{ px: 2, py: 1 }}> */}
         <Grid container justifyContent="space-between">
           <Grid item>
-            <Typography component="h1" variant="h3" style={{ fontWeight: 400 }}>
-              Staffence
+            <Typography component="h1" variant="h4" style={{ fontWeight: 400 }}>
+              <Translate value="applicationName" />
             </Typography>
           </Grid>
           <Grid item>
@@ -94,7 +92,6 @@ function AnonymousLandingPage(props) {
             </div>
           </Grid>
         </Grid>
-        {/* </Box> */}
       </GlassBar>
 
       <Container sx={{ my: 16 }} maxWidth="lg">

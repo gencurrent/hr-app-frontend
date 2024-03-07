@@ -42,10 +42,10 @@ const AuthenticationPage = (props) => {
           <Typography component="h1" variant="h5">
             {methodMap[currentTab]}
           </Typography>
-
         </Box>
         <AuthenticationForm noValidate>
           <Outlet />
+          {props.children}
         </AuthenticationForm>
       </FloatingPaper>
     </GeneralContainer>

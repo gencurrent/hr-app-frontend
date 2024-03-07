@@ -1,5 +1,6 @@
 import Template from "component/Template";
 
+import AnonymousGlassBar from "./AnonymousGlassBar";
 import RequestDemoForm from "./RequestDemoForm";
 import BottomBar from "./BottomBar";
 import GlassBar from "./GlassBar";
@@ -16,8 +17,11 @@ import VacancyListItem from "./VacancyListItem";
 import DeleteConfirmationDialog from "./DeleteConfirmationDialog";
 import SubmissionListItemAnswer from "./SubmissionListItemAnswer";
 import ExpandMore from "./ExpandMore";
+import MainBar from "./MainBar";
 
 export {
+
+  AnonymousGlassBar,
   Template,
   RequestDemoForm,
   BottomBar,
@@ -26,7 +30,7 @@ export {
   LanguageSelect,
   LocalStorageThemeProvider,
   GeneralContainer,
-  // Authenticated pages compoenents
+  // Authenticated pages components
   DashboardSubmissionStatisticsChart,
   VacancyFieldList,
   VacancyListItem,
@@ -35,4 +39,5 @@ export {
   DeleteConfirmationDialog,
   SubmissionListItemAnswer,
   ExpandMore,
+  MainBar,
 };

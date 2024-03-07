@@ -23,10 +23,14 @@ const translationObject = {
     allVacancies: "All vacancies",
     lastWeekSubmissions: "Last week submissions",
   },
+  AnonymousVacancyPreviewPage: {
+    apply: "Apply",
+  },
   AnonymousVacancyAppliedPage: {
     appliedSuccessfully: "You have applied successfully",
   },
   AnonymousVacancySubmissionPage: {
+    apply: "Apply",
     applyToVacancy: "Apply to vacancy",
     vacancyDescription: "Vacancy description",
     fullName: "Full name",
