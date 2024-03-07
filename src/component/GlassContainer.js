@@ -10,10 +10,16 @@ const StyledContainer = styled(Container)(({ theme }) => {
       background-color: rgba(256, 256, 256, 0.4);
       box-shadow: ${theme === "light" ? lightThemeShadow : darkThemeShadow};
       border-radius: 16px;
-      // box-shadow: shado
     `;
 });
 
 export default function GlassContainer(props) {
-  return <StyledContainer maxWidth="lg">{props.children}</StyledContainer>;
+  const { children, ...restProps } = props;
+  restProps.maxWidth ||= "lg"; // "lg" if undefined
+  const sx = restProps.sx || { py: 4 };
+  return (
+    <StyledContainer {...restProps} sx={sx}>
+      {props.children}
+    </StyledContainer>
+  );
 }

@@ -18,6 +18,7 @@ import { Translate } from "react-redux-i18n";
 import {
   DashboardSubmissionStatisticsChart,
   GeneralContainer,
+  GlassContainer,
 } from "component";
 import { MainBar } from "component";
 import { QUERIES } from "utils/apollo";
@@ -44,91 +45,97 @@ export default function DashboardPage() {
     (a, b) => b.submissionCountTotal - a.submissionCountTotal
   );
   return (
-    <GeneralContainer>
-      <>
-        <Typography component="h4" variant="h4">
-          <Translate value="mainStatistics.title" />
-        </Typography>
+    <GeneralContainer
+      title={<Translate value="mainStatistics.title" />}
+      breadcrumbs={
         <Breadcrumbs>
           <Typography>
             <Translate value="breadcrumbs.dashboard" />
           </Typography>
         </Breadcrumbs>
-        <Grid container direction="column" spacing={2}>
+      }
+    >
+      <GlassContainer>
+        <Grid container direction="column" spacing={4}>
           <Grid item>
-            <Card>
-              <CardContent>
-                <Typography component="h5" variant="h5">
-                  <Translate value="mainStatistics.submissions" />
-                </Typography>
-                <Grid container direction="column" spacing={1}>
-                  <Grid item>
-                    <DashboardSubmissionStatisticsChart
-                      submissionData={submissionCountByDate}
-                    />
-                  </Grid>
-                  <Grid item>
-                    <Link to="/submission?status=new">
-                      <Button variant="contained" color="secondary">
-                        <Translate value="mainStatistics.newSubmissions" />: +
-                        {submissionCountNew}
-                      </Button>
-                    </Link>
-                  </Grid>
-                  <Grid item>
-                    <Link to="/submission">
-                      <Button>
-                        <Translate value="mainStatistics.totalSubmissions" />:{" "}
-                        {submissionCountTotal}
-                      </Button>
-                    </Link>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item>
-            <Card>
-              <CardContent>
-                <Typography component="h5" variant="h5">
-                  <Translate value="mainStatistics.topVacancies" />
-                </Typography>
-                <Grid container direction="column" spacing={1}>
+            <Typography component="h5" variant="h5">
+              <Translate value="mainStatistics.topVacancies" />
+            </Typography>
+            <Grid container direction="column" spacing={1}>
+              <Grid item>
+                <Grid container direction="row" spacing={1}>
                   <Grid item>
                     <Link to="/vacancy">
-                      <Button variant="contained" color="secondary">
+                      <Button variant="text">
                         <Translate value="mainStatistics.allVacancies" />
                       </Button>
                     </Link>
                   </Grid>
-                  {vacancyStatsList.map((vacancyStatsItem) => (
-                    <Grid item key={vacancyStatsItem.id}>
-                      <Link
-                        className="link-undecorated"
-                        to={`/vacancy/${vacancyStatsItem.id}`}
-                      >
-                        <Typography variant="h6" component="h5">
-                          {vacancyStatsItem.position}
-                        </Typography>
-                      </Link>
-                      <Link
-                        className="link-undecorated"
-                        to={`/vacancy/${vacancyStatsItem.id}/submission`}
-                      >
-                        <Typography variant="body2">
-                          <Translate value="mainStatistics.lastWeekSubmissions" />
-                          : {vacancyStatsItem.submissionCountTotal} (+
-                          {vacancyStatsItem.submissionCountNew})
-                        </Typography>
-                      </Link>
-                    </Grid>
-                  ))}
+                  <Grid item>
+                    <Link to="/vacancy/create">
+                      <Button variant="contained">
+                        <Translate value="vacancyListPage.newVacancy" />
+                      </Button>
+                    </Link>
+                  </Grid>
                 </Grid>
-              </CardContent>
-            </Card>
+              </Grid>
+
+              {vacancyStatsList.map((vacancyStatsItem) => (
+                <Grid item key={vacancyStatsItem.id}>
+                  <Link
+                    className="link-undecorated"
+                    to={`/vacancy/${vacancyStatsItem.id}`}
+                  >
+                    <Typography variant="h6">
+                      {vacancyStatsItem.position}
+                    </Typography>
+                  </Link>
+                  <Link
+                    className="link-undecorated"
+                    to={`/vacancy/${vacancyStatsItem.id}/submission`}
+                  >
+                    <Typography variant="body2">
+                      <Translate value="mainStatistics.lastWeekSubmissions" />:{" "}
+                      {vacancyStatsItem.submissionCountTotal} (+
+                      {vacancyStatsItem.submissionCountNew})
+                    </Typography>
+                  </Link>
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+
+          <Grid item>
+            <Typography component="h5" variant="h5">
+              <Translate value="mainStatistics.submissions" />
+            </Typography>
+            <Grid container direction="column" spacing={1}>
+              <Grid item>
+                <DashboardSubmissionStatisticsChart
+                  submissionData={submissionCountByDate}
+                />
+              </Grid>
+              <Grid item>
+                <Link to="/submission?status=new">
+                  <Button variant="contained" color="secondary">
+                    <Translate value="mainStatistics.newSubmissions" />: +
+                    {submissionCountNew}
+                  </Button>
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link to="/submission">
+                  <Button>
+                    <Translate value="mainStatistics.totalSubmissions" />:{" "}
+                    {submissionCountTotal}
+                  </Button>
+                </Link>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
-      </>
+      </GlassContainer>
     </GeneralContainer>
   );
 }

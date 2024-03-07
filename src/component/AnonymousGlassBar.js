@@ -1,6 +1,6 @@
 import { Translate, I18n } from "react-redux-i18n";
 import { Grid, Typography } from "@mui/material";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 import { GlassBar, LanguageSelect } from "component";
 
@@ -11,9 +11,16 @@ export default function AnonymousGlassBar(props) {
       <GlassBar maxWidth={maxWidth} sx={sx}>
         <Grid container justifyContent="space-between">
           <Grid item>
-            <Typography component="h1" variant="h4" style={{ fontWeight: 400 }}>
-              <Translate value="applicationName" />
-            </Typography>
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "white",
+                display: "flex",
+              }}
+              to="/"
+            >
+              <img src={"/logo512.png"} height="48px" />
+            </Link>
           </Grid>
           <Grid item>
             <div
@@ -33,6 +40,7 @@ export default function AnonymousGlassBar(props) {
           </Grid>
         </Grid>
       </GlassBar>
+      {props.children}
       <Outlet />
     </>
   );

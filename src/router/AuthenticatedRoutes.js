@@ -6,6 +6,7 @@ import { React } from "react";
 import {
   Route,
   RouterProvider,
+  Outlet,
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
@@ -23,12 +24,21 @@ import {
   AnonymousVacancyApplicationPage,
   AnonymousVacancyAppliedPage,
 } from "page/anonymous";
-import { AnonymousGlassBar, MainBar } from "component";
+import { AnonymousGlassBar, MainBar, BottomBar } from "component";
 
 const AuthenticatedRouter = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="" element={<MainBar maxWidth="md" />}>
+      <Route
+        path=""
+        element={
+          <>
+            <MainBar maxWidth="md" />
+            <Outlet />
+            <BottomBar />
+          </>
+        }
+      >
         <Route path="/" element={<DashboardPage />} />
 
         <Route

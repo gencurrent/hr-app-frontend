@@ -11,7 +11,7 @@ import {
   Grid,
 } from "@mui/material";
 
-import { VacancyFieldList, GeneralContainer } from "component";
+import { VacancyFieldList, GeneralContainer, GlassContainer } from "component";
 import { MUTATIONS } from "utils/apollo";
 
 const TEXT_FIELD_ROWS_NUMBER_DEFAULT = 3;
@@ -78,56 +78,58 @@ export default function VacancyCreatePage(props) {
   };
   return (
     <GeneralContainer>
-      <Grid container direction="column" spacing={2}>
-        <Grid item sm={12}>
-          <Typography variant="h4" component="h3">
-            New vacancy
-          </Typography>
-          <FormControl noValidate autoComplete="off" fullWidth={true}>
-            <TextField
-              label="Position"
-              error={positionFieldHelperProps["error"]}
-              autoComplete="position"
-              id="position"
-              value={position}
-              onChange={updateFormPosition}
-              required
-            />
-            <FormHelperText error={positionFieldHelperProps["error"]}>
-              {positionFieldHelperProps["text"]}
-            </FormHelperText>
-            <TextField
-              label="Company"
-              autoComplete="company"
-              id="company"
-              value={company}
-              onChange={(e) => setCompany(e.currentTarget.value)}
-              required
-            />
-            <FormHelperText>
-              An organization to show to a candidate
-            </FormHelperText>
-            <TextField
-              multiline
-              rows={rowsNumber}
-              label="Description"
-              id="text"
-              value={text}
-              onChange={updateFormText}
-              required
-            />
-            <FormHelperText>
-              The description of vacancy a candidate will see
-            </FormHelperText>
-            <VacancyFieldList fields={fields} setFields={setFields} />
-          </FormControl>
+      <GlassContainer>
+        <Grid container direction="column" spacing={2}>
+          <Grid item sm={12}>
+            <Typography variant="h4" component="h3">
+              New vacancy
+            </Typography>
+            <FormControl noValidate autoComplete="off" fullWidth={true}>
+              <TextField
+                label="Position"
+                error={positionFieldHelperProps["error"]}
+                autoComplete="position"
+                id="position"
+                value={position}
+                onChange={updateFormPosition}
+                required
+              />
+              <FormHelperText error={positionFieldHelperProps["error"]}>
+                {positionFieldHelperProps["text"]}
+              </FormHelperText>
+              <TextField
+                label="Company"
+                autoComplete="company"
+                id="company"
+                value={company}
+                onChange={(e) => setCompany(e.currentTarget.value)}
+                required
+              />
+              <FormHelperText>
+                An organization to show to a candidate
+              </FormHelperText>
+              <TextField
+                multiline
+                rows={rowsNumber}
+                label="Description"
+                id="text"
+                value={text}
+                onChange={updateFormText}
+                required
+              />
+              <FormHelperText>
+                The description of vacancy a candidate will see
+              </FormHelperText>
+              <VacancyFieldList fields={fields} setFields={setFields} />
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
+            <Button variant="contained" color="primary" onClick={save}>
+              Save
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Button variant="contained" color="primary" onClick={save}>
-            Save
-          </Button>
-        </Grid>
-      </Grid>
+      </GlassContainer>
     </GeneralContainer>
   );
 }

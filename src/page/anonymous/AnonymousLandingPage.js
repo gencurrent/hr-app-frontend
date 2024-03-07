@@ -16,7 +16,7 @@ import {
 import { Link } from "react-router-dom";
 import ReactSpeedometer from "react-d3-speedometer";
 
-import { BottomBar, GlassBar, GlassContainer, LanguageSelect } from "component";
+import { GlassBar, GlassContainer, LanguageSelect } from "component";
 // import { darkTheme, lightTheme } from "utils/material/theme";
 import { Box } from "@mui/system";
 import { Translate } from "react-redux-i18n";
@@ -63,9 +63,18 @@ function AnonymousLandingPage(props) {
     <>
       <GlassBar>
         <Grid container justifyContent="space-between">
-          <Grid item>
+          <Grid item display="flex" alignItems="center">
             <Typography component="h1" variant="h4" style={{ fontWeight: 400 }}>
-              <Translate value="applicationName" />
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  display: "flex",
+                }}
+                to="/"
+              >
+                <img src={"/logo512.png"} height="48px" />
+              </Link>
             </Typography>
           </Grid>
           <Grid item>
@@ -78,10 +87,10 @@ function AnonymousLandingPage(props) {
               }}
             >
               <Grid container spacing={1}>
-                <Grid item>
+                <Grid item display="flex" alignItems="center">
                   <LanguageSelect />
                 </Grid>
-                <Grid item display={"flex"}>
+                <Grid item display="flex" alignItems="center">
                   <Link to={`/auth/signin`}>
                     <Button size="large" variant="contained" color="primary">
                       <Translate value="authenticate" />
@@ -95,155 +104,151 @@ function AnonymousLandingPage(props) {
       </GlassBar>
 
       <Container sx={{ my: 16 }} maxWidth="lg">
-        <Box my={2}>
-          <GlassContainer maxWidth={false}>
-            {/* <ThemeProvider theme={darkTheme}> */}
-            <Grid container>
-              <Grid item sm={12} md={6} display={"flex"}>
-                <Typography
-                  component="h1"
-                  variant="h3"
-                  align="center"
-                  color="text.primary"
-                  style={{ fontWeight: 400 }}
-                  margin={"auto"}
-                >
-                  Make recruiting
-                  <br /> a simple game
-                </Typography>
-              </Grid>
-              <Grid item sm={12} md={6} display={"flex"}>
-                <LPIcon className="lp-image" />
-                {/* <RequestDemoForm /> */}
-              </Grid>
+        <GlassContainer maxWidth={false} sx={{ my: 2, py: 2 }}>
+          {/* <ThemeProvider theme={darkTheme}> */}
+          <Grid container>
+            <Grid item sm={12} md={6} display={"flex"}>
+              <Typography
+                component="h1"
+                variant="h3"
+                align="center"
+                color="text.primary"
+                style={{ fontWeight: 400 }}
+                margin={"auto"}
+              >
+                Make recruiting
+                <br /> a simple game
+              </Typography>
             </Grid>
-            {/* </ThemeProvider> */}
-          </GlassContainer>
-        </Box>
+            <Grid item sm={12} md={6} display={"flex"}>
+              <LPIcon className="lp-image" />
+              {/* <RequestDemoForm /> */}
+            </Grid>
+          </Grid>
+          {/* </ThemeProvider> */}
+        </GlassContainer>
 
-        <Box my={2}>
-          <GlassContainer className={`lp-benefits-block`}>
-            {/* <ThemeProvider theme={lightTheme}> */}
-            <Grid container>
-              {/* CheckBoxes */}
-              <Grid item sm={12} md={6}>
-                <Typography
-                  component="h1"
-                  variant="h3"
-                  align="center"
-                  style={{ fontWeight: 400 }}
-                >
-                  The benefits
-                </Typography>
-                <Grid container justifyContent="center">
-                  <Grid item sm={12} md={8}>
-                    <Card>
-                      <Box sx={{ p: 2 }}>
-                        <Grid container justifyContent="center" spacing={2}>
-                          <Grid item sm={12} style={{ width: "100%" }}>
-                            <StyledCheckBoxFormGroup>
-                              <FormControlLabel
-                                className="unselectable"
-                                style={{ width: "100%" }}
-                                control={
-                                  <Checkbox
-                                    checked={checkedQuestions[0]}
-                                    onChange={(e) =>
-                                      udpateCheckboxValue(0, e.target.checked)
-                                    }
-                                    name="question-0"
-                                  />
-                                }
-                                label="Turn your responses into achievement"
-                              />
-                            </StyledCheckBoxFormGroup>
-                          </Grid>
-
-                          <Grid item sm={12} style={{ width: "100%" }}>
-                            <StyledCheckBoxFormGroup>
-                              <FormControlLabel
-                                className="unselectable"
-                                style={{ width: "100%" }}
-                                control={
-                                  <Checkbox
-                                    checked={checkedQuestions[1]}
-                                    onChange={(e) =>
-                                      udpateCheckboxValue(1, e.target.checked)
-                                    }
-                                    name="question-1"
-                                  />
-                                }
-                                label="Get feedback faster"
-                              />
-                            </StyledCheckBoxFormGroup>
-                          </Grid>
-
-                          <Grid item sm={12} style={{ width: "100%" }}>
-                            <StyledCheckBoxFormGroup>
-                              <FormControlLabel
-                                className="unselectable"
-                                style={{ width: "100%" }}
-                                control={
-                                  <Checkbox
-                                    checked={checkedQuestions[2]}
-                                    onChange={(e) =>
-                                      udpateCheckboxValue(2, e.target.checked)
-                                    }
-                                    name="question-2"
-                                  />
-                                }
-                                label="Score and filter all the responses"
-                              />
-                            </StyledCheckBoxFormGroup>
-                          </Grid>
-
-                          <Grid item sm={12} style={{ width: "100%" }}>
-                            <StyledCheckBoxFormGroup>
-                              <FormControlLabel
-                                className="unselectable"
-                                style={{ width: "100%" }}
-                                control={
-                                  <Checkbox
-                                    checked={checkedQuestions[3]}
-                                    onChange={(e) =>
-                                      udpateCheckboxValue(3, e.target.checked)
-                                    }
-                                    name="question-3"
-                                  />
-                                }
-                                label="Hire easy"
-                              />
-                            </StyledCheckBoxFormGroup>
-                          </Grid>
+        <GlassContainer className={`lp-benefits-block`} sx={{ my: 2, py: 2 }}>
+          {/* <ThemeProvider theme={lightTheme}> */}
+          <Grid container>
+            {/* CheckBoxes */}
+            <Grid item sm={12} md={6}>
+              <Typography
+                component="h1"
+                variant="h3"
+                align="center"
+                style={{ fontWeight: 400 }}
+              >
+                The benefits
+              </Typography>
+              <Grid container justifyContent="center">
+                <Grid item sm={12} md={8}>
+                  <Card>
+                    <Box sx={{ p: 2 }}>
+                      <Grid container justifyContent="center" spacing={2}>
+                        <Grid item sm={12} style={{ width: "100%" }}>
+                          <StyledCheckBoxFormGroup>
+                            <FormControlLabel
+                              className="unselectable"
+                              style={{ width: "100%" }}
+                              control={
+                                <Checkbox
+                                  checked={checkedQuestions[0]}
+                                  onChange={(e) =>
+                                    udpateCheckboxValue(0, e.target.checked)
+                                  }
+                                  name="question-0"
+                                />
+                              }
+                              label="Turn your responses into achievement"
+                            />
+                          </StyledCheckBoxFormGroup>
                         </Grid>
-                      </Box>
-                    </Card>
-                  </Grid>
+
+                        <Grid item sm={12} style={{ width: "100%" }}>
+                          <StyledCheckBoxFormGroup>
+                            <FormControlLabel
+                              className="unselectable"
+                              style={{ width: "100%" }}
+                              control={
+                                <Checkbox
+                                  checked={checkedQuestions[1]}
+                                  onChange={(e) =>
+                                    udpateCheckboxValue(1, e.target.checked)
+                                  }
+                                  name="question-1"
+                                />
+                              }
+                              label="Get feedback faster"
+                            />
+                          </StyledCheckBoxFormGroup>
+                        </Grid>
+
+                        <Grid item sm={12} style={{ width: "100%" }}>
+                          <StyledCheckBoxFormGroup>
+                            <FormControlLabel
+                              className="unselectable"
+                              style={{ width: "100%" }}
+                              control={
+                                <Checkbox
+                                  checked={checkedQuestions[2]}
+                                  onChange={(e) =>
+                                    udpateCheckboxValue(2, e.target.checked)
+                                  }
+                                  name="question-2"
+                                />
+                              }
+                              label="Score and filter all the responses"
+                            />
+                          </StyledCheckBoxFormGroup>
+                        </Grid>
+
+                        <Grid item sm={12} style={{ width: "100%" }}>
+                          <StyledCheckBoxFormGroup>
+                            <FormControlLabel
+                              className="unselectable"
+                              style={{ width: "100%" }}
+                              control={
+                                <Checkbox
+                                  checked={checkedQuestions[3]}
+                                  onChange={(e) =>
+                                    udpateCheckboxValue(3, e.target.checked)
+                                  }
+                                  name="question-3"
+                                />
+                              }
+                              label="Hire easy"
+                            />
+                          </StyledCheckBoxFormGroup>
+                        </Grid>
+                      </Grid>
+                    </Box>
+                  </Card>
                 </Grid>
               </Grid>
-              <Grid item sm={12} md={6} alignContent="center">
-                <Container sx={{ p: 2 }}>
-                  <ReactSpeedometer
-                    // fluidWidth={true}
-                    height={300}
-                    width={windowWidth < 500 ? windowWidth * 0.8 : 500}
-                    minValue={0}
-                    maxValue={100}
-                    value={speedometerValue}
-                    maxSegmentLabels={0}
-                    segments={1000}
-                    needleHeightRatio={0.8}
-                    currentValueText={speedometerText}
-                    valueTextFontSize={windowWidth < 500 ? "12px" : "22px"}
-                  />
-                </Container>
-              </Grid>
             </Grid>
-            {/* </ThemeProvider> */}
-          </GlassContainer>
-        </Box>
+            <Grid item sm={12} md={6} alignContent="center">
+              <Container sx={{ p: 2 }}>
+                <ReactSpeedometer
+                  // fluidWidth={true}
+                  height={300}
+                  width={windowWidth < 500 ? windowWidth * 0.8 : 500}
+                  minValue={0}
+                  maxValue={100}
+                  value={speedometerValue}
+                  maxSegmentLabels={0}
+                  segments={1000}
+                  needleHeightRatio={0.8}
+                  currentValueText={speedometerText}
+                  valueTextFontSize={windowWidth < 500 ? "12px" : "22px"}
+                />
+              </Container>
+            </Grid>
+          </Grid>
+          {/* </ThemeProvider> */}
+        </GlassContainer>
 
-        <GlassContainer>
+        <GlassContainer sx={{ my: 2, py: 2 }}>
           <Grid container sx={{ justifyContent: "left" }}>
             <Grid item sm={12} md={4}>
               <Typography
@@ -275,7 +280,6 @@ function AnonymousLandingPage(props) {
           </Grid>
         </GlassContainer>
       </Container>
-      <BottomBar />
     </>
   );
 }

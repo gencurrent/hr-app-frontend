@@ -4,6 +4,7 @@
 
 import { React } from "react";
 import {
+  Outlet,
   Route,
   RouterProvider,
   createBrowserRouter,
@@ -20,52 +21,62 @@ import {
   AnonymousVacancyAppliedPage,
 } from "page/anonymous";
 
-import { AnonymousGlassBar } from "component";
+import { AnonymousGlassBar, BottomBar } from "component";
 
 const AnonymousRouter = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<AnonymousLandingPage />} />
       <Route
-        path="auth/signin"
+        path=""
         element={
-          <AuthenticationPage>
-            <AuthenticationSignInPage method={"Sign In"} />
-          </AuthenticationPage>
+          <>
+            <Outlet />
+            <BottomBar />
+          </>
         }
-      />
-      <Route
-        path="auth/signup"
-        element={
-          <AuthenticationPage>
-            <AuthenticationSignUpPage method={"Sign up"} />
-          </AuthenticationPage>
-        }
-      />
-      <Route
-        path="vacancy/:id/preview"
-        element={
-          <AnonymousGlassBar>
-            <AnonymousVacancyPreviewPage />
-          </AnonymousGlassBar>
-        }
-      />
-      <Route
-        path="vacancy/:id/apply"
-        element={
-          <AnonymousGlassBar>
-            <AnonymousVacancyApplicationPage />
-          </AnonymousGlassBar>
-        }
-      />
-      <Route
-        path="vacancy/:id/applied"
-        element={
-          <AnonymousGlassBar>
-            <AnonymousVacancyAppliedPage />
-          </AnonymousGlassBar>
-        }
-      />
+      >
+        <Route path="/" element={<AnonymousLandingPage />} />
+        <Route
+          path="auth/signin"
+          element={
+            <AuthenticationPage>
+              <AuthenticationSignInPage method={"Sign In"} />
+            </AuthenticationPage>
+          }
+        />
+        <Route
+          path="auth/signup"
+          element={
+            <AuthenticationPage>
+              <AuthenticationSignUpPage method={"Sign up"} />
+            </AuthenticationPage>
+          }
+        />
+        <Route
+          path="vacancy/:id/preview"
+          element={
+            <AnonymousGlassBar>
+              <AnonymousVacancyPreviewPage />
+            </AnonymousGlassBar>
+          }
+        />
+        <Route
+          path="vacancy/:id/apply"
+          element={
+            <AnonymousGlassBar>
+              <AnonymousVacancyApplicationPage />
+            </AnonymousGlassBar>
+          }
+        />
+        <Route
+          path="vacancy/:id/applied"
+          element={
+            <AnonymousGlassBar>
+              <AnonymousVacancyAppliedPage />
+            </AnonymousGlassBar>
+          }
+        />
+      </Route>
     </>
   )
 );

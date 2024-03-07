@@ -41,7 +41,8 @@ const translationObject = {
     fieldIsRequired: "The field is required",
     submit: "Submit",
   },
-  vacancyListPage: {
+  VacancyListPage: {
+    title: "Vacancies",
     newVacancy: "New vacancy",
     submissions: "Submissions",
     URL: "URL",
@@ -51,7 +52,7 @@ const translationObject = {
   submissionListPage: {
     allSubmissions: "All submissions",
   },
-  applicationName: "Staffence",
+  applicationName: "hrstack.com",
   congratulations: "Congratulations!",
 };
 
