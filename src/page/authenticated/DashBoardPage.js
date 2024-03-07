@@ -20,6 +20,7 @@ import {
   GeneralContainer,
   GlassContainer,
 } from "component";
+import { MainBar } from "component";
 import { QUERIES } from "utils/apollo";
 
 export default function DashboardPage() {
