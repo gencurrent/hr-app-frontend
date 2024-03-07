@@ -34,7 +34,7 @@ export default function GeneralContainer(props) {
 GeneralContainer.propTypes = {
   maxWidth: PropTypes.string,
   breadcrumbs: PropTypes.element,
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.arrayOf(PropTypes.element),

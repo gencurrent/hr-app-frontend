@@ -9,32 +9,26 @@ import { styled } from "@mui/system";
 
 const Label = styled("div")(
   ({ theme }) => `
-    padding: ${theme.spacing(0.5)};
+    padding: ${theme.spacing(0.2)};
     margin: ${theme.spacing(0.2)};
-    border: 2px solid ${theme.palette.success.main};
-    borderRadius: 4px;
+    border: 2px solid ${theme.palette.primary.main};
+    border-radius: 4px;
     display: inline;
-    fontSize: ${theme.typography.body2.fontSize};
-    color: ${theme.palette.success.main};
+    font-size: ${theme.typography.body2.fontSize};
+    color: ${theme.palette.primary.secondary};
   `
 );
 
-const FIELD_TYPE_VALUE_TO_NAME_MAP = {
-  line: "Line",
-  text: "Text",
-  number: "Number",
-  file: "File",
-  // 'date': 'Date'
-};
-
 export default function FieldTypeLabel(props) {
   const { type } = props;
-  const fieldTypeFull = FIELD_TYPE_VALUE_TO_NAME_MAP[type];
 
-  return <Label>{fieldTypeFull}</Label>;
+  return (
+    <Label>
+      <Translate value={`VacancyPage.${type}`} />
+    </Label>
+  );
 }
 
 FieldTypeLabel.propTypes = {
   type: PropTypes.string.isRequired,
 };
-

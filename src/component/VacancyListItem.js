@@ -1,8 +1,6 @@
 import { React } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
-import { styled } from "@mui/system";
 import {
   Box,
   Button,
@@ -13,12 +11,13 @@ import {
   Grid,
   Snackbar,
 } from "@mui/material";
+import { Translate } from "react-redux-i18n";
 import { Delete } from "@mui/icons-material";
 import LinkIcon from "@mui/icons-material/Link";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import copy from "copy-to-clipboard";
 
-import { GeneralContainer } from "component";
+import { GeneralContainer, GlassContainer } from "component";
 
 // const useStyles = makeStyles((theme) => ({
 //   vacancyListItem: {
@@ -54,7 +53,7 @@ const VacancyListItem = (props) => {
         </Typography>
         <Box>
           <Typography component="span" variant="body">
-            Company:{" "}
+            @
           </Typography>
           <Typography component="span" variant="body">
             {vacancy.company}
@@ -83,14 +82,14 @@ const VacancyListItem = (props) => {
               color="info"
             >
               <LinkIcon />
-              URL
+              <Translate value="component.VacancyListItem.URL" />
             </Button>
           </Grid>
           <Grid item>
             <Link to={`/vacancy/${vacancy.id}/preview`}>
               <Button variant="outlined" size="small" color="success">
                 <CheckCircleOutlineIcon />
-                Apply
+                <Translate value="component.VacancyListItem.apply" />
               </Button>
             </Link>
           </Grid>
@@ -102,7 +101,7 @@ const VacancyListItem = (props) => {
               size="small"
             >
               <Delete />
-              Delete
+              <Translate value="component.VacancyListItem.delete" />
             </Button>
           </Grid>
         </Grid>

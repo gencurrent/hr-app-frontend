@@ -4,6 +4,8 @@
 
 import { React, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { Translate } from "react-redux-i18n";
+import PropTypes from "prop-types";
 import { useQuery } from "@apollo/client";
 import { styled } from "@mui/system";
 import {
@@ -16,8 +18,7 @@ import {
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import PropTypes from "prop-types";
-import { Translate } from "react-redux-i18n";
+import PersonIcon from "@mui/icons-material/Person";
 
 import {
   GeneralContainer,
@@ -83,26 +84,41 @@ function SubmissionItem(props) {
       <Grid container spacing={0.5}>
         {fieldList.map((field) => (
           <Grid key={field.field} style={{ margin: "0px 0" }} item xs={12}>
-            {field.field === "resume" ? (
+            {field.field === "resume" && (
               <MUILink
                 target="_blank"
                 download
                 href={cloudStorageClient.getFileUrl(submission.resume)}
               >
                 <Button variant="outlined" color="primary">
-                  Resume
+                  <Translate value="VacancyApplicationListPage.resume" />
                 </Button>
               </MUILink>
-            ) : (
+            )}
+            {field.field === "fullname" && (
+              <Grid container direction="row">
+                <Grid item display="flex" alignItems="center">
+                  <PersonIcon fontSize="medium" />
+                </Grid>
+                <Grid item display="flex" alignItems="center">
+                  <Typography
+                    key={field.field}
+                    variant="body1"
+                    component="p"
+                    sx={{ fontWeight: "600 !important" }}
+                  >
+                    {submission[field.field]}
+                  </Typography>
+                </Grid>
+              </Grid>
+            )}
+
+            {!["fullname", "resume"].includes(field.field) && (
               <Typography
                 key={field.field}
                 variant="body1"
                 component="p"
-                sx={
-                  field.field === "fullname"
-                    ? { fontWeight: "600 !important" }
-                    : { display: "inline" }
-                }
+                sx={{ display: "inline" }}
               >
                 {submission[field.field]}
               </Typography>
@@ -144,7 +160,9 @@ function SubmissionItem(props) {
           </ExpandMore>
         </Grid>
         <Grid item display="flex" alignItems="center">
-          <Typography>Answers</Typography>
+          <Typography>
+            <Translate value="VacancyApplicationListPage.submittedForm" />
+          </Typography>
         </Grid>
       </Grid>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
@@ -185,26 +203,27 @@ function VacancySubmissionListPage(props) {
     ((data.vacancy && data.vacancy.submissionList) || data.submissionList);
 
   if (loading) {
-    return <GeneralContainer><div>Loading...</div></GeneralContainer>;
+    return (
+      <GeneralContainer>
+        <div>Loading...</div>
+      </GeneralContainer>
+    );
   }
   if (error) {
-    return <GeneralContainer><div>Error loading submissions</div></GeneralContainer>;
+    return (
+      <GeneralContainer>
+        <div>Error loading submissions</div>
+      </GeneralContainer>
+    );
   }
 
   return (
     <GeneralContainer
       title={
         singleVacancySusbmissions ? (
-          <Typography component="h3" variant="h4">
-            <Link className="link-undecorated" to={`/vacancy/${vacancyId}`}>
-              {data.vacancy.position}
-            </Link>
-            {" submissions"}
-          </Typography>
+          `${data.vacancy.position} applications`
         ) : (
-          <Typography component="h3" variant="h4">
-            <Translate value="submissionListPage.allSubmissions" />
-          </Typography>
+          <Translate value="VacancyApplicationListPage.allSubmissions" />
         )
       }
       breadcrumbs={
@@ -213,7 +232,7 @@ function VacancySubmissionListPage(props) {
             <Translate value="breadcrumbs.dashboard" />
           </Link>
           <Typography>
-            <Translate value="breadcrumbs.submissions" />
+            <Translate value="breadcrumbs.applications" />
           </Typography>
         </Breadcrumbs>
       }

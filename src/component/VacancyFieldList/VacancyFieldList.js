@@ -145,8 +145,7 @@ VacancyFieldListItemDialog.propTypes = {
   onSave: PropTypes.func.isRequired, // New field submitted (saved)
 };
 
-
-function VacancyFieldList(props){
+function VacancyFieldList(props) {
   let [fields, setFields] = useState(props.fields || []);
 
   let [dialogOpen, setDialogOpen] = useState(false);
@@ -218,7 +217,7 @@ function VacancyFieldList(props){
       </Grid>
     </>
   );
-};
+}
 
 VacancyFieldList.propTypes = {
   fields: PropTypes.arrayOf(Object).isRequired,

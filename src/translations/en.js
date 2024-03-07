@@ -3,16 +3,14 @@
  */
 
 const translationObject = {
-  authenticate: "Authenticate",
-
-  
   mainBar: {
     profile: "Profile",
     logOut: "Log Out",
   },
   breadcrumbs: {
     dashboard: "Dashboard",
-    submissions: "Submissions",
+    vacancies: "Vacancies",
+    applications: "Applications",
   },
   mainStatistics: {
     title: "Main statistics",
@@ -41,6 +39,11 @@ const translationObject = {
     fieldIsRequired: "The field is required",
     submit: "Submit",
   },
+  VacancyApplicationListPage: {
+    allSubmissions: "All submissions",
+    resume: "Resume",
+    submittedForm: "Submitted form",
+  },
   VacancyListPage: {
     title: "Vacancies",
     newVacancy: "New vacancy",
@@ -49,10 +52,27 @@ const translationObject = {
     apply: "Apply",
     delete: "Delete",
   },
-  submissionListPage: {
-    allSubmissions: "All submissions",
+  VacancyPage: {
+    URL: "URL",
+    apply: "Apply",
+    delete: "Delete",
+    required: "Required",
+    number: "Number",
+    line: "Line",
+    text: "Text",
+    file: "File",
   },
+
+  component: {
+    VacancyListItem: {
+      URL: "URL",
+      apply: "Apply",
+      delete: "Delete",
+    },
+  },
+
   applicationName: "hrstack.com",
+  authenticate: "Authenticate",
   congratulations: "Congratulations!",
 };
 

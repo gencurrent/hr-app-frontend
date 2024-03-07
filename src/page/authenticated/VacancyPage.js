@@ -17,6 +17,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import { Translate } from "react-redux-i18n";
 import { Delete } from "@mui/icons-material";
 import LinkIcon from "@mui/icons-material/Link";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
@@ -73,15 +74,15 @@ function VacancyPage(props) {
       {error && <Typography>Error</Typography>}
       {data && (
         <GeneralContainer
-          title={
-            <Typography variant="h4" component="h1" gutterBottom>
-              {data.vacancy.position}
-            </Typography>
-          }
+          title={data.vacancy.position}
           breadcrumbs={
             <Breadcrumbs>
-              <Link to="/">Dashboard</Link>
-              <Link to="/vacancy">Vacancies</Link>
+              <Link to="/">
+                <Translate value="breadcrumbs.dashboard" />
+              </Link>
+              <Link to="/vacancy">
+                <Translate value="breadcrumbs.vacancies" />
+              </Link>
               <Typography>{data.vacancy.position}</Typography>
             </Breadcrumbs>
           }
@@ -96,14 +97,14 @@ function VacancyPage(props) {
                   color="info"
                 >
                   <LinkIcon />
-                  URL
+                  <Translate value="VacancyPage.URL" />
                 </Button>
               </Grid>
               <Grid item>
                 <Link to={`/vacancy/${data.vacancy.id}/preview`}>
                   <Button variant="outlined" size="small" color="success">
                     <CheckCircleOutlineIcon />
-                    Apply
+                    <Translate value="VacancyPage.apply" />
                   </Button>
                 </Link>
               </Grid>
@@ -115,7 +116,7 @@ function VacancyPage(props) {
                   size="small"
                 >
                   <Delete />
-                  Delete
+                  <Translate value="VacancyPage.delete" />
                 </Button>
               </Grid>
             </Grid>
@@ -129,7 +130,7 @@ function VacancyPage(props) {
                 </Typography>
               </Grid>
               <Grid item xs={12}>
-                <Typography component="span">at </Typography>
+                <Typography component="span">@ </Typography>
                 <Typography
                   sx={{ fontWeight: "800 !important" }}
                   component="span"
@@ -147,33 +148,32 @@ function VacancyPage(props) {
               </Grid>
             </Grid>
 
-            <Grid container>
+            <Grid container spacing={1} py={1}>
               {JSON.parse(data.vacancy.fields).map((field, idx) => {
                 return (
-                  <Grid item xs={12}>
-                    <Card variant="outlined">
-                      <CardContent>
+                  <Grid item xs={12} key={[idx, field.q]}>
+                    <Grid container direction={"row"} spacing={1}>
+                      <Grid item>
                         <Typography
                           sx={{ fontWeight: "800 !important" }}
                           component="span"
                         >
                           {idx + 1}.{" "}
                         </Typography>
+                      </Grid>
+                      <Grid item>
                         <Typography
-                          sx={{ fontWeight: "800 !important" }}
-                          component="span"
-                        >
-                          {<FieldTypeLabel type={field.t} />}
-                          {field.r ? <FieldRequiredLabel /> : ""}
-                        </Typography>
-                        <Typography
-                          sx={{ fontWeight: "800 !important" }}
+                          // sx={{ fontWeight: "800 !important" }}
                           component="span"
                         >
                           {field.q}
                         </Typography>
-                      </CardContent>
-                    </Card>
+
+                        <br />
+                        {<FieldTypeLabel type={field.t} />}
+                        {field.r ? <FieldRequiredLabel /> : ""}
+                      </Grid>
+                    </Grid>
                   </Grid>
                 );
               })}

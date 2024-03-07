@@ -3,14 +3,14 @@
  */
 
 const translationObject = {
-  authenticate: "Авторизация",
   mainBar: {
     profile: "Профиль",
     logOut: "Выйти",
   },
   breadcrumbs: {
     dashboard: "Дэшборд",
-    submissions: "Отклики",
+    vacancies: "Вакансии",
+    applications: "Отклики",
   },
   mainStatistics: {
     title: "Основная статистика",
@@ -40,6 +40,11 @@ const translationObject = {
     fieldIsRequired: "Поле обязательно для заполнения",
     submit: "Отправить",
   },
+  VacancyApplicationListPage: {
+    allSubmissions: "Все отклики",
+    resume: "Резюме",
+    submittedForm: "Заполненная форма",
+  },
   VacancyListPage: {
     title: "Вакансии",
     newVacancy: "Новая вакансия",
@@ -48,10 +53,27 @@ const translationObject = {
     apply: "Откликнуться",
     delete: "Удалить",
   },
-  submissionListPage: {
-    allSubmissions: "Все отклики",
+  VacancyPage: {
+    URL: "Ссылка",
+    apply: "Откликнуться",
+    delete: "Удалить",
+    required: "Обязательное",
+    number: "Число",
+    line: "Строка",
+    text: "Текст",
+    file: "Файл",
   },
+
+  component: {
+    VacancyListItem: {
+      URL: "URL",
+      apply: "Откликнуться",
+      delete: "Удалить",
+    },
+  },
+
   applicationName: "Staffence",
+  authenticate: "Авторизация",
   congratulations: "Поздравляем!",
 };
 
