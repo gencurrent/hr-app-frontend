@@ -36,11 +36,11 @@ export default function AnonymousVacancyPreviewPage() {
     <>
       <GeneralContainer
         title={
-          <Translate value="AnonymousVacancySubmissionPage.vacancyDescription" />
+          <Translate value="AnonymousVacancyApplicationPage.vacancyDescription" />
         }
         breadcrumbs={
           <Breadcrumbs>
-            <Translate value="AnonymousVacancySubmissionPage.vacancyDescription" />
+            <Translate value="AnonymousVacancyApplicationPage.vacancyDescription" />
           </Breadcrumbs>
         }
       >

@@ -208,7 +208,7 @@ function SubmissionItem(props) {
   );
 }
 
-function VacancySubmissionListPage(props) {
+function VacancyApplicationListPage(props) {
   const { singleVacancySusbmissions } = props;
   let { vacancyId } = useParams();
 
@@ -268,9 +268,7 @@ function VacancySubmissionListPage(props) {
               <Translate value="breadcrumbs.vacancy" />
             </Link>
           )}
-          <Typography>
-            <Translate value="breadcrumbs.applications" />
-          </Typography>
+          <Translate value="breadcrumbs.applications" />
         </Breadcrumbs>
       }
     >
@@ -328,8 +326,8 @@ function VacancySubmissionListPage(props) {
   );
 }
 
-VacancySubmissionListPage.propTypes = {
+VacancyApplicationListPage.propTypes = {
   singleVacancySusbmissions: PropTypes.bool,
 };
 
-export default VacancySubmissionListPage;
+export default VacancyApplicationListPage;

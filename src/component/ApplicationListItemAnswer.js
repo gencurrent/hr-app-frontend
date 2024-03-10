@@ -1,5 +1,5 @@
 /**
- * A single submission answer react component
+ * A single vacancy application answer react component
  */
 import { React } from "react";
 import { Translate } from "react-redux-i18n";
@@ -59,7 +59,7 @@ function ApplicationListItemAnswer(props) {
                 >
                   <Button variant="outlined" color="primary">
                     <DownloadIcon />
-                    <Translate value="component.SubmissionListItemAnswer.download" />
+                    <Translate value="component.ApplicationListItemAnswer.download" />
                   </Button>
                 </Link>
               </>

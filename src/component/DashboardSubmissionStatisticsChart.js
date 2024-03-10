@@ -33,7 +33,7 @@ const options = {
     },
     title: {
       display: true,
-      text: I18n.t("mainStatistics.lastWeekSubmissions"),
+      text: I18n.t("mainStatistics.lastWeekApplications"),
     },
   },
   scales: {

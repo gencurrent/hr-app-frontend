@@ -116,11 +116,8 @@ function VacancyPage() {
                 </Grid>
               </Grid>
               <Grid item>
-                <Link to={`/vacancy/${vacancyId}/submission`}>
-                  <Button
-                    variant="text"
-                    sx={{ textDecoration: "underline" }}
-                  >
+                <Link to={`/vacancy/${vacancyId}/application`}>
+                  <Button variant="text" sx={{ textDecoration: "underline" }}>
                     <Translate value="VacancyPage.applications" />
                   </Button>
                 </Link>

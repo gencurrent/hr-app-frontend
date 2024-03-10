@@ -92,10 +92,10 @@ export default function DashboardPage() {
                   </Link>
                   <Link
                     className="link-undecorated"
-                    to={`/vacancy/${vacancyStatsItem.id}/submission`}
+                    to={`/vacancy/${vacancyStatsItem.id}/application`}
                   >
                     <Typography variant="body2">
-                      <Translate value="mainStatistics.lastWeekSubmissions" />:{" "}
+                      <Translate value="mainStatistics.lastWeekApplications" />:{" "}
                       {vacancyStatsItem.submissionCountTotal} (+
                       {vacancyStatsItem.submissionCountNew})
                     </Typography>
@@ -107,7 +107,7 @@ export default function DashboardPage() {
 
           <Grid item>
             <Typography component="h5" variant="h5">
-              <Translate value="mainStatistics.submissions" />
+              <Translate value="mainStatistics.applications" />
             </Typography>
             <Grid container direction="column" spacing={1}>
               <Grid item>
@@ -116,17 +116,17 @@ export default function DashboardPage() {
                 />
               </Grid>
               <Grid item>
-                <Link to="/submission?status=new">
+                <Link to="/application?status=new">
                   <Button variant="contained" color="secondary">
-                    <Translate value="mainStatistics.newSubmissions" />: +
+                    <Translate value="mainStatistics.newApplication" />: +
                     {submissionCountNew}
                   </Button>
                 </Link>
               </Grid>
               <Grid item>
-                <Link to="/submission">
+                <Link to="/application">
                   <Button>
-                    <Translate value="mainStatistics.totalSubmissions" />:{" "}
+                    <Translate value="mainStatistics.totalApplications" />:{" "}
                     {submissionCountTotal}
                   </Button>
                 </Link>

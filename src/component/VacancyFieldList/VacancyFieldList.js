@@ -6,6 +6,7 @@
 
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { Translate } from "react-redux-i18n";
 import {
   TextField,
   Grid,
@@ -211,7 +212,7 @@ function VacancyFieldList(props) {
             color="secondary"
             onClick={openAddFieldDialog}
           >
-            Add field
+            <Translate value="component.VacancyFieldList.addField" />
           </Button>
         </Grid>
       </Grid>

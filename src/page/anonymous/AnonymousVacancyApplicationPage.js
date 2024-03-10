@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 
 import { pureApolloClient, MUTATIONS, QUERIES } from "utils/apollo";
-import VacancySubmissionFieldItem from "component/VacancySubmissionFieldItem";
+import VacancyApplicationFieldItem from "component/VacancyApplicationFieldItem";
 import FileUploadField from "component/FileUploadField";
 import GeneralContainer from "component/GenaralContainer";
 
@@ -49,7 +49,7 @@ export default function AnonymousVacancyApplicationPage() {
   const [answers, setAnswers] = useState({});
 
   /**
-   * Submit answers from the Submission form
+   * Submit answers from the application form
    * @param {Event} e An event object
    * @return {null}
    */
@@ -113,15 +113,15 @@ export default function AnonymousVacancyApplicationPage() {
         <GeneralContainer
           sx={{ py: 4 }}
           title={
-            <Translate value="AnonymousVacancySubmissionPage.applyToVacancy" />
+            <Translate value="AnonymousVacancyApplicationPage.applyToVacancy" />
           }
           breadcrumbs={
             <Breadcrumbs>
               <Link to={`/vacancy/${vacancyId}/preview`}>
-                <Translate value="AnonymousVacancySubmissionPage.vacancyDescription" />
+                <Translate value="AnonymousVacancyApplicationPage.vacancyDescription" />
               </Link>
               <Typography>
-                <Translate value="AnonymousVacancySubmissionPage.apply" />
+                <Translate value="AnonymousVacancyApplicationPage.apply" />
               </Typography>
             </Breadcrumbs>
           }
@@ -146,12 +146,12 @@ export default function AnonymousVacancyApplicationPage() {
                 <FormControl fullWidth={true} variant="outlined">
                   <TextField
                     onChange={(e) => setFullname(e.target.value)}
-                    label={I18n.t("AnonymousVacancySubmissionPage.fullName")}
+                    label={I18n.t("AnonymousVacancyApplicationPage.fullName")}
                     name="name"
                     id="name"
                     required
                     helperText={I18n.t(
-                      "AnonymousVacancySubmissionPage.required"
+                      "AnonymousVacancyApplicationPage.required"
                     )}
                     margin="normal"
                     autoComplete="name"
@@ -159,19 +159,19 @@ export default function AnonymousVacancyApplicationPage() {
                   />
                   <TextField
                     onChange={(e) => setEmail(e.target.value)}
-                    label={I18n.t("AnonymousVacancySubmissionPage.email")}
+                    label={I18n.t("AnonymousVacancyApplicationPage.email")}
                     name="email"
                     id="email"
                     required
                     helperText={I18n.t(
-                      "AnonymousVacancySubmissionPage.required"
+                      "AnonymousVacancyApplicationPage.required"
                     )}
                     margin="normal"
                     autoComplete="email"
                     fullWidth
                   />
                   <TextField
-                    label={I18n.t("AnonymousVacancySubmissionPage.phone")}
+                    label={I18n.t("AnonymousVacancyApplicationPage.phone")}
                     name="phone"
                     id="phone"
                     onChange={(e) => setPhone(e.target.value)}
@@ -183,12 +183,12 @@ export default function AnonymousVacancyApplicationPage() {
                     fieldRequired={true}
                     callBack={onResumeFieldUpdated}
                     vacancy={vacancyData.vacancy}
-                    fieldText={I18n.t("AnonymousVacancySubmissionPage.resume")}
+                    fieldText={I18n.t("AnonymousVacancyApplicationPage.resume")}
                   />
                 </FormControl>
                 <FormControl fullWidth={true} variant="outlined">
                   {vacancyFields.map((field, idx) => (
-                    <VacancySubmissionFieldItem
+                    <VacancyApplicationFieldItem
                       key={idx}
                       valueUpdateCallback={editData}
                       field={field}
@@ -207,7 +207,7 @@ export default function AnonymousVacancyApplicationPage() {
                     variant="contained"
                     color="primary"
                   >
-                    <Translate value="AnonymousVacancySubmissionPage.submit" />
+                    <Translate value="AnonymousVacancyApplicationPage.submit" />
                   </Button>
                 </Box>
               </Grid>

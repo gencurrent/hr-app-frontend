@@ -4,23 +4,24 @@
 
 const translationObject = {
   mainBar: {
-    profile: "Профиль",
     logOut: "Выйти",
+    profile: "Профиль",
   },
   breadcrumbs: {
+    applications: "Отклики",
+    createVacancy: "Создать вакансию",
     dashboard: "Дэшборд",
     vacancies: "Вакансии",
     vacancy: "Вакансия",
-    applications: "Отклики",
   },
   mainStatistics: {
     title: "Основная статистика",
-    submissions: "Отклики",
-    newSubmissions: "Новые отклики",
-    totalSubmissions: "Всего откликов",
+    applications: "Отклики",
+    newApplications: "Новые отклики",
+    totalApplications: "Всего откликов",
     topVacancies: "Топ ваших вакансий",
     allVacancies: "Все вакансии",
-    lastWeekSubmissions: "Откликов за неделю",
+    lastWeekApplications: "Откликов за неделю",
   },
   AnonymousVacancyPreviewPage: {
     apply: "Откликнуться",
@@ -28,7 +29,7 @@ const translationObject = {
   AnonymousVacancyAppliedPage: {
     appliedSuccessfully: "Вы успешно откликнулись на вакансию",
   },
-  AnonymousVacancySubmissionPage: {
+  AnonymousVacancyApplicationPage: {
     apply: "Откликнуться",
     applyToVacancy: "Откликнуться на вакансию",
     vacancyDescription: "Описание вакансии",
@@ -67,10 +68,17 @@ const translationObject = {
     submittedForm: "Заполненная форма",
     vacancy: "Вакансия",
   },
+  VacancyCreatePage: {
+    vacancyName: "Название вакансии",
+    company: "Компания",
+    description: "Описание",
+    addField: "Добавить поле",
+    create: "Создать",
+  },
   VacancyListPage: {
     title: "Вакансии",
     newVacancy: "Новая вакансия",
-    submissions: "Отклики",
+    applications: "Отклики",
     URL: "URL",
     apply: "Откликнуться",
     delete: "Удалить",
@@ -88,13 +96,17 @@ const translationObject = {
   },
 
   component: {
-    SubmissionListItemAnswer: {
+    ApplicationListItemAnswer: {
       download: "Скачать",
+    },
+    VacancyFieldList: {
+      addField: "Добавить поле",
     },
     VacancyListItem: {
       URL: "Ссылка",
       apply: "Откликнуться",
       delete: "Удалить",
+      applications: "Отклики",
     },
   },
 

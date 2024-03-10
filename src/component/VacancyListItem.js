@@ -55,11 +55,11 @@ const VacancyListItem = (props) => {
           <Typography component="h5" variant="h5"></Typography>
           <Link
             to={{
-              pathname: `/vacancy/${vacancy.id}/submission`,
+              pathname: `/vacancy/${vacancy.id}/application`,
               vacancy: vacancy,
             }}
           >
-            <div>Submissions: {vacancy.submissionCountTotal}</div>
+            <div><Translate value="component.VacancyListItem.applications" />: {vacancy.submissionCountTotal}</div>
           </Link>
         </Box>
       </CardContent>

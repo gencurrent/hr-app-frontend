@@ -4,23 +4,24 @@
 
 const translationObject = {
   mainBar: {
-    profile: "Profile",
     logOut: "Log Out",
+    profile: "Profile",
   },
   breadcrumbs: {
+    applications: "Applications",
+    createVacancy: "New vacancy",
     dashboard: "Dashboard",
     vacancies: "Vacancies",
     vacancy: "Vacancy",
-    applications: "Applications",
   },
   mainStatistics: {
     title: "Main statistics",
-    submissions: "Submissions",
-    newSubmissions: "New submissions",
-    totalSubmissions: "Total submissions",
+    applications: "Applications",
+    newApplication: "New applications",
+    totalApplication: "Total applications",
     topVacancies: "Top vacancies",
     allVacancies: "All vacancies",
-    lastWeekSubmissions: "Last week submissions",
+    lastWeekApplications: "Last week applications",
   },
   AnonymousVacancyPreviewPage: {
     apply: "Apply",
@@ -28,7 +29,7 @@ const translationObject = {
   AnonymousVacancyAppliedPage: {
     appliedSuccessfully: "You have applied successfully",
   },
-  AnonymousVacancySubmissionPage: {
+  AnonymousVacancyApplicationPage: {
     apply: "Apply",
     applyToVacancy: "Apply to vacancy",
     vacancyDescription: "Vacancy description",
@@ -68,10 +69,17 @@ const translationObject = {
     submittedForm: "Submitted form",
     vacancy: "Vacancy",
   },
+  VacancyCreatePage: {
+    vacancyName: "Vacancy name",
+    company: "Company",
+    description: "Description",
+    addField: "Add field",
+    create: "Create",
+  },
   VacancyListPage: {
     title: "Vacancies",
     newVacancy: "New vacancy",
-    submissions: "Submissions",
+    applications: "Applications",
     URL: "URL",
     apply: "Apply",
     delete: "Delete",
@@ -88,13 +96,17 @@ const translationObject = {
   },
 
   component: {
-    SubmissionListItemAnswer: {
+    ApplicationListItemAnswer: {
       download: "Download",
+    },
+    VacancyFieldList: {
+      addField: "Add field",
     },
     VacancyListItem: {
       URL: "URL",
       apply: "Apply",
       delete: "Delete",
+      applications: "Applications",
     },
   },
 
