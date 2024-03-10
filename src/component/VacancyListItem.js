@@ -30,9 +30,9 @@ const VacancyListItem = (props) => {
   }
 
   return (
-    <Card variant="outlined" sx={{ my: 1 }}>
+    <Card variant="outlined">
       <CardContent>
-        <Typography component="h4" variant="h5">
+        <Typography component="h1" variant="h6">
           <Link
             className="link-undecorated"
             to={{
@@ -59,7 +59,10 @@ const VacancyListItem = (props) => {
               vacancy: vacancy,
             }}
           >
-            <div><Translate value="component.VacancyListItem.applications" />: {vacancy.submissionCountTotal}</div>
+            <div>
+              <Translate value="component.VacancyListItem.applications" />:{" "}
+              {vacancy.submissionCountTotal}
+            </div>
           </Link>
         </Box>
       </CardContent>

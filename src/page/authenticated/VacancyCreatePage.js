@@ -12,7 +12,11 @@ import {
   Typography,
 } from "@mui/material";
 
-import { VacancyFieldList, GeneralContainer, GlassContainer } from "component";
+import {
+  GeneralContainer,
+  GlassContainer,
+  VacancyCreateFieldList,
+} from "component";
 import { MUTATIONS } from "utils/apollo";
 import { Translate } from "react-redux-i18n";
 
@@ -80,13 +84,13 @@ export default function VacancyCreatePage(props) {
   };
   return (
     <GeneralContainer
-      title={<Translate value="VacancyCreatePage.createVacancy" />}
+      title={<Translate value="VacancyCreatePage.title" />}
       breadcrumbs={
         <Breadcrumbs>
-        <Link to="/">
-          <Translate value="breadcrumbs.dashboard" />
-        </Link>
-            <Translate value="breadcrumbs.createVacancy" />
+          <Link to="/">
+            <Translate value="breadcrumbs.dashboard" />
+          </Link>
+          <Translate value="breadcrumbs.createVacancy" />
         </Breadcrumbs>
       }
     >
@@ -116,7 +120,7 @@ export default function VacancyCreatePage(props) {
                 required
               />
               <FormHelperText>
-                An organization to show to a candidate
+              <Translate value="VacancyCreatePage.companyHelperText"/>
               </FormHelperText>
               <TextField
                 multiline
@@ -128,9 +132,9 @@ export default function VacancyCreatePage(props) {
                 required
               />
               <FormHelperText>
-                The description of vacancy a candidate will see
+                <Translate value="VacancyCreatePage.descriptionHelperText"/>
               </FormHelperText>
-              <VacancyFieldList fields={fields} setFields={setFields} />
+              <VacancyCreateFieldList fields={fields} setFields={setFields} />
             </FormControl>
           </Grid>
           <Grid item xs={12}>

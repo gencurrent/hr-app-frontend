@@ -52,11 +52,11 @@ function VacancyPage() {
     authApolloClient
       .mutate({
         mutation: MUTATIONS.DELETE_VACANCY,
-        variables: { vacancyId: data.vacancy.id },
+        variables: { id: data.vacancy.id },
       })
       .then((response) => {
         setConfirmDialogOpen(false);
-        navigate("/vacancy-list");
+        navigate("/vacancy");
       });
   }
 

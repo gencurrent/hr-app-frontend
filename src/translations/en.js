@@ -14,15 +14,6 @@ const translationObject = {
     vacancies: "Vacancies",
     vacancy: "Vacancy",
   },
-  mainStatistics: {
-    title: "Main statistics",
-    applications: "Applications",
-    newApplication: "New applications",
-    totalApplication: "Total applications",
-    topVacancies: "Top vacancies",
-    allVacancies: "All vacancies",
-    lastWeekApplications: "Last week applications",
-  },
   AnonymousVacancyPreviewPage: {
     apply: "Apply",
   },
@@ -43,6 +34,13 @@ const translationObject = {
   },
   DashBoardPage: {
     newVacancy: "New vacancy",
+    title: "Main statistics",
+    applications: "Applications",
+    newApplications: "New applications",
+    totalApplication: "Total applications",
+    topVacancies: "Top vacancies",
+    allVacancies: "All vacancies",
+    lastWeekApplications: "Last week applications",
   },
   ProfileSettingsPage: {
     title: "Profile settings",
@@ -70,37 +68,60 @@ const translationObject = {
     vacancy: "Vacancy",
   },
   VacancyCreatePage: {
-    vacancyName: "Vacancy name",
-    company: "Company",
-    description: "Description",
     addField: "Add field",
+    company: "Company",
     create: "Create",
+    description: "Description",
+    title: "Create a vacancy",
+    vacancyName: "Vacancy name",
+    descriptionHelperText: "The description of vacancy a candidate will see",
+    companyHelperText: "The organization name or the area of the business",
   },
   VacancyListPage: {
-    title: "Vacancies",
-    newVacancy: "New vacancy",
     applications: "Applications",
-    URL: "URL",
     apply: "Apply",
     delete: "Delete",
+    newVacancy: "New vacancy",
+    title: "Vacancies",
+    URL: "URL",
   },
   VacancyPage: {
-    URL: "URL",
     apply: "Apply",
     delete: "Delete",
-    required: "Required",
-    number: "Number",
-    line: "Line",
-    text: "Text",
     file: "File",
+    line: "Line",
+    number: "Number",
+    required: "Required",
+    text: "Text",
+    URL: "URL",
   },
 
   component: {
     ApplicationListItemAnswer: {
       download: "Download",
     },
-    VacancyFieldList: {
+    VacancyCreateFieldList: {
       addField: "Add field",
+      addEditField: "Add or edit a field",
+      line: "Line",
+      text: "Text",
+      number: "Number",
+      file: "File",
+      fieldIsRequired: "The field is required",
+      questionField: "Field (question)",
+      questionFieldHelper:
+        "The question to your candidate related to the vacancy",
+
+      lineTypeHelper: "Text up to 100 symbols",
+      textTypeHelper: "Text up to 1000 symbols",
+      numberTypeHelper: "A number with or without point",
+      fileTypeHelper: "A single file to attach to the submission",
+
+      edit: "Edit",
+      remove: "Remove",
+
+      discard: "Discard",
+      save: "Save",
     },
     VacancyListItem: {
       URL: "URL",

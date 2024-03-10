@@ -32,7 +32,7 @@ export default function VacancyListPage() {
     authApolloClient
       .mutate({
         mutation: MUTATIONS.DELETE_VACANCY,
-        variables: { vacancyId: currentVacancy.id },
+        variables: { id: currentVacancy.id },
       })
       .then((response) => {
         setConfirmDialogOpen(false);
@@ -54,7 +54,7 @@ export default function VacancyListPage() {
         }
       >
         <GlassContainer>
-          <Grid container direction="column">
+          <Grid container direction="column" spacing={1}>
             <Grid item>
               <Link to="/vacancy/create">
                 <Button variant="contained" color="primary">
