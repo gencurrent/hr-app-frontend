@@ -8,15 +8,7 @@
 import { React, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import {
-  Breadcrumbs,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Breadcrumbs, Button, Grid, Typography } from "@mui/material";
 import { Translate } from "react-redux-i18n";
 import { Delete } from "@mui/icons-material";
 import LinkIcon from "@mui/icons-material/Link";
@@ -38,7 +30,7 @@ import {
  * @param {} props
  * @returns
  */
-function VacancyPage(props) {
+function VacancyPage() {
   const params = useParams();
   const navigate = useNavigate();
   const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
@@ -88,95 +80,126 @@ function VacancyPage(props) {
           }
         >
           <GlassContainer>
-            <Grid container spacing={1}>
+            <Grid container direction="column" spacing={2}>
               <Grid item>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  onClick={onCopyLink}
-                  color="info"
-                >
-                  <LinkIcon />
-                  <Translate value="VacancyPage.URL" />
-                </Button>
+                <Grid container spacing={1}>
+                  <Grid item display="flex" alignItems="center">
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      onClick={onCopyLink}
+                      color="info"
+                    >
+                      <LinkIcon />
+                      <Translate value="VacancyPage.URL" />
+                    </Button>
+                  </Grid>
+                  <Grid item display="flex" alignItems="center">
+                    <Link to={`/vacancy/${data.vacancy.id}/preview`}>
+                      <Button variant="outlined" size="small" color="success">
+                        <CheckCircleOutlineIcon />
+                        <Translate value="VacancyPage.apply" />
+                      </Button>
+                    </Link>
+                  </Grid>
+                  <Grid item display="flex" alignItems="center">
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      onClick={() => setConfirmDialogOpen(true)}
+                      size="small"
+                    >
+                      <Delete />
+                      <Translate value="VacancyPage.delete" />
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
               <Grid item>
-                <Link to={`/vacancy/${data.vacancy.id}/preview`}>
-                  <Button variant="outlined" size="small" color="success">
-                    <CheckCircleOutlineIcon />
-                    <Translate value="VacancyPage.apply" />
+                <Link to={`/vacancy/${vacancyId}/submission`}>
+                  <Button
+                    variant="text"
+                    sx={{ "text-decoration": "underline" }}
+                  >
+                    <Translate value="VacancyPage.applications" />
                   </Button>
                 </Link>
               </Grid>
+
+              {/* Vacancy name, company, date, description */}
               <Grid item>
-                <Button
-                  variant="outlined"
-                  color="error"
-                  onClick={() => setConfirmDialogOpen(true)}
-                  size="small"
-                >
-                  <Delete />
-                  <Translate value="VacancyPage.delete" />
-                </Button>
+                <Grid item>
+                  <Typography variant="h6">Vacancy data</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography component="span">Name: </Typography>
+                  <Typography
+                    sx={{ fontWeight: "800 !important" }}
+                    component="span"
+                  >
+                    {data.vacancy.position}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography component="span">Company: </Typography>
+                  <Typography
+                    sx={{ fontWeight: "800 !important" }}
+                    component="span"
+                  >
+                    {data.vacancy.company}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography component="span">Created: </Typography>
+                  <Typography
+                    sx={{ fontWeight: "800 !important" }}
+                    component="span"
+                  >
+                    {datetimeToString(new Date(data.vacancy.ts))}
+                  </Typography>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container>
-              <Grid item xs={12}>
-                <Typography
-                  sx={{ fontWeight: "800 !important" }}
-                  component="span"
-                >
-                  {data.vacancy.position}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography component="span">@ </Typography>
-                <Typography
-                  sx={{ fontWeight: "800 !important" }}
-                  component="span"
-                >
-                  {data.vacancy.company}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography
-                  sx={{ fontWeight: "800 !important" }}
-                  component="span"
-                >
-                  {datetimeToString(new Date(data.vacancy.ts))}
-                </Typography>
-              </Grid>
-            </Grid>
 
-            <Grid container spacing={1} py={1}>
-              {JSON.parse(data.vacancy.fields).map((field, idx) => {
-                return (
-                  <Grid item xs={12} key={[idx, field.q]}>
-                    <Grid container direction={"row"} spacing={1}>
-                      <Grid item>
-                        <Typography
-                          sx={{ fontWeight: "800 !important" }}
-                          component="span"
-                        >
-                          {idx + 1}.{" "}
-                        </Typography>
-                      </Grid>
-                      <Grid item>
-                        <Typography
-                          // sx={{ fontWeight: "800 !important" }}
-                          component="span"
-                        >
-                          {field.q}
-                        </Typography>
-
-                        <br />
-                        {<FieldTypeLabel type={field.t} />}
-                        {field.r ? <FieldRequiredLabel /> : ""}
-                      </Grid>
-                    </Grid>
+              {/* Vacancy custom fields */}
+              <Grid item>
+                <Grid container spacing={1}>
+                  <Grid item>
+                    <Typography variant="h6">Additional fields</Typography>
                   </Grid>
-                );
-              })}
+                  {JSON.parse(data.vacancy.fields).map((field, idx) => {
+                    return (
+                      <Grid item xs={12} key={[idx, field.q]}>
+                        <Grid
+                          container
+                          direction={"column"}
+                          spacing={0}
+                          columnGap={0}
+                        >
+                          <Grid item>
+                            <Typography
+                              sx={{ fontWeight: "800 !important" }}
+                              component="span"
+                            >
+                              {`#${idx + 1}. `}
+                            </Typography>
+                            <Typography
+                              // sx={{ fontWeight: "800 !important" }}
+                              component="span"
+                            >
+                              {field.q}
+                            </Typography>
+                          </Grid>
+                          <Grid display="flex" alignItems={"center"}>
+                            <br />
+                            {<FieldTypeLabel type={field.t} />}
+                            {field.r ? <FieldRequiredLabel /> : ""}
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    );
+                  })}
+                </Grid>
+              </Grid>
             </Grid>
           </GlassContainer>
 

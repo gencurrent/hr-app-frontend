@@ -10,6 +10,7 @@ const translationObject = {
   breadcrumbs: {
     dashboard: "Дэшборд",
     vacancies: "Вакансии",
+    vacancy: "Вакансия",
     applications: "Отклики",
   },
   mainStatistics: {
@@ -21,7 +22,6 @@ const translationObject = {
     allVacancies: "Все вакансии",
     lastWeekSubmissions: "Откликов за неделю",
   },
-
   AnonymousVacancyPreviewPage: {
     apply: "Откликнуться",
   },
@@ -40,10 +40,32 @@ const translationObject = {
     fieldIsRequired: "Поле обязательно для заполнения",
     submit: "Отправить",
   },
+  DashBoardPage: {
+    newVacancy: "Создать вакансию",
+  },
+  ProfileSettingsPage: {
+    title: "Настройки профиля",
+    email: "Эл. почта",
+    firstName: "Имя",
+    lastName: "Фамилия",
+    changeEmail: "Изменить адрес эл. почты",
+    confirmEmail: "Подтвердить",
+    currentPassword: "Текущий пароль",
+    newPassword: "Новый пароль",
+    resetPassword: "Сбросить пароль",
+    save: "Сохранить",
+  },
   VacancyApplicationListPage: {
-    allSubmissions: "Все отклики",
+    allApplications: "Все отклики",
+    application: "Отклик",
+    applications: "Отклики",
+    appliedDate: "Отправлено (дата)",
+    email: "Эл. почта",
+    name: "Имя",
+    phone: "Телефон",
     resume: "Резюме",
     submittedForm: "Заполненная форма",
+    vacancy: "Вакансия",
   },
   VacancyListPage: {
     title: "Вакансии",
@@ -62,17 +84,21 @@ const translationObject = {
     line: "Строка",
     text: "Текст",
     file: "Файл",
+    applications: "Отклики",
   },
 
   component: {
+    SubmissionListItemAnswer: {
+      download: "Скачать",
+    },
     VacancyListItem: {
-      URL: "URL",
+      URL: "Ссылка",
       apply: "Откликнуться",
       delete: "Удалить",
     },
   },
 
-  applicationName: "Staffence",
+  applicationName: "hrstack.com",
   authenticate: "Авторизация",
   congratulations: "Поздравляем!",
 };

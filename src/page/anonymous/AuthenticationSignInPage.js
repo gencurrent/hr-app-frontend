@@ -44,6 +44,7 @@ export default function AuthenticationSignInPage(props) {
         variables: { ...data },
       })
       .then(({ loading, data }) => {
+        // TODO: use redux dispatcher
         const { refreshToken, token } = { ...data.tokenAuth };
 
         localStorage.setItem("token", token);

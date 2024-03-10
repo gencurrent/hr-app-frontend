@@ -15,7 +15,6 @@ export default function MainBar(props) {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const locale = useSelector((state) => state.i18n.locale);
-  const open = Boolean(anchorEl);
   const { maxWidth = "lg", sx = {} } = props;
 
   const handleMenu = (event) => {
@@ -117,11 +116,13 @@ export default function MainBar(props) {
                         vertical: "top",
                         horizontal: "right",
                       }}
-                      open={open}
+                      open={Boolean(anchorEl)}
                       onClose={handleClose}
                     >
                       <MenuItem onClick={handleClose}>
-                        <Translate value="mainBar.profile" />
+                        <Link textDecoration="none" to="/profile">
+                          <Translate value="mainBar.profile" />
+                        </Link>
                       </MenuItem>
                       <MenuItem onClick={onLogOutClick}>
                         <Translate value="mainBar.logOut" />

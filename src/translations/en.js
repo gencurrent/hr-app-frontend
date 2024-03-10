@@ -10,6 +10,7 @@ const translationObject = {
   breadcrumbs: {
     dashboard: "Dashboard",
     vacancies: "Vacancies",
+    vacancy: "Vacancy",
     applications: "Applications",
   },
   mainStatistics: {
@@ -39,10 +40,33 @@ const translationObject = {
     fieldIsRequired: "The field is required",
     submit: "Submit",
   },
+  DashBoardPage: {
+    newVacancy: "New vacancy",
+  },
+  ProfileSettingsPage: {
+    title: "Profile settings",
+    email: "Email",
+    firstName: "First name",
+    lastName: "Last Name",
+    changeEmail: "Change email",
+    confirmEmail: "Confirm email",
+    currentPassword: "Current Password",
+    newPassword: "New Password",
+    resetPassword: "Reset password",
+    save: "Save",
+    applications: "Applications",
+  },
   VacancyApplicationListPage: {
-    allSubmissions: "All submissions",
+    allApplications: "All applications",
+    application: "Application",
+    applications: "Applications",
+    appliedDate: "Applied date",
+    email: "Email",
+    name: "Name",
+    phone: "Phone",
     resume: "Resume",
     submittedForm: "Submitted form",
+    vacancy: "Vacancy",
   },
   VacancyListPage: {
     title: "Vacancies",
@@ -64,6 +88,9 @@ const translationObject = {
   },
 
   component: {
+    SubmissionListItemAnswer: {
+      download: "Download",
+    },
     VacancyListItem: {
       URL: "URL",
       apply: "Apply",

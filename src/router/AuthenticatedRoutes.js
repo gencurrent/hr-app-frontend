@@ -13,6 +13,7 @@ import {
 
 import {
   DashboardPage,
+  ProfileSettingsPage,
   VacancyPage,
   VacancyCreatePage,
   VacancyListPage,
@@ -59,6 +60,9 @@ const AuthenticatedRouter = createBrowserRouter(
           />
           <Route path=":id" element={<VacancyPage />} />
         </Route>
+
+        {/* Profile settings page */}
+        <Route path="profile" element={<ProfileSettingsPage />} />
       </Route>
       {/* Vacancy testing pages */}
       <Route path="vacancy" element={<AnonymousGlassBar />}>

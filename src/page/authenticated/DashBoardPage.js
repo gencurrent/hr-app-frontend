@@ -73,7 +73,7 @@ export default function DashboardPage() {
                   <Grid item>
                     <Link to="/vacancy/create">
                       <Button variant="contained">
-                        <Translate value="vacancyListPage.newVacancy" />
+                        <Translate value="DashBoardPage.newVacancy" />
                       </Button>
                     </Link>
                   </Grid>

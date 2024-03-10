@@ -17,14 +17,6 @@ import LinkIcon from "@mui/icons-material/Link";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import copy from "copy-to-clipboard";
 
-import { GeneralContainer, GlassContainer } from "component";
-
-// const useStyles = makeStyles((theme) => ({
-//   vacancyListItem: {
-//     margin: theme.spacing(3, 0, 2),
-//   },
-// }));
-
 const VacancyListItem = (props) => {
   const { vacancy } = props;
 

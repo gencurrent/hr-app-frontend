@@ -7,18 +7,20 @@ import { Link, useParams } from "react-router-dom";
 import { Translate } from "react-redux-i18n";
 import PropTypes from "prop-types";
 import { useQuery } from "@apollo/client";
-import { styled } from "@mui/system";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Button,
   Breadcrumbs,
-  Card,
-  Collapse,
+  Divider,
+  Fade,
   Grid,
   Link as MUILink,
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import PersonIcon from "@mui/icons-material/Person";
+import DownloadIcon from "@mui/icons-material/Download";
 
 import {
   GeneralContainer,
@@ -28,15 +30,6 @@ import {
 import { datetimeToString } from "utils/date";
 import { QUERIES } from "utils/apollo";
 import { GoogleCloudStorageClient } from "utils/cloudStorage";
-import { ExpandMore } from "component";
-
-const SubmissionListItemCard = styled(Card)(
-  ({ theme }) => `
-  margin: ${theme.spacing(3, 0, 2)};
-  padding: ${theme.spacing(2)};
-
-`
-);
 
 function SubmissionItem(props) {
   const { submission, singleVacancySusbmissions, vacancyId } = props;
@@ -44,8 +37,6 @@ function SubmissionItem(props) {
   let ts = new Date(submission.ts);
   // const tsString = new RegExp("(?P=<year>\d{4})\-(?P=<month>\d{2})\-(?P=<day>\d{2})");\
   const tsString = datetimeToString(ts);
-  let [decision, setDecision] = useState(submission.decision);
-  let [decisionClass, setDecisionClass] = useState();
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
@@ -56,11 +47,6 @@ function SubmissionItem(props) {
    *
    * @param {Event} e
    */
-  function onDecisionChange(e) {
-    const { value } = e.target;
-    setDecision(value);
-    setDecisionClass();
-  }
 
   const fieldList = [
     {
@@ -91,37 +77,55 @@ function SubmissionItem(props) {
                 href={cloudStorageClient.getFileUrl(submission.resume)}
               >
                 <Button variant="outlined" color="primary">
+                  <DownloadIcon />
                   <Translate value="VacancyApplicationListPage.resume" />
                 </Button>
               </MUILink>
             )}
             {field.field === "fullname" && (
-              <Grid container direction="row">
-                <Grid item display="flex" alignItems="center">
-                  <PersonIcon fontSize="medium" />
-                </Grid>
-                <Grid item display="flex" alignItems="center">
-                  <Typography
-                    key={field.field}
-                    variant="body1"
-                    component="p"
-                    sx={{ fontWeight: "600 !important" }}
-                  >
-                    {submission[field.field]}
-                  </Typography>
-                </Grid>
-              </Grid>
+              <>
+                <Typography component="span">
+                  <Translate value="VacancyApplicationListPage.name" />:{" "}
+                </Typography>
+                <Typography
+                  key={field.field}
+                  variant="body1"
+                  component="span"
+                  sx={{ fontWeight: "600" }}
+                >
+                  {submission[field.field]}
+                </Typography>
+              </>
             )}
-
-            {!["fullname", "resume"].includes(field.field) && (
-              <Typography
-                key={field.field}
-                variant="body1"
-                component="p"
-                sx={{ display: "inline" }}
-              >
-                {submission[field.field]}
-              </Typography>
+            {field.field === "email" && (
+              <>
+                <Typography component="span">
+                  <Translate value="VacancyApplicationListPage.email" />:{" "}
+                </Typography>
+                <Typography
+                  key={field.field}
+                  variant="body1"
+                  component="span"
+                  sx={{ fontWeight: "600" }}
+                >
+                  {submission[field.field]}
+                </Typography>
+              </>
+            )}
+            {field.field === "phone" && (
+              <>
+                <Typography component="span">
+                  <Translate value="VacancyApplicationListPage.phone" />:{" "}
+                </Typography>
+                <Typography
+                  key={field.field}
+                  variant="body1"
+                  component="span"
+                  sx={{ fontWeight: "600" }}
+                >
+                  {submission[field.field]}
+                </Typography>
+              </>
             )}
           </Grid>
         ))}
@@ -132,12 +136,19 @@ function SubmissionItem(props) {
   vacancyData = submission.vacancy || vacancyData;
 
   return (
-    <SubmissionListItemCard key={submission.uuid} variant="outlined">
+    <>
+      {singleVacancySusbmissions && (
+        <Typography variant="h6">
+          <Translate value="VacancyApplicationListPage.application" />{" "}
+          {tsString}
+        </Typography>
+      )}
       {!singleVacancySusbmissions && (
-        <Typography component="h5" variant="h5">
+        <Typography variant="h6">
           <Link className="link-undecorated" to={`/vacancy/${vacancyId}`}>
-            {vacancyData.position} | {vacancyData.company}
-          </Link>
+            {vacancyData.position}
+          </Link>{" "}
+          @ {vacancyData.company} on {tsString}
         </Typography>
       )}
 
@@ -145,37 +156,55 @@ function SubmissionItem(props) {
         <Grid item>
           <FieldItemsGrid submission={submission} />
         </Grid>
-        <Grid item>{tsString}</Grid>
-      </Grid>
-
-      <Grid container direction="row" justifyContent="left" spacing={2}>
-        <Grid item display="flex" alignItems="center">
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
+        <Grid item>
+          <Typography component="span">
+            <Translate value="VacancyApplicationListPage.appliedDate" />:{" "}
+          </Typography>{" "}
+          <Typography
+            variant="body1"
+            component="span"
+            sx={{ fontWeight: "600" }}
           >
-            <ExpandMoreIcon />
-          </ExpandMore>
-        </Grid>
-        <Grid item display="flex" alignItems="center">
-          <Typography>
-            <Translate value="VacancyApplicationListPage.submittedForm" />
+            {tsString}
           </Typography>
         </Grid>
       </Grid>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        {JSON.parse(submission.answers).map((answer, idx) => (
-          <SubmissionListItemAnswer
-            idx={idx}
-            key={answer.q}
-            answer={answer}
-            vacancy={vacancyData}
-          />
-        ))}
-      </Collapse>
-    </SubmissionListItemCard>
+
+      {/* <Grid item display="flex" alignItems="center"> */}
+      <Accordion
+        expanded={expanded}
+        onChange={handleExpandClick}
+        slots={{ transition: Fade }}
+        slotProps={{ transition: { timeout: 400 } }}
+        sx={{
+          "& .MuiAccordion-region": { height: expanded ? "auto" : 0 },
+          "& .MuiAccordionDetails-root": {
+            display: expanded ? "block" : "none",
+          },
+        }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+          <Typography>
+            <Translate value="VacancyApplicationListPage.submittedForm" />
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          {JSON.parse(submission.answers).map((answer, idx) => (
+            <SubmissionListItemAnswer
+              idx={idx}
+              key={answer.q}
+              answer={answer}
+              vacancy={vacancyData}
+            />
+          ))}
+        </AccordionDetails>
+      </Accordion>
+      {/* </Grid> */}
+    </>
   );
 }
 
@@ -212,7 +241,7 @@ function VacancySubmissionListPage(props) {
   if (error) {
     return (
       <GeneralContainer>
-        <div>Error loading submissions</div>
+        <div>Error loading applications</div>
       </GeneralContainer>
     );
   }
@@ -221,9 +250,12 @@ function VacancySubmissionListPage(props) {
     <GeneralContainer
       title={
         singleVacancySusbmissions ? (
-          `${data.vacancy.position} applications`
+          <>
+            {`${data.vacancy.position} `}
+            <Translate value="VacancyApplicationListPage.applications" />
+          </>
         ) : (
-          <Translate value="VacancyApplicationListPage.allSubmissions" />
+          <Translate value="VacancyApplicationListPage.allApplications" />
         )
       }
       breadcrumbs={
@@ -231,6 +263,11 @@ function VacancySubmissionListPage(props) {
           <Link to="/">
             <Translate value="breadcrumbs.dashboard" />
           </Link>
+          {singleVacancySusbmissions && (
+            <Link to={`/vacancy/${vacancyId}`}>
+              <Translate value="breadcrumbs.vacancy" />
+            </Link>
+          )}
           <Typography>
             <Translate value="breadcrumbs.applications" />
           </Typography>
@@ -239,7 +276,28 @@ function VacancySubmissionListPage(props) {
     >
       <GlassContainer>
         {data && (
-          <>
+          <Grid container direction="column" spacing={2}>
+            {singleVacancySusbmissions && (
+              <>
+                <Grid item>
+                  <Typography variant="h6">
+                    <Translate value="VacancyApplicationListPage.vacancy" />
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Link to={`/vacancy/${vacancyId}`}>
+                    {data.vacancy.position} @{data.vacancy.company}
+                  </Link>
+                </Grid>
+
+                <Grid item>
+                  <Typography variant="h6">
+                    <Translate value="VacancyApplicationListPage.applications" />
+                  </Typography>
+                </Grid>
+              </>
+            )}
+
             {submissionList.map((submission) => {
               vacancyId = singleVacancySusbmissions
                 ? vacancyId
@@ -248,16 +306,22 @@ function VacancySubmissionListPage(props) {
                 ? data.vacancy
                 : submission.vacancy;
               return (
-                <SubmissionItem
-                  key={submission.id}
-                  submission={submission}
-                  vacancyId={vacancyId}
-                  vacancyData={vacancyData}
-                  singleVacancySusbmissions={singleVacancySusbmissions}
-                />
+                <Grid
+                  item
+                  sx={(theme) => ({ "margin-left": theme.spacing(1) })}
+                >
+                  <Divider variant="horizontal" />
+                  <SubmissionItem
+                    key={submission.id}
+                    submission={submission}
+                    vacancyId={vacancyId}
+                    vacancyData={vacancyData}
+                    singleVacancySusbmissions={singleVacancySusbmissions}
+                  />
+                </Grid>
               );
             })}
-          </>
+          </Grid>
         )}
       </GlassContainer>
     </GeneralContainer>
