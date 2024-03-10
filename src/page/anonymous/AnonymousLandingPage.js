@@ -92,7 +92,7 @@ function AnonymousLandingPage(props) {
                 </Grid>
                 <Grid item display="flex" alignItems="center">
                   <Link to={`/auth/signin`}>
-                    <Button size="large" variant="contained" color="primary">
+                    <Button size="small" variant="text" color="primary">
                       <Translate value="authenticate" />
                     </Button>
                   </Link>

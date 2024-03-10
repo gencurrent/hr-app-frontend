@@ -8,12 +8,12 @@ import { Grid, TextField } from "@mui/material";
 
 import FileUploadField from "./FileUploadField";
 
-const VacancySubmissionFieldItem = (props) => {
+const VacancyApplicationFieldItem = (props) => {
   const { field, vacancy } = props;
 
   // Field-specific errors
   const fieldRequiredText = I18n.t(
-    "AnonymousVacancySubmissionPage.fieldIsRequired"
+    "AnonymousVacancyApplicationPage.fieldIsRequired"
   );
   const [fieldError, setFieldError] = useState(undefined);
 
@@ -118,9 +118,9 @@ const VacancySubmissionFieldItem = (props) => {
   );
 };
 
-VacancySubmissionFieldItem.propTypes = {
+VacancyApplicationFieldItem.propTypes = {
   valueUpdateCallback: PropTypes.func.isRequired,
   vacancy: PropTypes.object.isRequired,
 };
 
-export default VacancySubmissionFieldItem;
+export default VacancyApplicationFieldItem;

@@ -12,10 +12,10 @@ import GeneralContainer from "./GenaralContainer";
 import DashboardSubmissionStatisticsChart from "./DashboardSubmissionStatisticsChart";
 import FieldRequiredLabel from "./FieldRequiredLabel";
 import FieldTypeLabel from "./FieldTypeLabel";
-import VacancyFieldList from "./VacancyFieldList";
+import VacancyCreateFieldList from "./VacancyCreateFieldList";
 import VacancyListItem from "./VacancyListItem";
 import DeleteConfirmationDialog from "./DeleteConfirmationDialog";
-import SubmissionListItemAnswer from "./SubmissionListItemAnswer";
+import ApplicationListItemAnswer from "./ApplicationListItemAnswer";
 import ExpandMore from "./ExpandMore";
 import MainBar from "./MainBar";
 
@@ -32,12 +32,12 @@ export {
   GeneralContainer,
   // Authenticated pages components
   DashboardSubmissionStatisticsChart,
-  VacancyFieldList,
+  VacancyCreateFieldList,
   VacancyListItem,
   FieldTypeLabel,
   FieldRequiredLabel,
   DeleteConfirmationDialog,
-  SubmissionListItemAnswer,
+  ApplicationListItemAnswer,
   ExpandMore,
   MainBar,
 };

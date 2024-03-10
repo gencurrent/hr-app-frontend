@@ -20,7 +20,6 @@ import {
   GeneralContainer,
   GlassContainer,
 } from "component";
-import { MainBar } from "component";
 import { QUERIES } from "utils/apollo";
 
 export default function DashboardPage() {
@@ -46,7 +45,7 @@ export default function DashboardPage() {
   );
   return (
     <GeneralContainer
-      title={<Translate value="mainStatistics.title" />}
+      title={<Translate value="DashBoardPage.title" />}
       breadcrumbs={
         <Breadcrumbs>
           <Typography>
@@ -59,7 +58,7 @@ export default function DashboardPage() {
         <Grid container direction="column" spacing={4}>
           <Grid item>
             <Typography component="h5" variant="h5">
-              <Translate value="mainStatistics.topVacancies" />
+              <Translate value="DashBoardPage.topVacancies" />
             </Typography>
             <Grid container direction="column" spacing={1}>
               <Grid item>
@@ -67,14 +66,14 @@ export default function DashboardPage() {
                   <Grid item>
                     <Link to="/vacancy">
                       <Button variant="text">
-                        <Translate value="mainStatistics.allVacancies" />
+                        <Translate value="DashBoardPage.allVacancies" />
                       </Button>
                     </Link>
                   </Grid>
                   <Grid item>
                     <Link to="/vacancy/create">
                       <Button variant="contained">
-                        <Translate value="vacancyListPage.newVacancy" />
+                        <Translate value="DashBoardPage.newVacancy" />
                       </Button>
                     </Link>
                   </Grid>
@@ -93,10 +92,10 @@ export default function DashboardPage() {
                   </Link>
                   <Link
                     className="link-undecorated"
-                    to={`/vacancy/${vacancyStatsItem.id}/submission`}
+                    to={`/vacancy/${vacancyStatsItem.id}/application`}
                   >
                     <Typography variant="body2">
-                      <Translate value="mainStatistics.lastWeekSubmissions" />:{" "}
+                      <Translate value="DashBoardPage.lastWeekApplications" />:{" "}
                       {vacancyStatsItem.submissionCountTotal} (+
                       {vacancyStatsItem.submissionCountNew})
                     </Typography>
@@ -108,7 +107,7 @@ export default function DashboardPage() {
 
           <Grid item>
             <Typography component="h5" variant="h5">
-              <Translate value="mainStatistics.submissions" />
+              <Translate value="DashBoardPage.applications" />
             </Typography>
             <Grid container direction="column" spacing={1}>
               <Grid item>
@@ -117,17 +116,17 @@ export default function DashboardPage() {
                 />
               </Grid>
               <Grid item>
-                <Link to="/submission?status=new">
+                <Link to="/application?status=new">
                   <Button variant="contained" color="secondary">
-                    <Translate value="mainStatistics.newSubmissions" />: +
+                    <Translate value="DashBoardPage.newApplications" />: +
                     {submissionCountNew}
                   </Button>
                 </Link>
               </Grid>
               <Grid item>
-                <Link to="/submission">
+                <Link to="/application">
                   <Button>
-                    <Translate value="mainStatistics.totalSubmissions" />:{" "}
+                    <Translate value="DashBoardPage.totalApplications" />:{" "}
                     {submissionCountTotal}
                   </Button>
                 </Link>

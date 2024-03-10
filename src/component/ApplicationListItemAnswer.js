@@ -1,12 +1,14 @@
 /**
- * A single submission answer react component
+ * A single vacancy application answer react component
  */
 import { React } from "react";
+import { Translate } from "react-redux-i18n";
 import PropTypes from "prop-types";
 
 import { styled } from "@mui/system";
 import { Link, Typography, Box, Card, Button } from "@mui/material";
-import FieldRequiredLabel from "component/FieldRequiredLabel";
+import DownloadIcon from "@mui/icons-material/Download";
+
 import { GoogleCloudStorageClient } from "utils/cloudStorage";
 
 const AnswerContainerBox = styled(Box)(
@@ -23,12 +25,10 @@ const AnswerBlockCard = styled(Card)(
 const AnswerTextBox = styled(Card)(
   ({ theme }) => `
     padding: ${theme.spacing(0, 1)};
-    borderRadius: 4px;
-    background: ${theme.palette.secondary.secondary};
   `
 );
 
-function SubmissionListItemAnswer(props) {
+function ApplicationListItemAnswer(props) {
   const cloudStorageClient = new GoogleCloudStorageClient();
   const { idx, answer, vacancy } = props;
   // TODO:
@@ -43,7 +43,7 @@ function SubmissionListItemAnswer(props) {
     <>
       <AnswerBlockCard elevation={0}>
         <Typography variant="subtitle1" style={{ fontWeight: 600 }}>
-          # {idx} {answerFull.r ? <FieldRequiredLabel /> : <></>} {answer.q}
+          #{idx}. {answer.q}
         </Typography>
         {/* <Box className={classes.answerContainer}> */}
         <AnswerContainerBox>
@@ -58,7 +58,8 @@ function SubmissionListItemAnswer(props) {
                   href={cloudStorageClient.getFileUrl(answer.a)}
                 >
                   <Button variant="outlined" color="primary">
-                    Download
+                    <DownloadIcon />
+                    <Translate value="component.ApplicationListItemAnswer.download" />
                   </Button>
                 </Link>
               </>
@@ -68,7 +69,7 @@ function SubmissionListItemAnswer(props) {
             answerFull.t === "text" ||
             answerFull.t === "number") && (
             <AnswerTextBox>
-              <Typography component="p">{answer.a}</Typography>
+              <Typography>{answer.a}</Typography>
             </AnswerTextBox>
           )}
         </AnswerContainerBox>
@@ -77,8 +78,8 @@ function SubmissionListItemAnswer(props) {
   );
 }
 
-SubmissionListItemAnswer.propTypes = {
+ApplicationListItemAnswer.propTypes = {
   answer: PropTypes.object.isRequired,
 };
 
-export default SubmissionListItemAnswer;
+export default ApplicationListItemAnswer;

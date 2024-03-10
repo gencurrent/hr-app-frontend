@@ -6,6 +6,7 @@
 
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { Translate } from "react-redux-i18n";
 import {
   TextField,
   Grid,
@@ -37,17 +38,13 @@ import { FieldRequiredLabel, FieldTypeLabel } from "component";
  * @param {*} props {function onClose, function open}
  * @returns JSX
  */
-const VacancyFieldListItemDialog = (props) => {
+function VacancyCreateFieldListItemDialog(props) {
   const [fieldDescription, setFieldDescription] = useState({
     q: "", // Question
     t: "line", // Type
     r: true, // Required
   });
   const { onClose, open } = props;
-
-  let [typeFieldHelperText, setTypeFieldHelperText] = useState(
-    FIELD_TYPE_VALUE_TO_HELPER_TEXT_MAP["line"]
-  );
 
   const updateQuestion = (e) => {
     // TODO: Add a question length validation (length > 10 symbols)
@@ -58,7 +55,6 @@ const VacancyFieldListItemDialog = (props) => {
   const updateType = (e) => {
     let desc = { ...fieldDescription, t: e.target.value };
     setFieldDescription(desc);
-    setTypeFieldHelperText(FIELD_TYPE_VALUE_TO_HELPER_TEXT_MAP[e.target.value]);
   };
 
   const updateRequired = (e) => {
@@ -76,19 +72,25 @@ const VacancyFieldListItemDialog = (props) => {
 
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Edit field</DialogTitle>
+      <DialogTitle>
+        <Translate value="component.VacancyCreateFieldList.addEditField" />
+      </DialogTitle>
       <DialogContent>
         <FormControl>
           <Grid container spacing={1}>
             <Grid item xs={12} sm={12}>
               <TextField
-                label="Field (question)"
+                label={
+                  <Translate value="component.VacancyCreateFieldList.questionField" />
+                }
                 id="field-name"
                 onChange={updateQuestion}
                 value={fieldDescription.q}
                 fullWidth={true}
               />
-              <FormHelperText>A question to your candidate</FormHelperText>
+              <FormHelperText>
+                <Translate value="component.VacancyCreateFieldList.questionFieldHelper" />
+              </FormHelperText>
             </Grid>
             <Grid item xs={12} sm={12}>
               <Select
@@ -99,20 +101,24 @@ const VacancyFieldListItemDialog = (props) => {
                 value={fieldDescription.t}
               >
                 <MenuItem key="line" value="line">
-                  Line
+                  <Translate value="component.VacancyCreateFieldList.line" />
                 </MenuItem>
                 <MenuItem key="text" value="text">
-                  Text
+                  <Translate value="component.VacancyCreateFieldList.text" />
                 </MenuItem>
                 <MenuItem key="number" value="number">
-                  Number
+                  <Translate value="component.VacancyCreateFieldList.number" />
                 </MenuItem>
                 <MenuItem key="file" value="file">
-                  File
+                  <Translate value="component.VacancyCreateFieldList.file" />
                 </MenuItem>
                 {/* <MenuItem key='date' value='date'>Date</MenuItem> */}
               </Select>
-              <FormHelperText>{typeFieldHelperText}</FormHelperText>
+              <FormHelperText>
+                <Translate
+                  value={`component.VacancyCreateFieldList.${fieldDescription.t}TypeHelper`}
+                />
+              </FormHelperText>
             </Grid>
 
             <Grid item xs={12} sm={12}>
@@ -123,30 +129,33 @@ const VacancyFieldListItemDialog = (props) => {
                     onChange={updateRequired}
                   />
                 }
-                label="Field is required"
+                label={
+                  <Translate value="component.VacancyCreateFieldList.fieldIsRequired" />
+                }
               />
             </Grid>
           </Grid>
         </FormControl>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Discard</Button>
+        <Button onClick={handleClose}>
+          <Translate value="component.VacancyCreateFieldList.discard" />
+        </Button>
         <Button autoFocus onClick={handleSave}>
-          Add
+          <Translate value="component.VacancyCreateFieldList.save" />
         </Button>
       </DialogActions>
     </Dialog>
   );
-};
+}
 
-VacancyFieldListItemDialog.propTypes = {
+VacancyCreateFieldListItemDialog.propTypes = {
   onClose: PropTypes.func.isRequired, // Dialog got closed callback function
   open: PropTypes.bool.isRequired, // Dialog got opened callback
   onSave: PropTypes.func.isRequired, // New field submitted (saved)
 };
 
-
-function VacancyFieldList(props){
+export default function VacancyCreateFieldList(props) {
   let [fields, setFields] = useState(props.fields || []);
 
   let [dialogOpen, setDialogOpen] = useState(false);
@@ -174,7 +183,7 @@ function VacancyFieldList(props){
 
   return (
     <>
-      <VacancyFieldListItemDialog
+      <VacancyCreateFieldListItemDialog
         open={dialogOpen}
         onClose={closeAddFieldDialog}
         onSave={saveField}
@@ -200,8 +209,10 @@ function VacancyFieldList(props){
                 </Typography>
               </CardContent>
               <CardActions disableSpacing>
-                <Button>Edit</Button>
-                <Button onClick={(e) => removeField(idx)}>Delete</Button>
+                {/* <Button><Translate value="component.VacancyCreateFieldList.edit" /> </Button> */}
+                <Button onClick={(e) => removeField(idx)}>
+                  <Translate value="component.VacancyCreateFieldList.remove" />
+                </Button>
               </CardActions>
             </Card>
           </Grid>
@@ -212,16 +223,15 @@ function VacancyFieldList(props){
             color="secondary"
             onClick={openAddFieldDialog}
           >
-            Add field
+            <Translate value="component.VacancyCreateFieldList.addField" />
           </Button>
         </Grid>
       </Grid>
     </>
   );
-};
+}
 
-VacancyFieldList.propTypes = {
+VacancyCreateFieldList.propTypes = {
   fields: PropTypes.arrayOf(Object).isRequired,
   setFields: PropTypes.func,
 };
-export default VacancyFieldList;

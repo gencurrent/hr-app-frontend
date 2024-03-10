@@ -35,10 +35,8 @@ const MUTATIONS = {
     }
   `,
   DELETE_VACANCY: gql`
-    mutation DeleteVacancy($vacancyId: UUID!) {
-      deleteVacancy(vacancyId: $vacancyId) {
-        deleted
-      }
+    mutation DeleteVacancy($id: UUID!) {
+      deleteVacancy(id: $id)
     }
   `,
   CREATE_SUBMISSION: gql`

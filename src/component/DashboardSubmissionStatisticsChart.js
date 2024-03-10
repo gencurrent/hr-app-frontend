@@ -11,6 +11,7 @@ import {
 import { Line } from "react-chartjs-2";
 import moment from "moment";
 import { I18n } from "react-redux-i18n";
+import { useEffect } from "react";
 
 ChartJS.register(
   CategoryScale,
@@ -32,7 +33,7 @@ const options = {
     },
     title: {
       display: true,
-      text: I18n.t("mainStatistics.lastWeekSubmissions"),
+      text: I18n.t("DashBoardPage.lastWeekApplications"),
     },
   },
   scales: {

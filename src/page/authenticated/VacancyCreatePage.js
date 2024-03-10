@@ -1,18 +1,24 @@
 import PropTypes from "prop-types";
 import { React, useState } from "react";
 import { useMutation } from "@apollo/client";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
-  TextField,
+  Button,
+  Breadcrumbs,
   FormControl,
   FormHelperText,
-  Typography,
-  Button,
   Grid,
+  TextField,
+  Typography,
 } from "@mui/material";
 
-import { VacancyFieldList, GeneralContainer, GlassContainer } from "component";
+import {
+  GeneralContainer,
+  GlassContainer,
+  VacancyCreateFieldList,
+} from "component";
 import { MUTATIONS } from "utils/apollo";
+import { Translate } from "react-redux-i18n";
 
 const TEXT_FIELD_ROWS_NUMBER_DEFAULT = 3;
 const FIELD_VACANCY_HELPER_TEXT_DEFAULT = "Vacancy position";
@@ -77,16 +83,24 @@ export default function VacancyCreatePage(props) {
     });
   };
   return (
-    <GeneralContainer>
+    <GeneralContainer
+      title={<Translate value="VacancyCreatePage.title" />}
+      breadcrumbs={
+        <Breadcrumbs>
+          <Link to="/">
+            <Translate value="breadcrumbs.dashboard" />
+          </Link>
+          <Translate value="breadcrumbs.createVacancy" />
+        </Breadcrumbs>
+      }
+    >
       <GlassContainer>
         <Grid container direction="column" spacing={2}>
           <Grid item sm={12}>
-            <Typography variant="h4" component="h3">
-              New vacancy
-            </Typography>
+            <Typography variant="h4" component="h3"></Typography>
             <FormControl noValidate autoComplete="off" fullWidth={true}>
               <TextField
-                label="Position"
+                label={<Translate value="VacancyCreatePage.vacancyName" />}
                 error={positionFieldHelperProps["error"]}
                 autoComplete="position"
                 id="position"
@@ -98,7 +112,7 @@ export default function VacancyCreatePage(props) {
                 {positionFieldHelperProps["text"]}
               </FormHelperText>
               <TextField
-                label="Company"
+                label={<Translate value="VacancyCreatePage.company" />}
                 autoComplete="company"
                 id="company"
                 value={company}
@@ -106,26 +120,26 @@ export default function VacancyCreatePage(props) {
                 required
               />
               <FormHelperText>
-                An organization to show to a candidate
+              <Translate value="VacancyCreatePage.companyHelperText"/>
               </FormHelperText>
               <TextField
                 multiline
                 rows={rowsNumber}
-                label="Description"
+                label={<Translate value="VacancyCreatePage.description" />}
                 id="text"
                 value={text}
                 onChange={updateFormText}
                 required
               />
               <FormHelperText>
-                The description of vacancy a candidate will see
+                <Translate value="VacancyCreatePage.descriptionHelperText"/>
               </FormHelperText>
-              <VacancyFieldList fields={fields} setFields={setFields} />
+              <VacancyCreateFieldList fields={fields} setFields={setFields} />
             </FormControl>
           </Grid>
           <Grid item xs={12}>
             <Button variant="contained" color="primary" onClick={save}>
-              Save
+              <Translate value="VacancyCreatePage.create" />
             </Button>
           </Grid>
         </Grid>

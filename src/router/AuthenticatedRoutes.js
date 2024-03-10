@@ -13,10 +13,11 @@ import {
 
 import {
   DashboardPage,
+  ProfileSettingsPage,
   VacancyPage,
   VacancyCreatePage,
   VacancyListPage,
-  VacancySubmissionListPage,
+  VacancyApplicationListPage,
 } from "page/authenticated";
 
 import {
@@ -42,9 +43,9 @@ const AuthenticatedRouter = createBrowserRouter(
         <Route path="/" element={<DashboardPage />} />
 
         <Route
-          path="submission"
+          path="application"
           element={
-            <VacancySubmissionListPage singleVacancySusbmissions={false} />
+            <VacancyApplicationListPage singleVacancySusbmissions={false} />
           }
         />
 
@@ -52,13 +53,16 @@ const AuthenticatedRouter = createBrowserRouter(
           <Route path="" element={<VacancyListPage />} />
           <Route path="create" element={<VacancyCreatePage />} />
           <Route
-            path=":vacancyId/submission"
+            path=":vacancyId/application"
             element={
-              <VacancySubmissionListPage singleVacancySusbmissions={true} />
+              <VacancyApplicationListPage singleVacancySusbmissions={true} />
             }
           />
           <Route path=":id" element={<VacancyPage />} />
         </Route>
+
+        {/* Profile settings page */}
+        <Route path="profile" element={<ProfileSettingsPage />} />
       </Route>
       {/* Vacancy testing pages */}
       <Route path="vacancy" element={<AnonymousGlassBar />}>

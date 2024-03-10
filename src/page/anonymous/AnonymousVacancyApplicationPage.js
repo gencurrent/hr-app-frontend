@@ -6,7 +6,6 @@ import { React, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Translate, I18n } from "react-redux-i18n";
 import { useQuery } from "@apollo/client";
-import { styled } from "@mui/system";
 import {
   Box,
   Breadcrumbs,
@@ -19,16 +18,9 @@ import {
 } from "@mui/material";
 
 import { pureApolloClient, MUTATIONS, QUERIES } from "utils/apollo";
-import VacancySubmissionFieldItem from "component/VacancySubmissionFieldItem";
+import VacancyApplicationFieldItem from "component/VacancyApplicationFieldItem";
 import FileUploadField from "component/FileUploadField";
 import GeneralContainer from "component/GenaralContainer";
-
-const MainCardPaper = styled(Paper)(
-  ({ theme }) => `
-    padding: ${theme.spacing(2)};
-    margin: ${theme.spacing(0)};
-  `
-);
 
 export default function AnonymousVacancyApplicationPage() {
   const params = useParams();
@@ -57,7 +49,7 @@ export default function AnonymousVacancyApplicationPage() {
   const [answers, setAnswers] = useState({});
 
   /**
-   * Submit answers from the Submission form
+   * Submit answers from the application form
    * @param {Event} e An event object
    * @return {null}
    */
@@ -118,26 +110,34 @@ export default function AnonymousVacancyApplicationPage() {
       {loading && <div>Loading</div>}
       {error && <div>Error</div>}
       {vacancyData && (
-        <GeneralContainer sx={{ py: 4 }}>
-          <Typography variant="h4" component="h1" gutterBottom>
-            <Translate value="AnonymousVacancySubmissionPage.applyToVacancy" />
-          </Typography>
-          <Breadcrumbs>
-            <Link to={`/vacancy/${vacancyId}/preview`}>
-              <Translate value="AnonymousVacancySubmissionPage.vacancyDescription" />
-            </Link>
-            <Typography><Translate value="AnonymousVacancySubmissionPage.apply" /></Typography>
-          </Breadcrumbs>
-
-          <MainCardPaper variant="outlined">
-            <Typography variant="h4" align="center" gutterBottom>
+        <GeneralContainer
+          sx={{ py: 4 }}
+          title={
+            <Translate value="AnonymousVacancyApplicationPage.applyToVacancy" />
+          }
+          breadcrumbs={
+            <Breadcrumbs>
+              <Link to={`/vacancy/${vacancyId}/preview`}>
+                <Translate value="AnonymousVacancyApplicationPage.vacancyDescription" />
+              </Link>
+              <Typography>
+                <Translate value="AnonymousVacancyApplicationPage.apply" />
+              </Typography>
+            </Breadcrumbs>
+          }
+        >
+          <Paper
+            variant="outlined"
+            sx={(theme) => ({ padding: theme.spacing(2) })}
+          >
+            <Typography variant="h5" align="center" gutterBottom>
               {vacancyData.vacancy.position}
             </Typography>
             {/* Should we use Stepper ? */}
 
             <Grid container direction="column">
-              <Grid item>
-                <Typography variant="h5" align={"center"} gutterBottom>
+              <Grid item xs={12}>
+                <Typography variant="h6" align={"center"} gutterBottom>
                   {vacancyData.vacancy.company}
                 </Typography>
               </Grid>
@@ -146,12 +146,12 @@ export default function AnonymousVacancyApplicationPage() {
                 <FormControl fullWidth={true} variant="outlined">
                   <TextField
                     onChange={(e) => setFullname(e.target.value)}
-                    label={I18n.t("AnonymousVacancySubmissionPage.fullName")}
+                    label={I18n.t("AnonymousVacancyApplicationPage.fullName")}
                     name="name"
                     id="name"
                     required
                     helperText={I18n.t(
-                      "AnonymousVacancySubmissionPage.required"
+                      "AnonymousVacancyApplicationPage.required"
                     )}
                     margin="normal"
                     autoComplete="name"
@@ -159,19 +159,19 @@ export default function AnonymousVacancyApplicationPage() {
                   />
                   <TextField
                     onChange={(e) => setEmail(e.target.value)}
-                    label={I18n.t("AnonymousVacancySubmissionPage.email")}
+                    label={I18n.t("AnonymousVacancyApplicationPage.email")}
                     name="email"
                     id="email"
                     required
                     helperText={I18n.t(
-                      "AnonymousVacancySubmissionPage.required"
+                      "AnonymousVacancyApplicationPage.required"
                     )}
                     margin="normal"
                     autoComplete="email"
                     fullWidth
                   />
                   <TextField
-                    label={I18n.t("AnonymousVacancySubmissionPage.phone")}
+                    label={I18n.t("AnonymousVacancyApplicationPage.phone")}
                     name="phone"
                     id="phone"
                     onChange={(e) => setPhone(e.target.value)}
@@ -183,12 +183,12 @@ export default function AnonymousVacancyApplicationPage() {
                     fieldRequired={true}
                     callBack={onResumeFieldUpdated}
                     vacancy={vacancyData.vacancy}
-                    fieldText={I18n.t("AnonymousVacancySubmissionPage.resume")}
+                    fieldText={I18n.t("AnonymousVacancyApplicationPage.resume")}
                   />
                 </FormControl>
                 <FormControl fullWidth={true} variant="outlined">
                   {vacancyFields.map((field, idx) => (
-                    <VacancySubmissionFieldItem
+                    <VacancyApplicationFieldItem
                       key={idx}
                       valueUpdateCallback={editData}
                       field={field}
@@ -207,12 +207,12 @@ export default function AnonymousVacancyApplicationPage() {
                     variant="contained"
                     color="primary"
                   >
-                    <Translate value="AnonymousVacancySubmissionPage.submit" />
+                    <Translate value="AnonymousVacancyApplicationPage.submit" />
                   </Button>
                 </Box>
               </Grid>
             </Grid>
-          </MainCardPaper>
+          </Paper>
         </GeneralContainer>
       )}
     </>
