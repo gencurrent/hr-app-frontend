@@ -15,7 +15,7 @@ import FieldTypeLabel from "./FieldTypeLabel";
 import VacancyFieldList from "./VacancyFieldList";
 import VacancyListItem from "./VacancyListItem";
 import DeleteConfirmationDialog from "./DeleteConfirmationDialog";
-import SubmissionListItemAnswer from "./SubmissionListItemAnswer";
+import ApplicationListItemAnswer from "./ApplicationListItemAnswer";
 import ExpandMore from "./ExpandMore";
 import MainBar from "./MainBar";
 
@@ -37,7 +37,7 @@ export {
   FieldTypeLabel,
   FieldRequiredLabel,
   DeleteConfirmationDialog,
-  SubmissionListItemAnswer,
+  ApplicationListItemAnswer,
   ExpandMore,
   MainBar,
 };

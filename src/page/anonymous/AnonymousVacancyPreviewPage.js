@@ -9,15 +9,15 @@ import {
   Box,
   Breadcrumbs,
   Button,
-  Card,
+  Paper,
   Grid,
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Translate, I18n } from "react-redux-i18n";
+import { Translate } from "react-redux-i18n";
 
 import { QUERIES } from "utils/apollo";
-import { GeneralContainer, GlassBar, LanguageSelect } from "component";
+import { GeneralContainer } from "component";
 
 export default function AnonymousVacancyPreviewPage() {
   const params = useParams();
@@ -44,50 +44,68 @@ export default function AnonymousVacancyPreviewPage() {
           </Breadcrumbs>
         }
       >
-        {error && (
-          <Typography component="h1" variant="h4">
-            Error on loading the vacancy data...
-          </Typography>
-        )}
-        {loading && (
-          <Typography component="h1" variant="h4">
-            Loading...
-          </Typography>
-        )}
-        {vacancyData && (
-          <Card variant="outlined">
-            <Grid container sx={{ p: 4 }}>
-              <Grid item xs={12}>
-                <Typography component="h1" variant="h4" textAlign="center">
-                  {vacancyData.vacancy.position}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography component="h1" variant="h5" textAlign="center">
-                  {vacancyData.vacancy.company}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography style={{ whiteSpace: "pre-line" }} paragraph={true}>
-                  {vacancyData.vacancy.text}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                  <Link
-                    to={{
-                      pathname: `/vacancy/${vacancyId}/apply`,
-                    }}
+        <>
+          {error && (
+            <Typography component="h1" variant="h4">
+              Error on loading the vacancy data...
+            </Typography>
+          )}
+          {loading && (
+            <Typography component="h1" variant="h4">
+              Loading...
+            </Typography>
+          )}
+          {vacancyData && (
+            <Paper
+              variant="outlined"
+              sx={(theme) => ({ padding: theme.spacing(2) })}
+            >
+              <Grid container>
+                <Grid item xs={12}>
+                  <Typography
+                    component="h1"
+                    variant="h5"
+                    align="center"
+                    gutterBottom
                   >
-                    <Button variant="contained" styles={{ float: "right" }}>
-                      <Translate value="AnonymousVacancyPreviewPage.apply" />
-                    </Button>
-                  </Link>
-                </Box>
+                    {vacancyData.vacancy.position}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography
+                    component="h1"
+                    variant="h6"
+                    align="center"
+                    gutterBottom
+                  >
+                    {vacancyData.vacancy.company}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography
+                    style={{ whiteSpace: "pre-line" }}
+                    paragraph={true}
+                  >
+                    {vacancyData.vacancy.text}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                    <Link
+                      to={{
+                        pathname: `/vacancy/${vacancyId}/apply`,
+                      }}
+                    >
+                      <Button variant="contained" styles={{ float: "right" }}>
+                        <Translate value="AnonymousVacancyPreviewPage.apply" />
+                      </Button>
+                    </Link>
+                  </Box>
+                </Grid>
               </Grid>
-            </Grid>
-          </Card>
-        )}
+            </Paper>
+          )}
+        </>
       </GeneralContainer>
     </>
   );

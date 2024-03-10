@@ -63,7 +63,7 @@ export default function VacancyListPage() {
               </Link>
             </Grid>
             {data.vacancyList.map((vacancy, idx) => (
-              <Grid item>
+              <Grid item key={vacancy.id}>
                 <VacancyListItem onDelete={onVacancyDelete} vacancy={vacancy} />
               </Grid>
             ))}

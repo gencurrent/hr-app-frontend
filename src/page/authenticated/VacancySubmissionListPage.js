@@ -25,7 +25,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import {
   GeneralContainer,
   GlassContainer,
-  SubmissionListItemAnswer,
+  ApplicationListItemAnswer,
 } from "component";
 import { datetimeToString } from "utils/date";
 import { QUERIES } from "utils/apollo";
@@ -194,7 +194,7 @@ function SubmissionItem(props) {
         </AccordionSummary>
         <AccordionDetails>
           {JSON.parse(submission.answers).map((answer, idx) => (
-            <SubmissionListItemAnswer
+            <ApplicationListItemAnswer
               idx={idx}
               key={answer.q}
               answer={answer}
@@ -308,11 +308,11 @@ function VacancySubmissionListPage(props) {
               return (
                 <Grid
                   item
-                  sx={(theme) => ({ "margin-left": theme.spacing(1) })}
+                  sx={(theme) => ({ marginLeft: theme.spacing(1) })}
+                  key={submission.id}
                 >
                   <Divider variant="horizontal" />
                   <SubmissionItem
-                    key={submission.id}
                     submission={submission}
                     vacancyId={vacancyId}
                     vacancyData={vacancyData}

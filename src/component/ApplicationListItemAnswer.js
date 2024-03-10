@@ -28,7 +28,7 @@ const AnswerTextBox = styled(Card)(
   `
 );
 
-function SubmissionListItemAnswer(props) {
+function ApplicationListItemAnswer(props) {
   const cloudStorageClient = new GoogleCloudStorageClient();
   const { idx, answer, vacancy } = props;
   // TODO:
@@ -78,8 +78,8 @@ function SubmissionListItemAnswer(props) {
   );
 }
 
-SubmissionListItemAnswer.propTypes = {
+ApplicationListItemAnswer.propTypes = {
   answer: PropTypes.object.isRequired,
 };
 
-export default SubmissionListItemAnswer;
+export default ApplicationListItemAnswer;

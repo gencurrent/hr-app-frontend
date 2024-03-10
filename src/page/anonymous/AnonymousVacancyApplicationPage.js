@@ -6,7 +6,6 @@ import { React, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Translate, I18n } from "react-redux-i18n";
 import { useQuery } from "@apollo/client";
-import { styled } from "@mui/system";
 import {
   Box,
   Breadcrumbs,
@@ -22,13 +21,6 @@ import { pureApolloClient, MUTATIONS, QUERIES } from "utils/apollo";
 import VacancySubmissionFieldItem from "component/VacancySubmissionFieldItem";
 import FileUploadField from "component/FileUploadField";
 import GeneralContainer from "component/GenaralContainer";
-
-const MainCardPaper = styled(Paper)(
-  ({ theme }) => `
-    padding: ${theme.spacing(2)};
-    margin: ${theme.spacing(0)};
-  `
-);
 
 export default function AnonymousVacancyApplicationPage() {
   const params = useParams();
@@ -118,26 +110,34 @@ export default function AnonymousVacancyApplicationPage() {
       {loading && <div>Loading</div>}
       {error && <div>Error</div>}
       {vacancyData && (
-        <GeneralContainer sx={{ py: 4 }}>
-          <Typography variant="h4" component="h1" gutterBottom>
+        <GeneralContainer
+          sx={{ py: 4 }}
+          title={
             <Translate value="AnonymousVacancySubmissionPage.applyToVacancy" />
-          </Typography>
-          <Breadcrumbs>
-            <Link to={`/vacancy/${vacancyId}/preview`}>
-              <Translate value="AnonymousVacancySubmissionPage.vacancyDescription" />
-            </Link>
-            <Typography><Translate value="AnonymousVacancySubmissionPage.apply" /></Typography>
-          </Breadcrumbs>
-
-          <MainCardPaper variant="outlined">
-            <Typography variant="h4" align="center" gutterBottom>
+          }
+          breadcrumbs={
+            <Breadcrumbs>
+              <Link to={`/vacancy/${vacancyId}/preview`}>
+                <Translate value="AnonymousVacancySubmissionPage.vacancyDescription" />
+              </Link>
+              <Typography>
+                <Translate value="AnonymousVacancySubmissionPage.apply" />
+              </Typography>
+            </Breadcrumbs>
+          }
+        >
+          <Paper
+            variant="outlined"
+            sx={(theme) => ({ padding: theme.spacing(2) })}
+          >
+            <Typography variant="h5" align="center" gutterBottom>
               {vacancyData.vacancy.position}
             </Typography>
             {/* Should we use Stepper ? */}
 
             <Grid container direction="column">
-              <Grid item>
-                <Typography variant="h5" align={"center"} gutterBottom>
+              <Grid item xs={12}>
+                <Typography variant="h6" align={"center"} gutterBottom>
                   {vacancyData.vacancy.company}
                 </Typography>
               </Grid>
@@ -212,7 +212,7 @@ export default function AnonymousVacancyApplicationPage() {
                 </Box>
               </Grid>
             </Grid>
-          </MainCardPaper>
+          </Paper>
         </GeneralContainer>
       )}
     </>

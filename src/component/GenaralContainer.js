@@ -8,6 +8,8 @@ import { Outlet } from "react-router-dom";
 
 export default function GeneralContainer(props) {
   const { title, breadcrumbs } = props;
+  console.log(`Type of children = `, typeof props.children);
+  console.log(`Children = `, props.children);
 
   return (
     <>
@@ -22,7 +24,7 @@ export default function GeneralContainer(props) {
               {title}
             </Typography>
           )}
-          {breadcrumbs ? breadcrumbs : <></>}
+          {breadcrumbs || <></>}
           <Outlet />
           {props.children}
         </>

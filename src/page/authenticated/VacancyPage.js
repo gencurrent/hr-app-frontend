@@ -119,7 +119,7 @@ function VacancyPage() {
                 <Link to={`/vacancy/${vacancyId}/submission`}>
                   <Button
                     variant="text"
-                    sx={{ "text-decoration": "underline" }}
+                    sx={{ textDecoration: "underline" }}
                   >
                     <Translate value="VacancyPage.applications" />
                   </Button>
