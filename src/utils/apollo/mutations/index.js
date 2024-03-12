@@ -5,6 +5,23 @@
 import { gql } from "@apollo/client";
 
 const MUTATIONS = {
+  REGISTER: gql`
+    mutation Register(
+      $email: String!
+      $password: String!
+      $firstName: String!
+      $lastName: String!
+    ) {
+      register(
+        email: $email
+        password: $password
+        firstName: $firstName
+        lastName: $lastName
+      ) {
+        created
+      }
+    }
+  `,
   CREATE_S3_UPLOAD_REQUEST: gql`
     mutation CreateS3UploadRequest($filename: String!, $vacancyId: UUID!) {
       createS3UploadRequest(filename: $filename, vacancyId: $vacancyId) {

@@ -39,17 +39,21 @@ const AnonymousRouter = createBrowserRouter(
         <Route
           path="auth/signin"
           element={
-            <AuthenticationPage>
-              <AuthenticationSignInPage method={"Sign In"} />
-            </AuthenticationPage>
+            <AnonymousGlassBar>
+              <AuthenticationPage>
+                <AuthenticationSignInPage method={"Sign In"} />
+              </AuthenticationPage>
+            </AnonymousGlassBar>
           }
         />
         <Route
           path="auth/signup"
           element={
-            <AuthenticationPage>
-              <AuthenticationSignUpPage method={"Sign up"} />
-            </AuthenticationPage>
+            <AnonymousGlassBar>
+              <AuthenticationPage>
+                <AuthenticationSignUpPage method={"Sign up"} />
+              </AuthenticationPage>
+            </AnonymousGlassBar>
           }
         />
         <Route

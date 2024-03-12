@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLocale } from "react-redux-i18n";
 
 import languageDict from "utils/constants/languageDict";
-import { increment } from "utils/redux/ColorModereducer";
 
 export default function LanguageSelect() {
   const dispatch = useDispatch();
