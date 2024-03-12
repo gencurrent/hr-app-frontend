@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Alert, Grid, TextField, Button, Snackbar } from "@mui/material";
 import { styled } from "@mui/system";
 import { gql } from "@apollo/client";
@@ -12,7 +11,6 @@ const SubmitButton = styled(Button)(
 
 export default function AuthenticationSignInPage(props) {
   useEffect(() => {}, []);
-  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,8 +47,7 @@ export default function AuthenticationSignInPage(props) {
 
         localStorage.setItem("token", token);
         localStorage.setItem("refresh", refreshToken);
-        navigate("/");
-        window.location.reload();
+        window.location.replace("/");
       })
       .catch((error) => {
         if (error.message === "Please enter valid credentials") {

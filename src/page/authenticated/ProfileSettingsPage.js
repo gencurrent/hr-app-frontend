@@ -18,8 +18,6 @@ import { GeneralContainer, GlassContainer } from "component";
 import { Translate } from "react-redux-i18n";
 
 export default function ProfileSettingsPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
