@@ -1,5 +1,5 @@
 /**
- * Page with main statistics and navigation through Staffence.
+ * Page with main statistics and navigation through the HR app
  * For authorized users only.
  */
 import React from "react";

@@ -19,7 +19,7 @@ import ReactSpeedometer from "react-d3-speedometer";
 import { GlassBar, GlassContainer, LanguageSelect } from "component";
 // import { darkTheme, lightTheme } from "utils/material/theme";
 import { Box } from "@mui/system";
-import { Translate } from "react-redux-i18n";
+import { I18n, Translate } from "react-redux-i18n";
 
 const StyledCheckBoxFormGroup = styled(Box)(
   ({ theme }) => `
@@ -36,7 +36,7 @@ function AnonymousLandingPage(props) {
     "👩‍🔬  At least we could try it",
     "👩‍💻  We are close to your expectations",
     "🎉  We meet the most of your demands",
-    "🚀  Staffence is exactly what could help you",
+    `🚀  ${I18n.t("applicationName")} is exactly what could help you`,
   ];
   const [checkedQuestions, setCheckedQuestions] = useState([
     false,

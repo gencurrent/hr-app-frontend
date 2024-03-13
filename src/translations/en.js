@@ -32,6 +32,17 @@ const translationObject = {
     fieldIsRequired: "The field is required",
     submit: "Submit",
   },
+  AuthenticationPage: {
+    signIn: "Sign In",
+    signUp: "Sign Up",
+
+    email: "Email",
+    password: "Password",
+    firstName: "First Name",
+    lastName: "Last Name",
+
+    enterValidCredentials: "Please enter valid credentials",
+  },
   DashBoardPage: {
     newVacancy: "New vacancy",
     title: "Main statistics",
@@ -142,7 +153,7 @@ const translationObject = {
     },
   },
 
-  applicationName: "hrstack.com",
+  applicationName: "hrstack.net",
   authenticate: "Authenticate",
   congratulations: "Congratulations!",
 };

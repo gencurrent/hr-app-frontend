@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Translate } from "react-redux-i18n";
 import { styled } from "@mui/system";
 import { Alert, Grid, Snackbar, TextField, Button } from "@mui/material";
 import { useMutation } from "@apollo/client";
@@ -102,7 +103,7 @@ export default function AuthenticationSignUpPage(props) {
             required
             fullWidth
             id="firstName"
-            label="First Name"
+            label={<Translate value="AuthenticationPage.firstName" />}
             autoComplete="fname"
             value={fname}
             onChange={onEditFname}
@@ -115,7 +116,7 @@ export default function AuthenticationSignUpPage(props) {
             required
             fullWidth
             id="lastName"
-            label="Last Name"
+            label={<Translate value="AuthenticationPage.lastName" />}
             autoComplete="lname"
             value={lname}
             onChange={onEditLname}
@@ -129,7 +130,7 @@ export default function AuthenticationSignUpPage(props) {
             required
             fullWidth
             id="email"
-            label="Email"
+            label={<Translate value="AuthenticationPage.email" />}
             value={email}
             onChange={onEditEmail}
           />
@@ -141,7 +142,7 @@ export default function AuthenticationSignUpPage(props) {
             required
             fullWidth
             id="password"
-            label="Password"
+            label={<Translate value="AuthenticationPage.password" />}
             type="password"
             autoComplete="current-password"
             value={password}
@@ -157,7 +158,7 @@ export default function AuthenticationSignUpPage(props) {
             variant="contained"
             color="primary"
           >
-            Sign Up
+            <Translate value="AuthenticationPage.signUp" />
           </SubmitButton>
         </Grid>
       </Grid>
