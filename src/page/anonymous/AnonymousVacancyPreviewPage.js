@@ -4,6 +4,9 @@
  */
 
 import { useParams } from "react-router-dom";
+import { RichTextReadOnly } from "mui-tiptap";
+import { Link } from "react-router-dom";
+import { Translate } from "react-redux-i18n";
 import { useQuery } from "@apollo/client";
 import {
   Box,
@@ -13,8 +16,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
-import { Translate } from "react-redux-i18n";
+import StarterKit from "@tiptap/starter-kit";
 
 import { QUERIES } from "utils/apollo";
 import { GeneralContainer } from "component";
@@ -82,12 +84,10 @@ export default function AnonymousVacancyPreviewPage() {
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography
-                    style={{ whiteSpace: "pre-line" }}
-                    paragraph={true}
-                  >
-                    {vacancyData.vacancy.text}
-                  </Typography>
+                  <RichTextReadOnly
+                    content={vacancyData.vacancy.text}
+                    extensions={[StarterKit]}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <Box sx={{ display: "flex", justifyContent: "flex-end" }}>

@@ -1,7 +1,16 @@
 import PropTypes from "prop-types";
-import { React, useState } from "react";
-import { useMutation } from "@apollo/client";
+import { React, useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import {
+  MenuButtonBold,
+  MenuButtonItalic,
+  MenuControlsContainer,
+  MenuDivider,
+  MenuSelectHeading,
+  RichTextEditor,
+  RichTextReadOnly,
+} from "mui-tiptap";
+import { useMutation } from "@apollo/client";
 import {
   Button,
   Breadcrumbs,
@@ -11,6 +20,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import StarterKit from "@tiptap/starter-kit";
 
 import {
   GeneralContainer,
@@ -26,10 +36,12 @@ const FIELD_VACANCY_HELPER_TEXT_DEFAULT_LENGTH_ERROR =
   "Vacancy position length must be greater than 10 symbols";
 
 export default function VacancyCreatePage(props) {
+  const rteRef = useRef(null);
   let navigate = useNavigate();
   let [position, setPosition] = useState("");
   let [company, setCompany] = useState("");
   let [text, setText] = useState("");
+  let [vacancyDescription, setVacancyDescription] = useState("");
   let [fields, setFields] = useState([]);
 
   let [rowsNumber, setRowsNumber] = useState(TEXT_FIELD_ROWS_NUMBER_DEFAULT);
@@ -70,11 +82,13 @@ export default function VacancyCreatePage(props) {
   let [createVacancy] = useMutation(MUTATIONS.CREATE_VACANCY);
 
   const save = (e) => {
+    let vacancyDescription = rteRef?.current?.editor?.getHTML();
+    setVacancyDescription(vacancyDescription);
     createVacancy({
       variables: {
         company: company,
         position: position,
-        text: text,
+        text: vacancyDescription,
         fields: JSON.stringify(fields),
       },
     }).then(({ data }) => {
@@ -120,19 +134,30 @@ export default function VacancyCreatePage(props) {
                 required
               />
               <FormHelperText>
-              <Translate value="VacancyCreatePage.companyHelperText"/>
+                <Translate value="VacancyCreatePage.companyHelperText" />
               </FormHelperText>
-              <TextField
-                multiline
-                rows={rowsNumber}
-                label={<Translate value="VacancyCreatePage.description" />}
-                id="text"
-                value={text}
-                onChange={updateFormText}
-                required
+
+              <RichTextEditor
+                ref={rteRef}
+                extensions={[StarterKit]} // Or any Tiptap extensions you wish!
+                content={""} // Initial content for the editor
+                disabled={true}
+                // Optionally include `renderControls` for a menu-bar atop the editor:
+                renderControls={() => (
+                  <MenuControlsContainer>
+                    <MenuSelectHeading />
+                    <MenuDivider />
+                    <MenuButtonBold />
+                    <MenuButtonItalic />
+                  </MenuControlsContainer>
+                )}
+              />
+              <RichTextReadOnly
+                content={vacancyDescription}
+                extensions={[StarterKit]}
               />
               <FormHelperText>
-                <Translate value="VacancyCreatePage.descriptionHelperText"/>
+                <Translate value="VacancyCreatePage.descriptionHelperText" />
               </FormHelperText>
               <VacancyCreateFieldList fields={fields} setFields={setFields} />
             </FormControl>
