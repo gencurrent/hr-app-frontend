@@ -95,6 +95,12 @@ const translationObject = {
     required: "Обязательное",
     text: "Текст",
     URL: "Ссылка",
+
+    vacancyData: "Данные о вакансии",
+    name: "Название",
+    company: "Компания",
+    created: "Создано",
+    additionalFields: "Дополнительные поля",
   },
 
   component: {
