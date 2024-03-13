@@ -60,6 +60,8 @@ function VacancyPage() {
       });
   }
 
+  let fields = data?.vacancy?.fields ? JSON.parse(data.vacancy.fields) : [];
+
   return (
     <>
       {loading && <Typography>Loading</Typography>}
@@ -126,10 +128,15 @@ function VacancyPage() {
               {/* Vacancy name, company, date, description */}
               <Grid item>
                 <Grid item>
-                  <Typography variant="h6">Vacancy data</Typography>
+                  <Typography variant="h6">
+                    <Translate value="VacancyPage.vacancyData" />
+                  </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography component="span">Name: </Typography>
+                  <Typography component="span">
+                    <Translate value="VacancyPage.name" />
+                    {": "}
+                  </Typography>
                   <Typography
                     sx={{ fontWeight: "800 !important" }}
                     component="span"
@@ -138,7 +145,10 @@ function VacancyPage() {
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography component="span">Company: </Typography>
+                  <Typography component="span">
+                    <Translate value="VacancyPage.company" />
+                    {": "}
+                  </Typography>
                   <Typography
                     sx={{ fontWeight: "800 !important" }}
                     component="span"
@@ -147,7 +157,10 @@ function VacancyPage() {
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography component="span">Created: </Typography>
+                  <Typography component="span">
+                    <Translate value="VacancyPage.created" />
+                    {": "}
+                  </Typography>
                   <Typography
                     sx={{ fontWeight: "800 !important" }}
                     component="span"
@@ -160,41 +173,47 @@ function VacancyPage() {
               {/* Vacancy custom fields */}
               <Grid item>
                 <Grid container spacing={1}>
-                  <Grid item>
-                    <Typography variant="h6">Additional fields</Typography>
-                  </Grid>
-                  {JSON.parse(data.vacancy.fields).map((field, idx) => {
-                    return (
-                      <Grid item xs={12} key={[idx, field.q]}>
-                        <Grid
-                          container
-                          direction={"column"}
-                          spacing={0}
-                          columnGap={0}
-                        >
-                          <Grid item>
-                            <Typography
-                              sx={{ fontWeight: "800 !important" }}
-                              component="span"
-                            >
-                              {`#${idx + 1}. `}
-                            </Typography>
-                            <Typography
-                              // sx={{ fontWeight: "800 !important" }}
-                              component="span"
-                            >
-                              {field.q}
-                            </Typography>
-                          </Grid>
-                          <Grid display="flex" alignItems={"center"}>
-                            <br />
-                            {<FieldTypeLabel type={field.t} />}
-                            {field.r ? <FieldRequiredLabel /> : ""}
-                          </Grid>
-                        </Grid>
+                  {fields.length > 0 && (
+                    <>
+                      <Grid item>
+                        <Typography variant="h6">
+                          <Translate value="VacancyPage.additionalFields" />
+                        </Typography>
                       </Grid>
-                    );
-                  })}
+                      {fields.map((field, idx) => {
+                        return (
+                          <Grid item xs={12} key={[idx, field.q]}>
+                            <Grid
+                              container
+                              direction={"column"}
+                              spacing={0}
+                              columnGap={0}
+                            >
+                              <Grid item>
+                                <Typography
+                                  sx={{ fontWeight: "800 !important" }}
+                                  component="span"
+                                >
+                                  {`#${idx + 1}. `}
+                                </Typography>
+                                <Typography
+                                  // sx={{ fontWeight: "800 !important" }}
+                                  component="span"
+                                >
+                                  {field.q}
+                                </Typography>
+                              </Grid>
+                              <Grid display="flex" alignItems={"center"}>
+                                <br />
+                                {<FieldTypeLabel type={field.t} />}
+                                {field.r ? <FieldRequiredLabel /> : ""}
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                        );
+                      })}
+                    </>
+                  )}
                 </Grid>
               </Grid>
             </Grid>
