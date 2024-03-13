@@ -5,6 +5,7 @@ import { styled } from "@mui/system";
 
 import GeneralContainer from "component/GenaralContainer";
 import FloatingPaper from "component/FloatingPaper";
+import { Translate } from "react-redux-i18n";
 
 const AuthenticationForm = styled("form")(
   ({ theme }) => `
@@ -16,7 +17,7 @@ const AuthenticationForm = styled("form")(
 const AuthenticationPage = (props) => {
   let navigate = useNavigate();
   let urlMap = ["signin", "signup"];
-  let methodMap = ["Sign In", "Sign Up"];
+  let methodMap = ["signIn", "signUp"];
   // Change default value
   let [currentTab, setCurrentTab] = useState(0);
   const handleTabChange = (e, newValue) => {
@@ -32,15 +33,21 @@ const AuthenticationPage = (props) => {
           aria-label="disabled tabs example"
           centered
         >
-          <Tab label="Sign In" component="h1" />
-          <Tab label="Sign Up" component="h1" />
+          <Tab
+            label={<Translate value="AuthenticationPage.signIn" />}
+            component="h1"
+          />
+          <Tab
+            label={<Translate value="AuthenticationPage.signUp" />}
+            component="h1"
+          />
         </Tabs>
       </Paper>
 
       <FloatingPaper>
         <Box py={2}>
           <Typography component="h1" variant="h5">
-            {methodMap[currentTab]}
+            <Translate value={`AuthenticationPage.${methodMap[currentTab]}`} />
           </Typography>
         </Box>
         <AuthenticationForm noValidate>

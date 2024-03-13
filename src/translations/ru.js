@@ -32,6 +32,17 @@ const translationObject = {
     fieldIsRequired: "Поле обязательно для заполнения",
     submit: "Отправить",
   },
+  AuthenticationPage: {
+    signIn: "Вход",
+    signUp: "Регистрация",
+
+
+    email: "Эл. почта",
+    password: "Пароль",
+    firstName: "Имя",
+    lastName: "Фамилия",
+    enterValidCredentials: "Пожалуйстя, введите правильные данные для входа",
+  },
   DashBoardPage: {
     newVacancy: "Создать вакансию",
     title: "Основная статистика",
@@ -104,7 +115,6 @@ const translationObject = {
     created: "Создано",
     additionalFields: "Дополнительные поля",
 
-
     vacancy: "Вакансия",
   },
 
@@ -142,7 +152,7 @@ const translationObject = {
     },
   },
 
-  applicationName: "hrstack.com",
+  applicationName: "hrstack.net",
   authenticate: "Авторизация",
   congratulations: "Поздравляем!",
 };

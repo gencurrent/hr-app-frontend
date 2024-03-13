@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Translate } from "react-redux-i18n";
 import { Alert, Grid, TextField, Button, Snackbar } from "@mui/material";
 import { styled } from "@mui/system";
 import { gql } from "@apollo/client";
@@ -78,7 +79,7 @@ export default function AuthenticationSignInPage(props) {
       severity="error"
     >
       <Alert severity="error" onClose={closeSnackBar}>
-        Please enter valid credentials
+      <Translate value="AuthenticationPage.enterValidCredentials" />
       </Alert>
     </Snackbar>
   );
@@ -95,7 +96,7 @@ export default function AuthenticationSignInPage(props) {
             required
             fullWidth
             id="email"
-            label="Email"
+            label={<Translate value="AuthenticationPage.email" />}
             value={email}
             onChange={onEditEmail}
           />
@@ -107,7 +108,7 @@ export default function AuthenticationSignInPage(props) {
             required
             fullWidth
             id="password"
-            label="Password"
+            label={<Translate value="AuthenticationPage.password" />}
             type="password"
             autoComplete="current-password"
             value={password}
@@ -122,7 +123,7 @@ export default function AuthenticationSignInPage(props) {
             variant="contained"
             color="primary"
           >
-            Sign In
+            <Translate value="AuthenticationPage.signIn" />
           </SubmitButton>
         </Grid>
       </Grid>
