@@ -65,6 +65,8 @@ const translationObject = {
     resume: "Резюме",
     submittedForm: "Заполненная форма",
     vacancy: "Вакансия",
+    noApplications: "На данный момент нет откликов",
+    noSingleVacancyApplications: "На данную вакансию нет откликов",
   },
   VacancyCreatePage: {
     addField: "Добавить поле",
@@ -101,6 +103,9 @@ const translationObject = {
     company: "Компания",
     created: "Создано",
     additionalFields: "Дополнительные поля",
+
+
+    vacancy: "Вакансия",
   },
 
   component: {

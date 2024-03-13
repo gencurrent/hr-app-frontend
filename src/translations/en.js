@@ -66,6 +66,9 @@ const translationObject = {
     resume: "Resume",
     submittedForm: "Submitted form",
     vacancy: "Vacancy",
+    noApplications: "There are no application yet",
+    noSingleVacancyApplications:
+      "There are no applications for this vacancy yet",
   },
   VacancyCreatePage: {
     addField: "Add field",
@@ -94,12 +97,14 @@ const translationObject = {
     required: "Required",
     text: "Text",
     URL: "URL",
-    
+
     vacancyData: "Vacancy data",
     name: "Name",
     company: "Company",
     created: "Created",
     additionalFields: "Additional Fields",
+
+    vacancy: "Vacancy",
   },
 
   component: {

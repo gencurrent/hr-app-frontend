@@ -18,9 +18,10 @@ import DeleteConfirmationDialog from "./DeleteConfirmationDialog";
 import ApplicationListItemAnswer from "./ApplicationListItemAnswer";
 import ExpandMore from "./ExpandMore";
 import MainBar from "./MainBar";
+import LoadingDataSpinner from "./LoadingDataSpinner";
+import ErrorBox from "./ErrorBox";
 
 export {
-
   AnonymousGlassBar,
   Template,
   RequestDemoForm,
@@ -40,4 +41,6 @@ export {
   ApplicationListItemAnswer,
   ExpandMore,
   MainBar,
+  LoadingDataSpinner,
+  ErrorBox,
 };
