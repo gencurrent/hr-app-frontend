@@ -296,6 +296,18 @@ function VacancyApplicationListPage(props) {
               </>
             )}
 
+            {!submissionList.length && (
+              <Grid item>
+                <Typography>
+                  {!singleVacancySusbmissions && (
+                    <Translate value="VacancyApplicationListPage.noApplications" />
+                  )}
+                  {singleVacancySusbmissions && (
+                    <Translate value="VacancyApplicationListPage.noSingleVacancyApplications" />
+                  )}
+                </Typography>
+              </Grid>
+            )}
             {submissionList.map((submission) => {
               vacancyId = singleVacancySusbmissions
                 ? vacancyId

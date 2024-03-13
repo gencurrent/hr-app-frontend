@@ -5,14 +5,8 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
-import {
-  Button,
-  Breadcrumbs,
-  Grid,
-  Card,
-  Typography,
-  CardContent,
-} from "@mui/material";
+import { Button, Breadcrumbs, Box, Grid, Typography } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 import { Translate } from "react-redux-i18n";
 
 import {
@@ -27,11 +21,37 @@ export default function DashboardPage() {
     fetchPolicy: "no-cache",
   });
 
+  const Container = (props) => (
+    <GeneralContainer
+      title={<Translate value="DashBoardPage.title" />}
+      breadcrumbs={
+        <Breadcrumbs>
+          <Typography>
+            <Translate value="breadcrumbs.dashboard" />
+          </Typography>
+        </Breadcrumbs>
+      }
+    >
+      <GlassContainer>{props.children}</GlassContainer>
+    </GeneralContainer>
+  );
   if (loading) {
-    return <div> Loading...</div>;
+    return (
+      <Container>
+        <Box sx={{ display: "flex" }} justifyContent="center">
+          <CircularProgress />
+        </Box>
+      </Container>
+    );
   }
   if (error) {
-    return <div> Error...</div>;
+    return (
+      <Container>
+        <Box sx={{ display: "flex" }} justifyContent="center">
+          <Typography>Error loading data</Typography>
+        </Box>
+      </Container>
+    );
   }
   const { userMainStatistics } = data;
   const {
@@ -44,97 +64,86 @@ export default function DashboardPage() {
     (a, b) => b.submissionCountTotal - a.submissionCountTotal
   );
   return (
-    <GeneralContainer
-      title={<Translate value="DashBoardPage.title" />}
-      breadcrumbs={
-        <Breadcrumbs>
-          <Typography>
-            <Translate value="breadcrumbs.dashboard" />
+    <Container>
+      <Grid container direction="column" spacing={4}>
+        <Grid item>
+          <Typography component="h5" variant="h5">
+            <Translate value="DashBoardPage.topVacancies" />
           </Typography>
-        </Breadcrumbs>
-      }
-    >
-      <GlassContainer>
-        <Grid container direction="column" spacing={4}>
-          <Grid item>
-            <Typography component="h5" variant="h5">
-              <Translate value="DashBoardPage.topVacancies" />
-            </Typography>
-            <Grid container direction="column" spacing={1}>
-              <Grid item>
-                <Grid container direction="row" spacing={1}>
-                  <Grid item>
-                    <Link to="/vacancy">
-                      <Button variant="text">
-                        <Translate value="DashBoardPage.allVacancies" />
-                      </Button>
-                    </Link>
-                  </Grid>
-                  <Grid item>
-                    <Link to="/vacancy/create">
-                      <Button variant="contained">
-                        <Translate value="DashBoardPage.newVacancy" />
-                      </Button>
-                    </Link>
-                  </Grid>
+          <Grid container direction="column" spacing={1}>
+            <Grid item>
+              <Grid container direction="row" spacing={1}>
+                <Grid item>
+                  <Link to="/vacancy">
+                    <Button variant="text">
+                      <Translate value="DashBoardPage.allVacancies" />
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link to="/vacancy/create">
+                    <Button variant="contained">
+                      <Translate value="DashBoardPage.newVacancy" />
+                    </Button>
+                  </Link>
                 </Grid>
               </Grid>
-
-              {vacancyStatsList.map((vacancyStatsItem) => (
-                <Grid item key={vacancyStatsItem.id}>
-                  <Link
-                    className="link-undecorated"
-                    to={`/vacancy/${vacancyStatsItem.id}`}
-                  >
-                    <Typography variant="h6">
-                      {vacancyStatsItem.position}
-                    </Typography>
-                  </Link>
-                  <Link
-                    className="link-undecorated"
-                    to={`/vacancy/${vacancyStatsItem.id}/application`}
-                  >
-                    <Typography variant="body2">
-                      <Translate value="DashBoardPage.lastWeekApplications" />:{" "}
-                      {vacancyStatsItem.submissionCountTotal} (+
-                      {vacancyStatsItem.submissionCountNew})
-                    </Typography>
-                  </Link>
-                </Grid>
-              ))}
             </Grid>
-          </Grid>
 
-          <Grid item>
-            <Typography component="h5" variant="h5">
-              <Translate value="DashBoardPage.applications" />
-            </Typography>
-            <Grid container direction="column" spacing={1}>
-              <Grid item>
-                <DashboardSubmissionStatisticsChart
-                  submissionData={submissionCountByDate}
-                />
-              </Grid>
-              <Grid item>
-                <Link to="/application?status=new">
-                  <Button variant="contained" color="secondary">
-                    <Translate value="DashBoardPage.newApplications" />: +
-                    {submissionCountNew}
-                  </Button>
+            {vacancyStatsList.map((vacancyStatsItem) => (
+              <Grid item key={vacancyStatsItem.id}>
+                <Link
+                  className="link-undecorated"
+                  to={`/vacancy/${vacancyStatsItem.id}`}
+                >
+                  <Typography variant="h6">
+                    {vacancyStatsItem.position}
+                  </Typography>
+                </Link>
+                <Link
+                  className="link-undecorated"
+                  to={`/vacancy/${vacancyStatsItem.id}/application`}
+                >
+                  <Typography variant="body2">
+                    <Translate value="DashBoardPage.lastWeekApplications" />:{" "}
+                    {vacancyStatsItem.submissionCountTotal} (+
+                    {vacancyStatsItem.submissionCountNew})
+                  </Typography>
                 </Link>
               </Grid>
-              <Grid item>
-                <Link to="/application">
-                  <Button>
-                    <Translate value="DashBoardPage.totalApplications" />:{" "}
-                    {submissionCountTotal}
-                  </Button>
-                </Link>
-              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+
+        <Grid item>
+          <Typography component="h5" variant="h5">
+            <Translate value="DashBoardPage.applications" />
+          </Typography>
+          <Grid container direction="column" spacing={1}>
+            <Grid item>
+              <DashboardSubmissionStatisticsChart
+                submissionData={submissionCountByDate}
+              />
+            </Grid>
+            <Grid item>
+              <Link to="/application?status=new">
+                <Button variant="contained" color="secondary">
+                  <Translate value="DashBoardPage.newApplications" />: +
+                  {submissionCountNew}
+                </Button>
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link to="/application">
+                <Button>
+                  <Translate value="DashBoardPage.totalApplications" />:{" "}
+                  {submissionCountTotal}
+                </Button>
+              </Link>
             </Grid>
           </Grid>
         </Grid>
-      </GlassContainer>
-    </GeneralContainer>
+      </Grid>
+    </Container>
   );
 }

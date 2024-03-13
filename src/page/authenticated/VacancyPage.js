@@ -19,10 +19,12 @@ import { authApolloClient, QUERIES, MUTATIONS } from "utils/apollo";
 import { datetimeToString } from "utils/date";
 import {
   DeleteConfirmationDialog,
+  ErrorBox,
   FieldRequiredLabel,
   FieldTypeLabel,
   GeneralContainer,
   GlassContainer,
+  LoadingDataSpinner,
 } from "component";
 
 /**
@@ -64,24 +66,27 @@ function VacancyPage() {
 
   return (
     <>
-      {loading && <Typography>Loading</Typography>}
-      {error && <Typography>Error</Typography>}
-      {data && (
-        <GeneralContainer
-          title={data.vacancy.position}
-          breadcrumbs={
-            <Breadcrumbs>
-              <Link to="/">
-                <Translate value="breadcrumbs.dashboard" />
-              </Link>
-              <Link to="/vacancy">
-                <Translate value="breadcrumbs.vacancies" />
-              </Link>
-              <Typography>{data.vacancy.position}</Typography>
-            </Breadcrumbs>
-          }
-        >
-          <GlassContainer>
+      (
+      <GeneralContainer
+        title={
+          data?.vacancy.position || <Translate value="VacancyPage.vacancy" />
+        }
+        breadcrumbs={
+          <Breadcrumbs>
+            <Link to="/">
+              <Translate value="breadcrumbs.dashboard" />
+            </Link>
+            <Link to="/vacancy">
+              <Translate value="breadcrumbs.vacancies" />
+            </Link>
+            <Typography>{data?.vacancy.position}</Typography>
+          </Breadcrumbs>
+        }
+      >
+        <GlassContainer>
+          {loading && <LoadingDataSpinner />}
+          {error && <ErrorBox />}
+          {data && (
             <Grid container direction="column" spacing={2}>
               <Grid item>
                 <Grid container spacing={1}>
@@ -217,8 +222,10 @@ function VacancyPage() {
                 </Grid>
               </Grid>
             </Grid>
-          </GlassContainer>
+          )}
+        </GlassContainer>
 
+        {data && (
           <DeleteConfirmationDialog
             title={`Delete vacancy "${data.vacancy.position}"`}
             open={confirmDialogOpen}
@@ -229,8 +236,8 @@ function VacancyPage() {
             Do you want to delete the vacancy "{data.vacancy.position}" in "
             {data.vacancy.company}"?
           </DeleteConfirmationDialog>
-        </GeneralContainer>
-      )}
+        )}
+      </GeneralContainer>
     </>
   );
 }
