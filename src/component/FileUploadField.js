@@ -12,7 +12,7 @@ function FileUploadField(props) {
   const cloudStorageClient = new GoogleCloudStorageClient();
   const { fieldRequired, callBack, vacancy, fieldText } = props;
 
-  const fieldRequiredText = I18n.t("AnonymousVacancySubmissionPage.fieldIsRequired");
+  const fieldRequiredText = I18n.t("AnonymousVacancyApplicationPage.fieldIsRequired");
   const [stateFiles, setStateFiles] = useState([]);
   const [fieldError, setFieldError] = useState(
     fieldRequired ? fieldRequiredText : ""
