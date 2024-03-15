@@ -3,8 +3,10 @@ import { setContext } from "@apollo/client/link/context";
 
 import QUERIES from "../queries";
 
+const locationPort = window.location.protocol === "https:" ? "443" : "80";
+
 const httpLink = new HttpLink({
-  uri: `http://${window.location.hostname}:80/graphql`,
+  uri: `${window.location.origin}:${locationPort}/graphql`,
 });
 
 const AsyncTokenLookup = (refresh) =>
