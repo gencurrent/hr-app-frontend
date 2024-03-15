@@ -1,3 +1,32 @@
+Front End application for the "HR-App" project
+
+# Build
+
+## For the remote registry
+`./dockerize.sh` - to build and push the image to the remote registry
+Inpect the file to check the remote registry details
+
+
+## Local 
+**2-step build**  
+To build a docker image  
+`docker build -t hr-app-frontend .`  
+Pushing the image to the registry  
+`docker tag hr-app-frontend localhost:5050/hr-app-frontend`  
+`docker push localhost:5050/hr-app-frontend`  
+
+**1-step build**  
+`docker build . -t localhost:5050/hr-app-frontend`  
+`docker push localhost:5050/hr-app-frontend`  
+
+## Briefing
+
+## Structure
+
+src/ — source code  
+ utils — utilities for the whole application
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
